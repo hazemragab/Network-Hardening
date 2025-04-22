@@ -8,9 +8,6 @@ from ntc_templates.parse import parse_output
 from ipaddress import ip_address
 #
 #
-import os
-from dotenv import load_dotenv
-load_dotenv()
 import asyncio
 import yaml
 from scrapli.driver.core import AsyncIOSXEDriver
@@ -23,17 +20,16 @@ from inv import DEVICES
 @dataclass
 class NetworkAudit:
     """
-    A simple class used to manage telnet access to a network device
-    by manipulating an access control list (ACL) by adding and removing
-    "permit hosts" entries.
+    XXXX
     """
 
-    address: str
+    MgmtIP: str
     port: int
     username: str
     password: str
-    access_list_name: Optional[str] = "CISCO-CWA-URL-REDIRECT-ACL"
-    telnet_vty_line: Optional[int] = 15
+    FileExport: str
+    # access_list_name: Optional[str] = "CISCO-CWA-URL-REDIRECT-ACL"
+    # telnet_vty_line: Optional[int] = 15
 
     def connect(self) -> ConnectHandler:
         """
@@ -47,24 +43,31 @@ class NetworkAudit:
         #       at 'self.address', 'self.port', 'self.username', 'self.password'
         #       This method only needs to support Cisco IOS devices.
         # net_connect = None
+
+        
+        
         net_connect = ConnectHandler(
-            host= self.address,
+            host= self.MgmtIP,
             username= self.username,
             password= self.password,
             port= self.port,
-            device_type="cisco_xe"
+            device_type= "cisco_xe",
+            session_log= self.FileExport
+            # session_log= "looooog.txt"
         )
-
         return net_connect
+
 
     def interfacesstatus(self) -> list[dict[str, str]]:
         """
         Lookup and return the current hosts allowed
         telnet access to device.
         """
-
+        Commands = ['show ip route', 'show ip int br', 'show run all']
         net_connect = self.connect()   # Connect to the device
-        mgmt_acl_raw = net_connect.send_command(f"show ip interface brief")
+        for CommandsList in Commands:
+            # mgmt_acl_raw = net_connect.send_command(f"show ip interface brief")
+            mgmt_acl_raw = net_connect.send_command(CommandsList, delay_factor=5)
         net_connect.disconnect()       # Disconnect from the device
 
         # TODO: Use TextFSM and the already installed nic_templates to parse the raw
@@ -73,9 +76,8 @@ class NetworkAudit:
         mgmt_acl = parse_output(platform="cisco_ios", 
                                 command=f"show ip interface brief", 
                                 data=mgmt_acl_raw)
-        # print(mgmt_acl)
-        # print(type(mgmt_acl))
-
+        print(mgmt_acl)
+        print(type(mgmt_acl))
         return mgmt_acl
 
     def upinterfaceslist(self, mgmt_acl: Optional[list[dict[str, str]]] = None):
@@ -103,7 +105,7 @@ class NetworkAudit:
                 if each_element['status'] == 'up' :
                     NEWUPLIST.append(each_element['intf'])
                     # print(each_element['intf'])
-        print(f"This is the new list  " + str(NEWUPLIST))
+        # print(f"This is the new list  " + str(NEWUPLIST))
 
 
 

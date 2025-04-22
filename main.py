@@ -1,8 +1,11 @@
 #! /usr/bin/env python
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from ipaddress import ip_address
 from JOB01 import NetworkAudit
+from inv import DEVICES
 
 
 if __name__ == "__main__":
@@ -10,38 +13,26 @@ if __name__ == "__main__":
     # Lookup network credentials from environment
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
-    # print(username)
-    # print(password)
-    """
-    username = os.environ['XE_VAR_USER']
-    password = os.environ['XE_VAR_PASS']
-    """
-
     if not username or not password:
         print("Credentials for network access must be set as ENVs 'XE_VAR_USER' and 'XE_VAR_PASS' to use this utility.")
+    
+    for device in DEVICES:
+        hostname = device['hostname']
+        MgmtIP = device['ipadd']
+        FileExport = (f"%s.txt" %hostname)
+        port = 22
 
-    # Address and Port for Network Router to manage ACL
-    # Default to 'rtr-edge-03' but allow overriding with ENV
-    # address = os.getenv("ROUTER_ADDRESS", "10.250.50.201")
-    # port = int(os.getenv("ROUTER_PORT", 22))
-    address = ('10.250.50.201')
-    port = 22
+        RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport)    # Create a Telnet_Mgmt Object for the device
+        print(f"Looking up current status of Interfaces from device {RunFn.MgmtIP}.")
+        print("-" * os.get_terminal_size().columns)
+        # device.upinterfaceslist()
+        RunFn.interfacesstatus()
+        print("-" * os.get_terminal_size().columns)
 
-    # Create a Telnet_Mgmt Object for the device
-    device = NetworkAudit(address, port, username, password)
-
-    # Display the current list of hosts with defined telnet access
-    print(f"Looking up current status of Interfaces from device {device.address}.")
-    print("-" * os.get_terminal_size().columns)
-    device.upinterfaceslist()
-    print("-" * os.get_terminal_size().columns)
-
-
-
-
-
-
-
+        print(hostname)
+        print(MgmtIP)
+        print(FileExport)
+        print(type(FileExport))
 
 
 

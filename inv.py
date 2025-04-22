@@ -1,10 +1,10 @@
 DEVICES = [
     {
-        "hostname": "rtr-edge-03",
-        "host": "192.168.5.118",
+        "hostname": "THM-ACI-MOB-INT",
+        "ipadd": "10.250.50.201",
     },
     {
-        "hostname": "rtr-edge-04",
-        "host": "192.168.5.119",
+        "hostname": "MLQ-INT-SW",
+        "ipadd": "10.250.50.90",
     },
 ]
