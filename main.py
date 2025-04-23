@@ -17,13 +17,23 @@ if __name__ == "__main__":
     if not username or not password:
         print("Credentials for network access must be set as ENVs 'XE_VAR_USER' and 'XE_VAR_PASS' to use this utility.")
     
+    """
     
+    ● Feature for categorizing the device types and to which DC-GROUP it belongs to is still not developed
+    ● The for-loop function need to be changes maybe to a function then loop via multiproccessing/Threading
+    ● Develop the feature for examining the checkpoints then reflect on dataframe then export to excel file 
 
+    """
+    MLQDC-DeviceList = ['THM-ACI-MOB-INT', 'MLQ-INT-SW' ]
 
     for device in DEVICES:
         hostname = device['hostname']
-        MgmtIP = device['ipadd']
         FileExport = (f"./ConfigExport/%s.txt" %hostname)
+        try:
+            # MgmtIP01 = device['ipadd']
+            MgmtIP = ip_address(device['ipadd'])
+        except ValueError:
+            print(f"❌ The entry {device['ipadd']} is not a valid IP address. Exiting")
         port = 22
 
 
