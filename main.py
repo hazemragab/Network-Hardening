@@ -6,6 +6,7 @@ load_dotenv()
 from ipaddress import ip_address
 from JOB01 import NetworkAudit
 from inv import DEVICES
+from ciscoconfparse2 import CiscoConfParse
 
 
 if __name__ == "__main__":
@@ -16,23 +17,26 @@ if __name__ == "__main__":
     if not username or not password:
         print("Credentials for network access must be set as ENVs 'XE_VAR_USER' and 'XE_VAR_PASS' to use this utility.")
     
+    
+
+
     for device in DEVICES:
         hostname = device['hostname']
         MgmtIP = device['ipadd']
-        FileExport = (f"%s.txt" %hostname)
+        FileExport = (f"./ConfigExport/%s.txt" %hostname)
         port = 22
 
-        RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport)    # Create a Telnet_Mgmt Object for the device
-        print(f"Looking up current status of Interfaces from device {RunFn.MgmtIP}.")
-        print("-" * os.get_terminal_size().columns)
-        # device.upinterfaceslist()
-        RunFn.interfacesstatus()
+
+        RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig Fn
+        print(f"Exporting ConfigurationFiles from device {RunFn.hostname}. to Directory ./ConfigsExport ")
+        # print("-" * os.get_terminal_size().columns)
+        RunFn.CiscoDeviceConfigs()
         print("-" * os.get_terminal_size().columns)
 
-        print(hostname)
-        print(MgmtIP)
-        print(FileExport)
-        print(type(FileExport))
+        # print(hostname)
+        # print(MgmtIP)
+        # print(FileExport)
+        # print(type(FileExport))
 
 
 

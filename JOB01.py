@@ -28,6 +28,7 @@ class NetworkAudit:
     username: str
     password: str
     FileExport: str
+    hostname: str
     # access_list_name: Optional[str] = "CISCO-CWA-URL-REDIRECT-ACL"
     # telnet_vty_line: Optional[int] = 15
 
@@ -35,17 +36,6 @@ class NetworkAudit:
         """
         Create and return a ConnectHandler for the device
         """
-
-        # TODO: Create and return a netmiko ConnectHandler for interacting with
-        #       a network device
-        #
-        #       The address, port, username, and password properties are all available
-        #       at 'self.address', 'self.port', 'self.username', 'self.password'
-        #       This method only needs to support Cisco IOS devices.
-        # net_connect = None
-
-        
-        
         net_connect = ConnectHandler(
             host= self.MgmtIP,
             username= self.username,
@@ -53,12 +43,10 @@ class NetworkAudit:
             port= self.port,
             device_type= "cisco_xe",
             session_log= self.FileExport
-            # session_log= "looooog.txt"
         )
         return net_connect
 
-
-    def interfacesstatus(self) -> list[dict[str, str]]:
+    def CiscoDeviceConfigs(self) -> list[dict[str, str]]:
         """
         Lookup and return the current hosts allowed
         telnet access to device.
@@ -66,9 +54,9 @@ class NetworkAudit:
         Commands = ['show ip route', 'show ip int br', 'show run all']
         net_connect = self.connect()   # Connect to the device
         for CommandsList in Commands:
-            # mgmt_acl_raw = net_connect.send_command(f"show ip interface brief")
             mgmt_acl_raw = net_connect.send_command(CommandsList, delay_factor=5)
         net_connect.disconnect()       # Disconnect from the device
+        print(f" Export-Job Successful for device  {self.hostname}")
 
         # TODO: Use TextFSM and the already installed nic_templates to parse the raw
         #       output from the show command and return the result
@@ -76,8 +64,8 @@ class NetworkAudit:
         mgmt_acl = parse_output(platform="cisco_ios", 
                                 command=f"show ip interface brief", 
                                 data=mgmt_acl_raw)
-        print(mgmt_acl)
-        print(type(mgmt_acl))
+        # print(mgmt_acl)
+        # print(type(mgmt_acl))
         return mgmt_acl
 
     def upinterfaceslist(self, mgmt_acl: Optional[list[dict[str, str]]] = None):
@@ -90,7 +78,7 @@ class NetworkAudit:
         # print(type(mgmt_acl))
 
         if mgmt_acl is None:
-            mgmt_acl = self.interfacesstatus()
+            mgmt_acl = self.CiscoDeviceConfigs()
         
         #print(f"The following host permissions defined on ACL {self.access_list_name}:")
         # for i, entry in enumerate(mgmt_acl):
