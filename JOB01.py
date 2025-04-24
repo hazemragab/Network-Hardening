@@ -32,18 +32,43 @@ class NetworkAudit:
     # access_list_name: Optional[str] = "CISCO-CWA-URL-REDIRECT-ACL"
     # telnet_vty_line: Optional[int] = 15
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     def connect(self) -> ConnectHandler:
         """
         Create and return a ConnectHandler for the device
         """
-        net_connect = ConnectHandler(
-            host= self.MgmtIP,
-            username= self.username,
-            password= self.password,
-            port= self.port,
-            device_type= "cisco_xe",
-            session_log= self.FileExport
-        )
+        # net_connect = ConnectHandler(
+        #     host= self.MgmtIP,
+        #     username= self.username,
+        #     password= self.password,
+        #     port= self.port,
+        #     device_type= "cisco_xe",
+        #     session_log= self.FileExport
+        # )
+        
+        device = {
+            'host': self.MgmtIP,
+            'username': self.username,
+            'password': self.password,
+            'port': self.port,
+            'device_type': "cisco_xe",
+            'session_log': self.FileExport,
+        }
+        net_connect = ConnectHandler(**device)
+        
         return net_connect
 
     def CiscoDeviceConfigs(self) -> list[dict[str, str]]:
@@ -56,7 +81,7 @@ class NetworkAudit:
         for CommandsList in Commands:
             mgmt_acl_raw = net_connect.send_command(CommandsList, delay_factor=5)
         net_connect.disconnect()       # Disconnect from the device
-        print(f" Export-Job Successful for device  {self.hostname}")
+        print(f" 🟢🟢 Export-Job Successful for device  {self.hostname}")
 
         # TODO: Use TextFSM and the already installed nic_templates to parse the raw
         #       output from the show command and return the result
@@ -144,9 +169,3 @@ class NetworkAudit:
 
     #     # If not error found, return True for success
     #     return True
-
-
-
-
-
-

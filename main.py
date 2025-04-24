@@ -7,6 +7,7 @@ from ipaddress import ip_address
 from JOB01 import NetworkAudit
 from inv import DEVICES
 from ciscoconfparse2 import CiscoConfParse
+import yaml, argparse, csv, subprocess
 
 
 if __name__ == "__main__":
@@ -17,13 +18,38 @@ if __name__ == "__main__":
     if not username or not password:
         print("Credentials for network access must be set as ENVs 'XE_VAR_USER' and 'XE_VAR_PASS' to use this utility.")
     
-    """
-    
-    ● Feature for categorizing the device types and to which DC-GROUP it belongs to is still not developed
-    ● The for-loop function need to be changes maybe to a function then loop via multiproccessing/Threading
-    ● Develop the feature for examining the checkpoints then reflect on dataframe then export to excel file 
-    ● Validating provided IPAddress is Valid
-    """
+
+    def parse_arguments():                                     # to parse command-line arguments
+        parser = argparse.ArgumentParser(description = ' Netmiko Script to Connect to Routers and Run Commands ')
+        parser.add_argument('--hosts_file', required=True, help = ' Path to the Ansible hosts file ')
+        parser.add_argument('--group', required=True, help = ' Group of routers to connect to from Ansible hosts file ')
+        return parser.parse_args()
+
+
+    def ping_ip(ip_address):                                   # Use ping command to check if switch alive
+        param = '-c'                                           # for linux os
+        command = ['ping', param, '2', ip_address]             # Build the ping command
+        try:
+            subprocess.check_output(command, stderr=subprocess.STDOUT, universal_newlines=True)    # Execute the ping command
+            return "yes"
+        except subprocess.CalledProcessError:
+            return "no"
+
+
+
+
+def main():
+    args = parse_arguments()                               # Parse command-line arguments
+    with open(args.hosts_file, 'r') as file:               # Load ansible hosts file in yaml format
+        hosts_data = yaml.safe_load(file)
+    # global_vars = hosts_data['all']['vars']                # Extract global variables
+    if args.group not in hosts_data:
+        print(f"Group {args.group} not found in hosts file.")
+        return
+    # routers = hosts_data[args.group]['hosts']           # Extract group of devices
+    routers = hosts_data[args.group]           # Extract group of devices
+
+
     MLQDC_DeviceList = ['THM-ACI-MOB-INT', 'MLQ-INT-SW' ]
 
     for device in DEVICES:
@@ -46,9 +72,6 @@ if __name__ == "__main__":
         # print(MgmtIP)
         # print(FileExport)
         # print(type(FileExport))
-
-
-
 
 
 """

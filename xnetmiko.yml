@@ -1,0 +1,34 @@
+---
+# Dictionaries are devices
+cisco3:
+  device_type: cisco_xe
+  host: cisco3.lasthop.io
+  username: admin
+  password: cisco123
+
+cisco4:
+  device_type: cisco_xe
+  host: cisco4.lasthop.io
+  username: admin
+  password: cisco123
+
+arista1:
+  device_type: arista_eos
+  host: arista1.lasthop.io
+  username: admin
+  password: notcisco123
+
+arista2:
+  device_type: arista_eos
+  host: arista2.lasthop.io
+  username: admin
+  password: notcisco123
+
+# Any list is group of devices
+cisco:
+  - cisco3
+  - cisco4
+
+arista:
+  - arista1
+  - arista2

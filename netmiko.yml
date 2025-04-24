@@ -1,0 +1,60 @@
+---
+# Dictionaries are devices
+THM-ACI-MOB-INT:
+  device_type: cisco_xe
+  host: 10.250.50.201
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+
+MLQ-INT-SW:
+  device_type: cisco_xe
+  host: 10.250.50.90
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+
+
+
+# Any list is group of devices
+MLQDC:
+  - THM-ACI-MOB-INT
+  - MLQ-INT-SW
+
+R1DC:
+R2DC:
+R3DC:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# MLQDCGROUP:
+#   - THM-ACI-MOB-INT
+#   - MLQ-INT-SW
+
+
+
+
+
+
+
+
+
+
+    # r3:
+    #   ansible_host: 192.168.38.103
+    # r4:
+    #   ansible_host: 192.168.38.104
