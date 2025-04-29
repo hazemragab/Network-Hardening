@@ -72,3 +72,43 @@
 
 
 """
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+        """
+        #DownInterfaces
+
+        # intf_cmds=parse.find_parent_objects(['interface', 'shutdown'])
+        # shut_intf_names=[" ".join(cmd.split()[1:]) for cmd in intf_cmds]
+        # print(shut_intf_names)
+
+
+        ### or
+        # for intf_obj in parse.find_parent_objects(['interface', 'no shutdown']):
+        #     intf_name = " ".join(intf_obj.split()[1:])
+        #     print(f"Shutdown: {intf_name}")
+        """
+        
+        
+        """
+        # Get all neighbor configuration branches
+		branches = parse.find_object_branches(('router bgp',
+											'neighbor',
+											'remote-as'))
+		
+		# Get the local BGP ASN
+		bgp_cmd = branches[0][0]
+		local_asn = bgp_cmd.split()[-1]
+		
+		# Find EBGP neighbors for any number of peers
+		for branch in branches:
+			neighbor_addr = branch[1].split()[-1]
+			remote_asn = branch[2].split()[-1]
+			if local_asn != remote_asn:
+				print("EBGP NEIGHBOR", neighbor_addr)
+        """
+
+
+    ------------------------------------------------------------------------------------------------------------------

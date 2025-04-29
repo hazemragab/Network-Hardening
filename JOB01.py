@@ -5,13 +5,18 @@ from dataclasses import dataclass
 from typing import Optional
 from netmiko import ConnectHandler
 from ntc_templates.parse import parse_output
+from ciscoconfparse2 import CiscoConfParse
+import re
 from ipaddress import ip_address
+from pathlib import Path
+import pandas as pd
+import csv
 #
 #
 import asyncio
 import yaml
 from scrapli.driver.core import AsyncIOSXEDriver
-from inv import DEVICES
+# from inv import DEVICES
 #
 #
 #
@@ -36,28 +41,10 @@ class NetworkAudit:
 
 
 
-
-
-
-
-
-
-
-
-
-
     def connect(self) -> ConnectHandler:
         """
-        Create and return a ConnectHandler for the device
+        Create and return a ConnectHandler for the device and log the session
         """
-        # net_connect = ConnectHandler(
-        #     host= self.MgmtIP,
-        #     username= self.username,
-        #     password= self.password,
-        #     port= self.port,
-        #     device_type= "cisco_xe",
-        #     session_log= self.FileExport
-        # )
         
         device = {
             'host': self.MgmtIP,
@@ -65,34 +52,155 @@ class NetworkAudit:
             'password': self.password,
             'port': self.port,
             'device_type': "cisco_xe",
-            'session_log': self.FileExport,
+            # 'session_log': self.FileExport,
         }
         net_connect = ConnectHandler(**device)
         
         return net_connect
 
-    def CiscoDeviceConfigs(self) -> list[dict[str, str]]:
+    # def CiscoDeviceConfigs(self, hostname) -> list[dict[str, str]]:
+    def CiscoDeviceConfigsExport(self, hostname, FileExport, NewFilePathName):   
         """
         Lookup and return the current hosts allowed
         telnet access to device.
         """
-        Commands = ['show ip route', 'show ip int br', 'show run all']
+        
+
+        showrunall = ['show run all']
         net_connect = self.connect()   # Connect to the device
+        for ShowRunAllCommand in showrunall:
+            mgmt_acl_raw = net_connect.send_command(ShowRunAllCommand, delay_factor=5)
+            newfile=open(FileExport, "a")
+            newfile.write(mgmt_acl_raw )
+            newfile.close
+
+        Commands = ['show ip route','show ip int br']
+        #NewFilePathName=(f"./ConfigExportStatus/%s_Status.txt" %hostname)
         for CommandsList in Commands:
-            mgmt_acl_raw = net_connect.send_command(CommandsList, delay_factor=5)
+           CommandsListOutput = net_connect.send_command(CommandsList)
+           newfile2=open(NewFilePathName, "a")
+           newfile2.write(CommandsListOutput)
+           newfile2.close()
+        
         net_connect.disconnect()       # Disconnect from the device
         print(f" 🟢🟢 Export-Job Successful for device  {self.hostname}")
 
-        # TODO: Use TextFSM and the already installed nic_templates to parse the raw
-        #       output from the show command and return the result
-        # mgmt_acl = None
-        mgmt_acl = parse_output(platform="cisco_ios", 
-                                command=f"show ip interface brief", 
-                                data=mgmt_acl_raw)
-        # print(mgmt_acl)
-        # print(type(mgmt_acl))
-        return mgmt_acl
 
+                #    CommandsListOutput = net_connect.send_command(CommandsList, use_textfsm=True)
+        #    CommandsListOutput = net_connect.send_multiline(CommandsList)   
+        #    CommandsListOutputs = str(CommandsListOutput)
+
+
+
+    def checking(self, hostname, FileExport, MgmtIP) :
+        #print("checking")
+        """
+        Lookup and return the current hosts allowed
+        telnet access to device.
+        """
+        ##Encrypt configuration passwords 
+        tigerone_fallback_account = 'username T!ger0ne privilege 15 secret 9 '
+        parse=CiscoConfParse(f"./ConfigExport/%s.txt" %hostname)
+
+
+        Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
+        Encrypt_conf_pwds_pattern2 = re.compile(r'^username\s(.+?)\sssecret\s')
+        Encrypt_conf_pwds_pattern3 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s')
+        Encrypt_conf_pwds_pattern4 = re.compile(r'^username\s(.+?)\spassword\s')
+
+        Encrypt_conf_pwds_fulllist = []
+        for obj1 in parse.find_objects(Encrypt_conf_pwds_pattern1):
+                Encrypt_conf_pwds_fulllist.append(obj1.text)
+
+        for obj2 in parse.find_objects(Encrypt_conf_pwds_pattern2):
+                Encrypt_conf_pwds_fulllist.append(obj2.text) 
+
+        for obj3 in parse.find_objects(Encrypt_conf_pwds_pattern3):
+            Encrypt_conf_pwds_fulllist.append(obj3.text)       
+        
+        for obj4 in parse.find_objects(Encrypt_conf_pwds_pattern4):
+            Encrypt_conf_pwds_fulllist.append(obj4.text) 
+
+
+        usrslist = []
+        for usrs in Encrypt_conf_pwds_fulllist:
+            if tigerone_fallback_account not in usrs:
+                usrslist.append(usrs)
+
+        # if usrslist != []:
+        global Check01
+        
+        if not usrslist:
+            print(f' Node %s passed for parameter  "Encrypt configuration passwords"  ' %hostname )
+            Check01 = 'PASS'
+        else:
+            print(f' ❌ Node %s failed for parameter "Encrypt configuration passwords" ' %hostname )
+            Check01 = 'FAIL'
+        return Check01
+    
+
+
+        # myfile=Path(f"./wb.xlsx")
+        # print(myfile)
+        # DF1 = pd.DataFrame({'Hostname': [hostname], 'IPAdress':[MgmtIP]})
+        # DF1 = [{'Hostname': hostname, 'IPAdress':MgmtIP, 'Encrypt configuration passwords' : Check01}]
+        # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter')
+        # # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
+        # DF1.to_excel(writerx,'Sheet1')
+
+        # if myfile.is_file():
+        #     dframe=pd.read_excel(myfile, engine='xlsxwriter', sheet_name='sheet1')
+        #     dfx=pd.DataFrame(dframe)
+        #     df_appending=dfx.append(pd.DataFrame(DF1), columns=['Hostname','IPAdress'])
+        #     writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
+        #     df_appending.to_excel(writerx,'Sheet1')
+        #     writerx.save()
+
+            # writer = pd.ExcelWriter(myfile)
+            # DF1.to_excel(writer, 'Sheet1', startrow=0, startcol=0)
+            # # writer.save()
+            # # data.to_csv("output_excel_file.xlsx", sheet_name="Sheet 1", index=False)
+
+
+        # else:
+        #     print('NO Such File Found')
+
+        # for t in usrslist:
+        #     print(t)
+        
+    def ExportedData(self, hostname,MgmtIP):
+        
+        # data = {'Hostname': [hostname],'IPADDRESS': [MgmtIP],'Encrypt_configuration_passwords': [Check01]}
+        data = {'Hostname': [hostname],'IPADDRESS': [MgmtIP],'EncryptConfigurationPasswords': [Check01]}
+        df = pd.DataFrame(data)
+        df.to_csv('OutputReport.csv', mode='a', index=False, header=False)
+        
+        
+        
+        # myfile=Path(f"./wbbbbbb.csv")
+        # DF1 = pd.DataFrame({'Hostname': hostname, 'IPAdress':MgmtIP, 'Encrypt configuration passwords' : [Check01]})
+        # # DF1 = [{'Hostname': hostname, 'IPAdress':MgmtIP, 'Encrypt configuration passwords' : Check01}]
+        # writerx=pd.ExcelWriter(myfile)
+        #     # # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
+        # DF1.to_csv(writerx, encoding='utf-8', index=False, mode='a')
+
+        """
+        output_list  = []
+        output_list.extend(DF1)                                 # add switch info to total output file
+
+        output_filem = 'hostname' + '_merg.csv'                    #    merge 2 in 1 file
+        with open(output_filem, mode='w', newline='') as file:     # Write the updated data to a new CSV file
+            fieldnames = output_list[0].keys()
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(output_list)
+        print("New CSV file  has been created as ", '_merg.csv')
+        print(f" 🟢🟢 Check-Job Successful for device  {self.hostname}")
+    
+        """
+    
+    
+    
     def upinterfaceslist(self, mgmt_acl: Optional[list[dict[str, str]]] = None):
         """
         Print out the current status of interfaces
