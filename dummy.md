@@ -112,3 +112,152 @@
 
 
     ------------------------------------------------------------------------------------------------------------------
+
+
+
+        # myfile=Path(f"./wb.xlsx")
+        # print(myfile)
+        # DF1 = pd.DataFrame({'Hostname': [hostname], 'IPAdress':[MgmtIP]})
+        # DF1 = [{'Hostname': hostname, 'IPAdress':MgmtIP, 'Encrypt configuration passwords' : Check01}]
+        # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter')
+        # # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
+        # DF1.to_excel(writerx,'Sheet1')
+
+        # if myfile.is_file():
+        #     dframe=pd.read_excel(myfile, engine='xlsxwriter', sheet_name='sheet1')
+        #     dfx=pd.DataFrame(dframe)
+        #     df_appending=dfx.append(pd.DataFrame(DF1), columns=['Hostname','IPAdress'])
+        #     writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
+        #     df_appending.to_excel(writerx,'Sheet1')
+        #     writerx.save()
+
+            # writer = pd.ExcelWriter(myfile)
+            # DF1.to_excel(writer, 'Sheet1', startrow=0, startcol=0)
+            # # writer.save()
+            # # data.to_csv("output_excel_file.xlsx", sheet_name="Sheet 1", index=False)
+
+
+        # else:
+        #     print('NO Such File Found')
+
+        # for t in usrslist:
+        #     print(t)
+
+
+        ----------------------------------------------------------------------------------------------------------------
+
+                ##Encrypt configuration passwords 
+        tigerone_fallback_account = 'username T!ger0ne privilege 15 secret 9 '
+        parse=CiscoConfParse(f"./ConfigExport/%s.txt" %hostname)
+
+
+        Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
+        Encrypt_conf_pwds_pattern2 = re.compile(r'^username\s(.+?)\sssecret\s')
+        Encrypt_conf_pwds_pattern3 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s')
+        Encrypt_conf_pwds_pattern4 = re.compile(r'^username\s(.+?)\spassword\s')
+
+        Encrypt_conf_pwds_fulllist = []
+        for obj1 in parse.find_objects(Encrypt_conf_pwds_pattern1):
+                Encrypt_conf_pwds_fulllist.append(obj1.text)
+
+        for obj2 in parse.find_objects(Encrypt_conf_pwds_pattern2):
+                Encrypt_conf_pwds_fulllist.append(obj2.text) 
+
+        for obj3 in parse.find_objects(Encrypt_conf_pwds_pattern3):
+            Encrypt_conf_pwds_fulllist.append(obj3.text)       
+        
+        for obj4 in parse.find_objects(Encrypt_conf_pwds_pattern4):
+            Encrypt_conf_pwds_fulllist.append(obj4.text) 
+
+
+        usrslist = []
+        for usrs in Encrypt_conf_pwds_fulllist:
+            if tigerone_fallback_account not in usrs:
+                usrslist.append(usrs)
+
+        # if usrslist != []:
+        global Check01
+        
+        if not usrslist:
+            print(f' Node %s passed for parameter  "Encrypt configuration passwords"  ' %hostname )
+            Check01 = 'PASS'
+        else:
+            print(f' ❌ Node %s failed for parameter "Encrypt configuration passwords" ' %hostname )
+            Check01 = 'FAIL'
+        return Check01
+
+
+        ----------------------------------------------------------------------------------------------------
+
+
+            def checking(self, hostname, FileExport, MgmtIP) :
+        #print("checking")
+        """
+        Lookup and return the current hosts allowed
+        telnet access to device.
+        """
+        ##Encrypt configuration passwords 
+        tigerone_fallback_account = 'username T!ger0ne privilege 15 secret 9 '
+        parse=CiscoConfParse(f"./ConfigExport/%s.txt" %hostname)
+
+
+        Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
+        Encrypt_conf_pwds_pattern2 = re.compile(r'^username\s(.+?)\sssecret\s')
+        Encrypt_conf_pwds_pattern3 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s0\s')
+        Encrypt_conf_pwds_pattern4 = re.compile(r'^username\s(.+?)\spassword\s0\s')
+        #username test6 password 0 hazemragab
+        # username test7 privilege 15 password 0 hazemragab
+
+
+        Encrypt_conf_pwds_fulllist = []
+        for obj1 in parse.find_objects(Encrypt_conf_pwds_pattern1):
+                Encrypt_conf_pwds_fulllist.append(obj1.text)
+
+        for obj2 in parse.find_objects(Encrypt_conf_pwds_pattern2):
+                Encrypt_conf_pwds_fulllist.append(obj2.text) 
+
+        for obj3 in parse.find_objects(Encrypt_conf_pwds_pattern3):
+            Encrypt_conf_pwds_fulllist.append(obj3.text)
+            print(obj3.text)       
+        
+        for obj4 in parse.find_objects(Encrypt_conf_pwds_pattern4):
+            Encrypt_conf_pwds_fulllist.append(obj4.text) 
+            print(obj4.text)
+
+
+        usrslist = []
+        for usrs in Encrypt_conf_pwds_fulllist:
+            if tigerone_fallback_account not in usrs:
+                usrslist.append(usrs)
+
+        # if usrslist != []:
+        global Check01
+        
+        if not usrslist:
+            print(f' Node %s passed for parameter  "Encrypt configuration passwords"  ' %hostname )
+            Check01 = 'PASS'
+        else:
+            print(f' ❌ Node %s failed for parameter "Encrypt configuration passwords" ' %hostname )
+            Check01 = 'FAIL'
+        return Check01
+
+
+        ---------------------------------------------------------------------------------------------------------------
+
+        Encrypt_conf_pwds_pattern3 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
+        Encrypt_conf_pwds_pattern4 = re.compile(r'^username\s(.+?)\sssecret\s')
+        
+
+        # for obj3 in parse.find_objects(Encrypt_conf_pwds_pattern3):
+        #     Encrypt_conf_secrets_fulllist.append(obj3.text)
+
+        # for obj4 in parse.find_objects(Encrypt_conf_pwds_pattern4):
+        #     Encrypt_conf_secrets_fulllist.append(obj4.text) 
+
+
+
+        # if  not parse.find_objects(Tiger0neAccount):
+        #     Check02 = 'FAIL'
+        # else:
+        #     Check01 = 'PASS'
+        # print(Check02)

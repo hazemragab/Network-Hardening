@@ -92,86 +92,80 @@ class NetworkAudit:
 
 
 
-    def checking(self, hostname, FileExport, MgmtIP) :
-        #print("checking")
+    def CiscoCheckList(self, hostname, FileExport, MgmtIP) :
+        
         """
-        Lookup and return the current hosts allowed
-        telnet access to device.
+        ● [1] Encrypt configuration passwords 
+        ● [2] Encrypt configuration passwords 
         """
-        ##Encrypt configuration passwords 
-        tigerone_fallback_account = 'username T!ger0ne privilege 15 secret 9 '
+        
+        
         parse=CiscoConfParse(f"./ConfigExport/%s.txt" %hostname)
-
-
-        Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
-        Encrypt_conf_pwds_pattern2 = re.compile(r'^username\s(.+?)\sssecret\s')
-        Encrypt_conf_pwds_pattern3 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s')
-        Encrypt_conf_pwds_pattern4 = re.compile(r'^username\s(.+?)\spassword\s')
-
-        Encrypt_conf_pwds_fulllist = []
-        for obj1 in parse.find_objects(Encrypt_conf_pwds_pattern1):
-                Encrypt_conf_pwds_fulllist.append(obj1.text)
-
-        for obj2 in parse.find_objects(Encrypt_conf_pwds_pattern2):
-                Encrypt_conf_pwds_fulllist.append(obj2.text) 
-
-        for obj3 in parse.find_objects(Encrypt_conf_pwds_pattern3):
-            Encrypt_conf_pwds_fulllist.append(obj3.text)       
         
-        for obj4 in parse.find_objects(Encrypt_conf_pwds_pattern4):
-            Encrypt_conf_pwds_fulllist.append(obj4.text) 
-
-
-        usrslist = []
-        for usrs in Encrypt_conf_pwds_fulllist:
-            if tigerone_fallback_account not in usrs:
-                usrslist.append(usrs)
-
-        # if usrslist != []:
+        
+        ##Encrypt configuration passwords 
         global Check01
+        Check01=""
+        Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s0\s')
+        Encrypt_conf_pwds_pattern2 = re.compile(r'^username\s(.+?)\spassword\s0\s') #Hint this Rule also catches the above regex
+        clearpwdslist = []
+        for obj1 in parse.find_objects(Encrypt_conf_pwds_pattern1):
+            clearpwdslist.append(obj1.text)    
         
-        if not usrslist:
-            print(f' Node %s passed for parameter  "Encrypt configuration passwords"  ' %hostname )
+        for obj2 in parse.find_objects(Encrypt_conf_pwds_pattern2):  
+            clearpwdslist.append(obj2.text) 
+
+        if not clearpwdslist:
+        # if usrslist != []:
+            print(f'🟢 Node %s passed for parameter  "EncryptConfigurationPasswords"  ' %hostname )
             Check01 = 'PASS'
         else:
-            print(f' ❌ Node %s failed for parameter "Encrypt configuration passwords" ' %hostname )
+            print(f'❌ Node %s failed for parameter "EncryptConfigurationPasswords" ' %hostname )
             Check01 = 'FAIL'
-        return Check01
+        
+        
+        
+        ##Create a Fallback Account 
+        global Check02
+        Check02 = ""
+        
+        tigerone_fallback_account = 'username T!ger0ne privilege 15 secret 9 '
+        Tiger0neAccount = re.compile(r'^username\sT!ger0ne\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
+        
+        Encrypt_conf_secrets_fulllist = []
+        for obj3 in parse.find_objects(Tiger0neAccount):
+            Encrypt_conf_secrets_fulllist.append(obj3.text)
+
+        for usrs in Encrypt_conf_secrets_fulllist:
+            if tigerone_fallback_account not in usrs:
+                Check02 = 'FAIL'
+            else:
+                Check02 = 'PASS'
+        
+        if Check02 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter  "Create Fallback Account "  ' %hostname )
+        elif Check02 == 'PASS': 
+            print(f'🟢 Node %s passed for parameter "Create Fallback Account " ' %hostname )
+        else:
+            print("NO Check02 Value")
+        
     
 
-
-        # myfile=Path(f"./wb.xlsx")
-        # print(myfile)
-        # DF1 = pd.DataFrame({'Hostname': [hostname], 'IPAdress':[MgmtIP]})
-        # DF1 = [{'Hostname': hostname, 'IPAdress':MgmtIP, 'Encrypt configuration passwords' : Check01}]
-        # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter')
-        # # writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
-        # DF1.to_excel(writerx,'Sheet1')
-
-        # if myfile.is_file():
-        #     dframe=pd.read_excel(myfile, engine='xlsxwriter', sheet_name='sheet1')
-        #     dfx=pd.DataFrame(dframe)
-        #     df_appending=dfx.append(pd.DataFrame(DF1), columns=['Hostname','IPAdress'])
-        #     writerx=pd.ExcelWriter(myfile, engine='xlsxwriter', mode='a', if_sheet_exists='overlay')
-        #     df_appending.to_excel(writerx,'Sheet1')
-        #     writerx.save()
-
-            # writer = pd.ExcelWriter(myfile)
-            # DF1.to_excel(writer, 'Sheet1', startrow=0, startcol=0)
-            # # writer.save()
-            # # data.to_csv("output_excel_file.xlsx", sheet_name="Sheet 1", index=False)
-
-
-        # else:
-        #     print('NO Such File Found')
-
-        # for t in usrslist:
-        #     print(t)
+        return Check01,Check02
+    
         
     def ExportedData(self, hostname,MgmtIP):
         
         # data = {'Hostname': [hostname],'IPADDRESS': [MgmtIP],'Encrypt_configuration_passwords': [Check01]}
-        data = {'Hostname': [hostname],'IPADDRESS': [MgmtIP],'EncryptConfigurationPasswords': [Check01]}
+        # data = {'Hostname': [hostname],'IPADDRESS': [MgmtIP],'EncryptConfigurationPasswords': [Check01]}
+        
+        data = {
+            'Hostname': [hostname],
+            'IPADDRESS': [MgmtIP],
+            'EncryptConfigurationPasswords': [Check01],
+            'Create Fallback Account': [Check02]
+            }
+        
         df = pd.DataFrame(data)
         df.to_csv('OutputReport.csv', mode='a', index=False, header=False)
         

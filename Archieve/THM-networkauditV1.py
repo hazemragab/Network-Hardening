@@ -55,7 +55,6 @@ def main():
         return
     GroupDevicesDictionary = hosts_data[args.group]          # Extract group of devices
 
-    # Check01= ""
     for key,value in GroupDevicesDictionary.items():
         if ping_ip(value['host']) == "no":
             print(f' ❌ Device %s MgmtIP:%s is not reachable' %(key,value['host']))
@@ -72,6 +71,10 @@ def main():
             if FileExportPath.exists() & NewFilePathName.exists():
                 print(f"🟢 Files for host %s already Exported" %hostname)
                 # print("-" * os.get_terminal_size().columns)
+                
+
+
+
                 print(f"🟢 Now Procceeding with the Audit for host %s" %hostname)
                 RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig
                 RunFn.checking(hostname, FileExport, MgmtIP)
