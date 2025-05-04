@@ -261,3 +261,38 @@
         # else:
         #     Check01 = 'PASS'
         # print(Check02)
+
+
+        ---------------------------------------------------------------------------------------------------
+
+
+        # Encrypt_conf_secrets_fulllist = []
+        # for obj3 in parse.find_objects(Tiger0neAccount):
+        #     Encrypt_conf_secrets_fulllist.append(obj3.text)
+        #     Tiger0neAccountString = obj3.text
+        #     print(Tiger0neAccountString)
+        # print(Encrypt_conf_secrets_fulllist)
+
+
+
+        # for usrs in Encrypt_conf_secrets_fulllist:
+        #     if tigerone_fallback_account not in usrs:
+        #         Check02 = 'FAIL'
+        #     else:
+        #         Check02 = 'PASS'
+        
+        
+        # if tigerone_fallback_account in Encrypt_conf_secrets_fulllist:
+        #     Check02 = 'PASS'
+        # elif tigerone_fallback_account not in Encrypt_conf_secrets_fulllist:
+        #     Check02 = 'FAIL'
+        # else:
+        #     print('NO VALUE for Check02 tigerone_fallback_account value error')
+
+
+
+---------------------------------------------------------------------------------------------------
+
+    
+
+---------------------------------------------------------------------------------------------------

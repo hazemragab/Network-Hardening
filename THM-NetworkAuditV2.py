@@ -1,21 +1,19 @@
 #! /usr/bin/env python
 
 """
-usage : python mainv2.py --hosts_file testbed.yml --group MLQDC
-
+usage : python THM-NetworkAuditV2.py --hosts_file HostsInventory.yml --group MLQDC
 """
 
 import os
-
 from dotenv import load_dotenv
 load_dotenv()
 from JOB01 import NetworkAudit
 import yaml, argparse, csv, subprocess
 from pathlib import Path
-import click
 from netmiko.utilities import obtain_all_devices
 from ipaddress import ip_address
 from ciscoconfparse2 import CiscoConfParse
+import click
 # from inv import DEVICES
 
 
@@ -40,6 +38,7 @@ def ping_ip(ips):                                   # Use ping command to check 
 
 def main():
 
+    os.system("/bin/bash -c \"cp OutputReportDraft.csv OutputReport.csv" + "\"")
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
     if not username or not password:
@@ -66,7 +65,7 @@ def main():
     	
         if FileExportPath.exists() & NewFilePathName.exists():
 
-            print("-" * os.get_terminal_size().columns)
+            #print("-" * os.get_terminal_size().columns)
             print(f"🟢 Files for host %s already Exported" %hostname)
             print(f"🟢 Now Procceeding with the Audit for host %s" %hostname)
         
@@ -74,7 +73,7 @@ def main():
             RunFn.CiscoCheckList(hostname, FileExport, MgmtIP)
             RunFn.ExportedData(hostname, MgmtIP)
             
-            print("-" * os.get_terminal_size().columns)
+            print("*" * os.get_terminal_size().columns)
 
         elif ping_ip(value['host']) == "no":
             print(f' ❌ Device %s MgmtIP:%s is not reachable' %(key,value['host']))

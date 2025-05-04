@@ -2,7 +2,7 @@ Building configuration...
 
 Current configuration with default configurations exposed : 228432 bytes
 !
-! Last configuration change at 06:56:04 UTC Mon Apr 14 2025 by HRagab7
+! Last configuration change at 09:30:46 UTC Thu May 1 2025 by T!ger0ne
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -38,7 +38,7 @@ no service pt-vty-logging
 no service disable-ip-fast-frag
 no service sequence-numbers
 service counters max age 0
-service dhcp
+no service dhcp
 no service call-home
 no service performance
 platform punt-keepalive disable-kernel-core
@@ -880,7 +880,7 @@ username HRagab7 privilege 15 secret 9 $9$/x5lj.Mf2WXlXU$S9SqjchTfZGbwiuBlPrZ9x.
 username azhar privilege 15 secret 9 $9$2lkNQbfRlQlqCE$xdp5IhJUf5byCUrTySvL9.nWAEypi3hm8IrvAPFNS7I
 username skadira privilege 15 secret 9 $9$XF6Pt.rGkSTvWE$xBOpxyXsKN3z7sngdyt0vVWrdjeckKlYphX5.O4iI2g
 username aalnour privilege 15 secret 9 $9$xDv75KV3N6ghUE$7TSop7VxKaq1/F2n7KZAZO3Pp.oAxN4cZnRzFeBqvDg
-username T!ger0ne privilege 15 secret 9 $9$wehEC5Tou/RUd.$M0AxzfvFhKmsKVWjkqVIIC6cB11K0NlMy7ikARreZlE
+username T!ger0ne privilege 15 secret 9 $9$pRt8zjaklhN4TU$9qECcktGtci.AGwNHSmDIXsF6luKSTxkKuYCMiyEi5I
 !
 redundancy
  mode sso
@@ -3691,7 +3691,7 @@ interface TenGigabitEthernet1/1/3
  lldp transmit
  lldp receive
  lldp tlv-select power-management
- lldp tlv-select 4-wire-power-management
+ lldp tlv-select 4-wire-pConfigure inactivity time-out for the sessions ower-management
  lldp med-tlv-select network-policy
  lldp med-tlv-select location
  lldp med-tlv-select inventory-management
@@ -7704,7 +7704,7 @@ line con 0
 line vty 0 4
  motd-banner
  exec-banner
- exec-timeout 5 0
+ exec-timeout 10 0
  timeout login response 30
  privilege level 1
  logging synchronous
@@ -7907,4 +7907,5 @@ netconf-yang ssh server algorithm mac hmac-sha2-512
 restconf
 cloud-services endpoint api/tethering/v1/enrollment/enroll/byname
 cloud-services url https://dnaservices.cisco.com
+tftp-server bootflash:cat9k-lni.17.12.04.SPA.pkg
 end

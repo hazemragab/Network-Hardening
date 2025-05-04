@@ -1,3 +1,3 @@
-HostName,IPAddress,EncryptConfigurationPasswords,FallbackAccountCreated
-THM-ACI-MOB-INT,10.250.50.201,PASS,PASS
-MLQ-INT-SW,10.250.50.90,PASS,PASS
+HostName,IPAddress,EncryptConfigPasswords,FallbackAccountCreated,PasswordRetryLockout,SessionInactivityTimeOut,DisableDHCPServices,DisableHTTPService,DisableHTTPSService,DisableTFTPService,ProhibitTelnetConnections,CdpDisableExternalIfaces,LldpDisableExternalIfaces
+MLQ-INT-SW,10.250.50.90,PASS,PASS,FAIL,PASS,PASS,FAIL,FAIL,FAIL,FAIL,PASS,PASS
+THM-ACI-SALAM-INT,10.250.50.200,PASS,PASS,PASS,PASS,FAIL,PASS,PASS,PASS,PASS,FAIL,FAIL
