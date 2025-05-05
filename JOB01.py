@@ -4,21 +4,25 @@
 from dataclasses import dataclass
 from typing import Optional
 from netmiko import ConnectHandler
-from ntc_templates.parse import parse_output
 from ciscoconfparse2 import CiscoConfParse
 import re
+import pandas as pd
+#
+#
+import csv
 from ipaddress import ip_address
 from pathlib import Path
-import pandas as pd
-import csv
-#
-#
 import asyncio
 import yaml
 from scrapli.driver.core import AsyncIOSXEDriver
+from ntc_templates.parse import parse_output
 # from inv import DEVICES
 #
 #
+""""
+        ● [1] Encrypt configuration passwords 
+        ● [2] Encrypt configuration passwords 
+"""
 #
 #
 #
@@ -59,7 +63,7 @@ class NetworkAudit:
         Lookup and return the current hosts allowed
         telnet access to device.
         """
-        
+        global newfile, newfile2
 
         showrunall = ['show run all']
         net_connect = self.connect()   # Connect to the device
@@ -78,26 +82,24 @@ class NetworkAudit:
            newfile2.write(CommandsListOutput)
            newfile2.close()
         
-        net_connect.disconnect()       # Disconnect from the device
-        
-        print(f"🟢 Export-Job Successful for device  {self.hostname}")
 
+        # UpIfacesList_raw=net_connect.send_command(f"show ip int br")
+        # UpIfacesList = parse_output(platform="cisco_ios",
+        #                             command=f"show ip int br",
+        #                             data=UpIfacesList_raw)
+        net_connect.disconnect()       # Disconnect from the device
+        print(f"🟢 Export-Job Successful for device  {self.hostname}")
+        # print(UpIfacesList)
+        return newfile, newfile2
 
         #    CommandsListOutput = net_connect.send_command(CommandsList, use_textfsm=True)
         #    CommandsListOutput = net_connect.send_multiline(CommandsList)   
         #    CommandsListOutputs = str(CommandsListOutput)
 
 
-    def CiscoCheckList(self, hostname, FileExport, MgmtIP) :
-        
-        """
-        ● [1] Encrypt configuration passwords 
-        ● [2] Encrypt configuration passwords 
-        """
-        
+    def CiscoCheckList(self, hostname, FileExport, MgmtIP, NewFileName) :
         
         parse=CiscoConfParse(f"./ConfigExport/%s.txt" %hostname)
-        
         
         ##Encrypt configuration passwords 
         global Check01
@@ -216,8 +218,6 @@ class NetworkAudit:
                 otherwise,FAILED
         """ 
         global Check06
-        # Check06=""
-        
         DisableHTTPService = re.compile(r'^no ip http server')
         if parse.find_objects(DisableHTTPService):
             Check06 = 'PASS'
@@ -435,12 +435,182 @@ class NetworkAudit:
         elif Check11 == 'PASS': 
             print(f'🟢 Node %s Passed for parameter "LldpDisableExternalIfaces"' %hostname )
         else:
-            print("No Check11 Value")          
-                
+            print("No Check11 Value")             
+        #
+        #**************************************************************************************************#
+        #
+        # MR66:: Disable IP ICMP redirect messages IpIcmpRedirectMsgs
+        """
+         Disable IP ICMP redirect messages on external facing interfaces 
+        """ 
+        global Check12
+        #
+        # IpIcmpRedirectMsgs = re.compile(r'^\s no ip redirects')
+        #
+        tt=open(f"./ConfigExportStatus/%s_Status.txt" %hostname,"r")
+        tt.seek(0)
+        xx=tt.read()
+        UpIfacesList = parse_output(platform="cisco_ios",
+                                    command=f"show ip int br",
+                                    data=xx)
+        #
+        NEWUPLIST = []
+        if UpIfacesList:
+            for each_element in (UpIfacesList):
+                if each_element['proto'] == 'up' and each_element['status'] == 'up':
+                    NEWUPLIST.append(each_element['interface'])
+        else:
+            print("emptylist - NOuPIfacesList")
+        #
+        regex = re.compile(r"^Te([0-9]/[0-9]/[0-9])")
+        TeList= []
+        for nnn in NEWUPLIST:
+            if 'Te' in nnn:
+                TeList.append(nnn)
+        for eachelement in TeList:
+            ff = re.findall(regex, eachelement)
+            NEWIfaceName= 'TenGigabitEthernet'+str(ff[0])
+            NEWUPLIST.append(NEWIfaceName)
+            NEWUPLIST.remove(eachelement)
+        #
+        UpIfaceListWIface = []
+        for ii in NEWUPLIST:
+            aaaa= 'interface '+ ii
+            UpIfaceListWIface.append(aaaa)
+        #
+        if ExternalIfacesList:
+            for eachitem in ExternalIfacesList:
+                if parse.find_child_objects(eachitem, ' no ip redirects') and eachitem in UpIfaceListWIface:
+                    Check12 = 'PASS'
+                else:
+                    Check12 = 'FAIL'
+                    break
+        else:
+            Check12 = 'PASS'
+        #
+        if Check12 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "IpIcmpRedirectMsgsDisabled"' %hostname )
+        elif Check12 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "IpIcmpRedirectMsgsDisabled"' %hostname )
+        else:
+            print("No Check12 Value")                    
+        #
+        #**************************************************************************************************#
+        #
+        # MR67:: Disable IP ICMP unreachable messages IpIcmpUnreachablesMsgs
+        """
+         Disable IP ICMP unreachable messages on external facing interfaces 
+        """ 
+        global Check13
+        #
+        if ExternalIfacesList:
+            for eachitem in ExternalIfacesList:
+                if parse.find_child_objects(eachitem, ' no ip unreachables') and eachitem in UpIfaceListWIface:
+                    Check13 = 'PASS'
+                else:
+                    Check13 = 'FAIL'
+                    break
+        else:
+            Check13 = 'PASS'
+
+        #
+        if Check13 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter  "IpIcmpUnreachablesMsgsDisabled"' %hostname )
+        elif Check13 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "IpIcmpUnreachablesMsgsDisabled"' %hostname )
+        else:
+            print("No Check13 Value")  
+
+        #
+        #**************************************************************************************************#
+        #
+        # MR72:: Configure the source address for NTP  NTPSourceAddressConf
+        """
+        MR72:: Configure the source address for NTP 
+            Consider each of the following conditions in order:
+            Evaluate the following condition:
+                PASSED if a line matching re.compile('\\s?ntp source') is found.
+                otherwise, FAILED
+            If it is PASSED, perform the following:
+                Always PASSED
+            If the condition was not met, continue
+            ---
+            Evaluate the following condition:
+                PASSED if a line matching re.compile('\\s?s?ntp source-interface') is found.
+                otherwise, FAILED
+            If it is PASSED, perform the following:
+                Always PASSED
+            If the condition was not met, continue
+            ---
+            Evaluate the following condition:
+                PASSED if a line matching re.compile('\\sntp source Vlan') is found.
+                otherwise, FAILED
+            If it is PASSED, perform the following:
+                Always PASSED
+            If the condition was not met, continue
+            ---
+            Evaluate the following condition:
+                PASSED if a line matching re.compile('\\s?ntp server') is found.
+                otherwise, FAILED
+            If it is PASSED, perform the following:
+                Find every line matching re.compile('ntp server (?:vrf [^ ]+ )?([^ ]+).*$')
+                and use it as the input to:
+                    PASSED if a line matching re.compile('.* source') is found.
+                    otherwise, FAILED
+            If the condition was not met, continue
+            ---
+        If none of the above conditions were met:
+            Always FAILED   
+        """ 
+        global Check14
+        #
+        NTPSourceAddressConf01 = re.compile(r'^ntp\ssource\s(Ethernet|GigabitEthernet)')
+        NTPSourceAddressConf02 = re.compile(r'^ntp\ssource-interface\s')
+        NTPSourceAddressConf03 = re.compile(r'^ntp\ssource\sVlan')
+        NTPSRVConf = re.compile(r"^ntp\sserver\s")
+        if parse.find_objects(NTPSourceAddressConf01) or parse.find_objects(NTPSourceAddressConf02) or parse.find_objects(NTPSourceAddressConf03) and parse.find_objects(NTPSRVConf):
+            Check14 = 'PASS'
+        else:
+            Check14 = 'FAIL'
+        
+        if Check14 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "NTPSourceAddressConf"  ' %hostname )
+        elif Check14 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "NTPSourceAddressConf" ' %hostname )
+        else:
+            print("No Check14 Value")
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14
     
         
     def ExportedData(self, hostname,MgmtIP):
@@ -457,7 +627,10 @@ class NetworkAudit:
             'DisableTFTPService' : [Check08],
             'ProhibitTelnetConnections' : [Check09],
             'CdpDisableExternalIfaces' : [Check10],
-            'LldpDisableExternalIfaces' : [Check11]
+            'LldpDisableExternalIfaces' : [Check11],
+            'IpIcmpRedirectMsgsDisabled' : [Check12],
+            'IpIcmpUnreachablesMsgsDisabled' : [Check13],
+            'NTPSourceAddressConf' : [Check14]
             }
         
         df = pd.DataFrame(data)

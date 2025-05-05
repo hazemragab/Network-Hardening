@@ -1,0 +1,45 @@
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+
+      7.0.0.0/32 is subnetted, 1 subnets
+C        7.7.7.7 is directly connected, Loopback7
+      10.0.0.0/8 is variably subnetted, 10 subnets, 2 masks
+C        10.250.52.32/29 is directly connected, Port-channel10.366
+L        10.250.52.35/32 is directly connected, Port-channel10.366
+C        10.250.53.32/29 is directly connected, Port-channel10.365
+L        10.250.53.35/32 is directly connected, Port-channel10.365
+C        10.250.54.32/29 is directly connected, Port-channel10.367
+L        10.250.54.35/32 is directly connected, Port-channel10.367
+C        10.250.55.32/29 is directly connected, Port-channel10.368
+L        10.250.55.35/32 is directly connected, Port-channel10.368
+C        10.250.56.32/29 is directly connected, Port-channel10.369
+L        10.250.56.35/32 is directly connected, Port-channel10.369
+      86.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C        86.51.10.172/31 is directly connected, TenGigabitEthernet0/0/5
+L        86.51.10.173/32 is directly connected, TenGigabitEthernet0/0/5Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0/2   10.250.50.201   YES NVRAM  up                    up      
+GigabitEthernet0/0/3   unassigned      YES NVRAM  up                    up      
+Te0/0/4                unassigned      YES NVRAM  administratively down down    
+Te0/0/5                86.51.10.173    YES NVRAM  up                    up      
+Loopback7              7.7.7.7         YES NVRAM  up                    up      
+Port-channel10         unassigned      YES unset  up                    up      
+Port-channel10.365     10.250.53.35    YES NVRAM  up                    up      
+Port-channel10.366     10.250.52.35    YES NVRAM  up                    up      
+Port-channel10.367     10.250.54.35    YES NVRAM  up                    up      
+Port-channel10.368     10.250.55.35    YES NVRAM  up                    up      
+Port-channel10.369     10.250.56.35    YES NVRAM  up                    up      
+Port-channel10.470     unassigned      YES unset  administratively down down    

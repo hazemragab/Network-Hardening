@@ -61,7 +61,7 @@ def main():
         FileExportPath=Path(f"./ConfigExport/%s.txt" %hostname)
         FileExport=(f"./ConfigExport/%s.txt" %hostname)
         NewFilePathName=Path(f"./ConfigExportStatus/%s_Status.txt" %hostname)
-
+        NewFileName=(f"./ConfigExportStatus/%s_Status.txt" %hostname)
     	
         if FileExportPath.exists() & NewFilePathName.exists():
 
@@ -70,7 +70,7 @@ def main():
             print(f"🟢 Now Procceeding with the Audit for host %s" %hostname)
         
             RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig
-            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP)
+            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName)
             RunFn.ExportedData(hostname, MgmtIP)
             
             print("*" * os.get_terminal_size().columns)
@@ -87,7 +87,7 @@ def main():
             
             RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig Fn
             RunFn.CiscoDeviceConfigsExport(hostname, FileExport, NewFilePathName)
-            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP)
+            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName)
             RunFn.ExportedData(hostname, MgmtIP)
             
             print("-" * os.get_terminal_size().columns)

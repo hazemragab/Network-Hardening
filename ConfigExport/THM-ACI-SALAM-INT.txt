@@ -1666,8 +1666,8 @@ interface TenGigabitEthernet0/0/5
  description "INT Salam 11053081 200Mb"
  ip address 87.101.130.14 255.255.255.252
  ip clear-dont-fragment
- ip redirects
- ip unreachables
+ no ip redirects
+ no ip unreachables
  ip proxy-arp
  ip mtu 1500
  ip pim join-prune-interval 60

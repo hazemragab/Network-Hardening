@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 68920 bytes
+Current configuration with default configurations exposed : 68842 bytes
 !
-! Last configuration change at 15:16:33 AST Thu Apr 17 2025 by HRagab7
+! Last configuration change at 12:18:42 UTC Sun May 4 2025 by HRagab7
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -230,7 +230,7 @@ platform punt-policer wpan-ns 1000 high
 platform punt-policer ext-icmp 2000
 platform punt-policer ext-icmp 1000 high
 !
-hostname THM-ACI-SALAM-INT
+hostname THM-ACI-MOB-INT
 !
 boot-start-marker
 boot config 
@@ -255,11 +255,10 @@ logging reload message-limit 1000 notifications
 no logging persistent
 logging rate-limit console 40 except errors
 no logging console guaranteed
-no logging console
+logging console debugging
 logging monitor debugging
 logging cns-events informational
 logging on
-enable secret 9 $9$.Q181jE7DmRVl.$nw96Om1ZC09yck4aVTJl4wGQHBXkmoMPUH7Pj92Xats
 !
 spd extended-headroom 10
 spd headroom 1000
@@ -288,7 +287,6 @@ ipc buffers min-free 126
 ipc buffers permanent 378
 process cpu extended history 12
 process cpu autoprofile hog
-clock timezone AST 3 0
 cef table consistency-check IPv4 type lc-detect count 71 period 60
 cef table consistency-check IPv4 type scan-lc-rp count 71 period 60
 cef table consistency-check IPv4 type scan-rp-lc count 71 period 60
@@ -343,8 +341,6 @@ ip verify drop-rate notify hold-down 300
 !
 ip vrf Mgmt-vrf
 !
-ip vrf WANGF
-!
 ip vrf testing
 !
 ip sap cache-timeout 1440
@@ -383,7 +379,7 @@ ip dhcp-server query lease timeout 10
 ip dhcp-client default-router distance 254
 ip cef optimize neighbor resolution
 no ip cef accounting 
-ip cef load-sharing algorithm universal 1D0145F0
+ip cef load-sharing algorithm universal A081AB11
 ip dhcp relay information policy replace
 ip dhcp relay information check
 ip dhcp use class
@@ -478,7 +474,7 @@ ipv6 multicast rpf use-bgp
 ipv6 spd queue max-threshold 74
 ipv6 spd queue min-threshold 73
 ipv6 cef optimize neighbor resolution
-ipv6 cef load-sharing algorithm universal 1D0145F0
+ipv6 cef load-sharing algorithm universal A081AB11
 kerberos timeout 15
 kerberos retry 4
 kerberos processes 1
@@ -531,7 +527,7 @@ cwmp agent
  request outstanding 5
  parameter change notify interval 60
  session retry limit 11
- management server username 00000C-C8300-2N2S-4T2X-FDO2618M30S
+ management server username 00000C-C8300-2N2S-4T2X-FDO2618M30K
  no management server password
  no management server url
  no provision code
@@ -561,13 +557,13 @@ no virtual-template snmp
 crypto pki token default removal timeout 0
 crypto pki token default max-retries 15
 !
-crypto pki trustpoint TP-self-signed-4208109341
+crypto pki trustpoint TP-self-signed-2379032192
  enrollment retry count 999
  enrollment retry period 1
  enrollment selfsigned
- subject-name cn=IOS-Self-Signed-Certificate-4208109341
+ subject-name cn=IOS-Self-Signed-Certificate-2379032192
  revocation-check none
- rsakeypair TP-self-signed-4208109341
+ rsakeypair TP-self-signed-2379032192
  hash sha1
 !
 crypto pki trustpoint SLA-TrustPoint
@@ -578,34 +574,34 @@ crypto pki trustpoint SLA-TrustPoint
  hash sha1
 !
 !
-crypto pki certificate chain TP-self-signed-4208109341
+crypto pki certificate chain TP-self-signed-2379032192
  certificate self-signed 01
   30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
   31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
-  69666963 6174652D 34323038 31303933 3431301E 170D3232 31323232 31323535 
-  31335A17 0D333231 32323131 32353531 335A3031 312F302D 06035504 03132649 
-  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 32303831 
-  30393334 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
-  0A028201 0100B3C5 AE00D533 C60A7ED9 F568FCAB 633525B8 94D96CB5 250BC129 
-  D3554E99 9A8DCE4E F9DEDBF9 59515968 64B354ED B8BC840D C0A1F268 D5075101 
-  F1FBF13C 8C22ECDF 932B72BA CF74BE58 BC6AC3C7 7C561F4F 0BC68D5F 823D23A6 
-  814FB174 48E855B9 F2C9C187 CF20D29E 9C80134A FF5C0C58 ACF38657 85DB5B59 
-  91575F54 FFAF2998 F3D69B3C 0385CCCF 767B812C E3649E59 70F2C024 A6A99108 
-  F04DDABF 37031EB4 4F949822 6546053B 92C2FCAF 607E77FE 5C92D3F0 E6860FFD 
-  F356E9E8 F06BDA00 36C556E2 4A4ED29A DB160BE2 AE8C80F8 E1637098 23A04DE0 
-  8AFA44A7 D87CDE33 A3151F76 CE09649E 44E0992A 1527E6D6 E17DDE38 1D90DC1D 
-  FBC73350 E3A50203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
-  301F0603 551D2304 18301680 146F3F83 6DBA0B5C B2DDBD81 3C0A85AB BFD961F0 
-  F5301D06 03551D0E 04160414 6F3F836D BA0B5CB2 DDBD813C 0A85ABBF D961F0F5 
-  300D0609 2A864886 F70D0101 05050003 82010100 35AD0D34 280F05C5 AB5F943A 
-  BBF9F2C5 C460B973 7CD87FD5 E1FE8DB9 EF6BAC86 D5CCACF3 430C601E CF44A832 
-  8847F514 AC8153FA 81184C8B F7CCA6AD 93C3AEEC 93325E95 94170B88 80EFFCA3 
-  FE6D9F9C 5106449E BE01AC25 69CB1B18 4D8732A2 E224AA53 4A7F46DA A335FC8C 
-  E6F879BC F8C1BACF B8E4726C 7C67F697 1916721E 1CD710A6 C1795610 6B468658 
-  5C921C3A F063D4F4 7318079B 3D0A5BDA C42A6AF8 B0AAE576 7E91FD5A B82AAEB8 
-  CB28339D 07B2D3C9 EC9DA876 DE77E50B A7F2EBD3 4A4685F6 EB4EA3A8 2F50835F 
-  A7404515 7731C17A 0FE7A4BC 3DE34F4F DFFC0A7C 2420679C B24B0EC9 D1AE73E0 
-  FE362FDD CE3F88FA BD775612 4DEF6062 474898D2
+  69666963 6174652D 32333739 30333231 3932301E 170D3233 31303137 31313430 
+  31325A17 0D333331 30313631 31343031 325A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33373930 
+  33323139 32308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 01009FFD 3FC2BF4A EA822285 C086A558 A558FED8 66A9E679 F651C253 
+  B7BF3FF8 383EE89A 7245DFCA 71BEC290 D75B7659 DF6B38CF 66F756E7 689AF01F 
+  1F11C712 67013545 D7F02AFC 5F7DE532 C9472D56 E677B0CE D85E0AFB 009FD140 
+  44C9320C 133CF0EC 68CC5EBD 8604E0C2 AF04E966 42F1B9A7 250A4288 22752187 
+  D3757625 926E7A56 9F483952 AC698894 10A730EB D426D9CC 4E2F731D 776CF419 
+  97F6611E 8291088C 6D05643C 18276CB4 0945F147 DAB5B56A 5651D812 B4D10A47 
+  CEBE36BD A1283579 68443E99 023C5FF9 A7644BA4 BBC8E58E F4B63594 E34A9B44 
+  31003ABE 7465467C 55B83341 D653E823 E11EBE3D B1DA1ADF DBFC55BE 7AC203C5 
+  F30F56AA CF030203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14280EAF 7CF95092 72DC61E0 33E45494 CBF23418 
+  B9301D06 03551D0E 04160414 280EAF7C F9509272 DC61E033 E45494CB F23418B9 
+  300D0609 2A864886 F70D0101 05050003 82010100 43302D91 5B3816B0 4234F1A9 
+  7B83263A FFE3F879 1E904286 B5EA177A A004A940 D9443317 303F100A CB5155A6 
+  249361F6 73534707 FE77F25B 9089B756 71E9A387 26240B69 525A0139 734C3320 
+  8A068B13 C587A619 4D251F51 96C13BC2 08B494F9 B8904812 26DB36B9 C284BF6D 
+  E2354836 82E0047F BCED86FF B503B903 09A649F9 2CE4A539 53946F29 F57695C4 
+  40E73FFD AFFF0011 6A7EBE74 55A8B3C2 7CB9C04F 2603FE8C F151A3BD B6158CC9 
+  F0E2F74F 120025AC AE91F812 C4E6C3A1 91AE3EBE A5FB1554 7BFD4093 AFDD5309 
+  E759A31B 5F372D79 D3BA154A 093EF501 24C739C6 2D17C09C 68EFC1C5 032C040C 
+  1083E216 FB2BFD26 364D073A A5CC6009 A86DBD28
   	quit
 crypto pki certificate chain SLA-TrustPoint
  certificate ca 01
@@ -658,7 +654,7 @@ cts sxp listener hold-time 90 180
 
 cts sxp node-id 0
 no cts sxp filter-enable
-license udi pid C8300-2N2S-4T2X sn FDO2618M30S
+license udi pid C8300-2N2S-4T2X sn FDO2618M30K
 license agent max-sessions 9
 license call-home url https://tools.cisco.com/SWIFT/Licensing
 license smart transport cslu
@@ -714,17 +710,16 @@ power inline redundant
 !
 mka suppress syslogs sak-rekey
 !
-username T!ger0ne privilege 15 secret 9 $9$Z8mFNhTVkh1NE.$h9Rf7RgYeCDcSmC5mgFrL.ycPZSf.JNmKOeGQYWY6S.
 username salthuwaybi privilege 15 secret 9 $9$liDWfbuSfWYYyU$0LiDPUZdbNZtEH8dGajckiJrKHTsY7TdDnv3j2A2gqA
 username tahnoc privilege 7 secret 9 $9$pOFKo8aV3Werek$rQq.fQhACEvr/cDWZgIIFxqZX.3svkvAAvnX77q0hEg
 username mbendawood privilege 15 secret 9 $9$GHA/EuEbjeJSPU$HLxBh1johrvE3Tuqr4tnxKzdVVBL8.aUdnNKTFg/dTw
 username mahussain privilege 15 secret 9 $9$LbfmG9DR4uRd3k$nLkkUOHqkcy6R1L3jq8e0xMe.Qc0hT5xBF271aGgK1Y
 username mkheref privilege 15 secret 9 $9$e20eKtUILYrWX.$.KNo3BqbueVe2cYgtwqB9tmYayQ4yOGXOiYP1bDK8dE
-username mhatem password 7 03347B4F4218715E4A
 username aalshedayed privilege 15 secret 9 $9$5qQL6.3gABMS2k$UyKgKkNyZXQ.LigdpeVb.0jxTPnbzouYWjyLSkbDLVE
 username aalnour privilege 15 secret 9 $9$xDv75KV3N6ghUE$7TSop7VxKaq1/F2n7KZAZO3Pp.oAxN4cZnRzFeBqvDg
 username skadira privilege 15 secret 9 $9$XF6Pt.rGkSTvWE$xBOpxyXsKN3z7sngdyt0vVWrdjeckKlYphX5.O4iI2g
 username HRagab7 privilege 15 secret 9 $9$KGh2gyMZ8KVm2E$7tokPTDf9kqEmSt48PfMskJhUI7BThy6kKyCz56GYyI
+username T!ger0ne privilege 15 secret 9 $9$iUKJo2aorec3x.$H1qoFAWWa7BSRtS58i9iDNGm9U/qz6kerFc8DBji0Ok
 !
 redundancy
  mode none
@@ -733,26 +728,6 @@ redundancy
  main-cpu
   no standby console enable
   no standby console lock
-bridge-domain 123 
- no ip igmp snooping immediate-leave
- no ip igmp snooping robustness-variable
- no ip igmp snooping last-member-query-count
- no ip igmp snooping last-member-query-interval
- ip igmp snooping check rtr-alert-option
- ip igmp snooping check ttl
- ip igmp snooping report-suppression
- ip igmp snooping explicit-tracking limit 100000
- ip igmp snooping
-bridge-domain 567 
- no ip igmp snooping immediate-leave
- no ip igmp snooping robustness-variable
- no ip igmp snooping last-member-query-count
- no ip igmp snooping last-member-query-interval
- ip igmp snooping check rtr-alert-option
- ip igmp snooping check ttl
- ip igmp snooping report-suppression
- ip igmp snooping explicit-tracking limit 100000
- ip igmp snooping
 !
 process-max-time 50
 !
@@ -760,12 +735,11 @@ cdp advertise-v2
 cdp timer 60
 cdp holdtime 180
 cdp log mismatch duplex
-cdp run
+no cdp run
 cdp tlv location
 cdp tlv app
 !
 lldp run
-bridge irb
 !
 buffers element permanent 1000
 buffers element minimum 100
@@ -812,8 +786,76 @@ buffers VeryLarge initial 0
 no autoconf enable
 !
 !
+interface Loopback7
+ description TESTING-BGP
+ mtu 1514
+ ip address 7.7.7.7 255.255.255.255
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1514
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ no ip flowspec
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ no ipv6 flowspec
+ snmp trap link-status
+ no flowspec group
+ no arp arpa
+ arp timeout 0
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
 interface Port-channel10
- description "Connected-To-INT-SW"
+ description "Connected to INT-SW"
  no ip address
  ip clear-dont-fragment
  ip redirects
@@ -885,7 +927,7 @@ interface Port-channel10
 interface Port-channel10.365
  description Tahakom
  encapsulation dot1Q 365
- ip address 10.250.53.34 255.255.255.248
+ ip address 10.250.53.35 255.255.255.248
  ip clear-dont-fragment
  ip redirects
  ip unreachables
@@ -904,7 +946,6 @@ interface Port-channel10.365
  ip load-sharing per-destination
  standby version 2
  standby 365 ip 10.250.53.36
- standby 365 priority 255
  ip route-cache
  ip split-horizon
  ip igmp robustness-variable 2
@@ -949,7 +990,7 @@ interface Port-channel10.365
 interface Port-channel10.366
  description Shared
  encapsulation dot1Q 366
- ip address 10.250.52.34 255.255.255.248
+ ip address 10.250.52.35 255.255.255.248
  ip clear-dont-fragment
  ip redirects
  ip unreachables
@@ -968,7 +1009,6 @@ interface Port-channel10.366
  ip load-sharing per-destination
  standby version 2
  standby 366 ip 10.250.52.36
- standby 366 priority 255
  ip route-cache
  ip split-horizon
  ip igmp robustness-variable 2
@@ -1013,7 +1053,7 @@ interface Port-channel10.366
 interface Port-channel10.367
  description Clients
  encapsulation dot1Q 367
- ip address 10.250.54.34 255.255.255.248
+ ip address 10.250.54.35 255.255.255.248
  ip clear-dont-fragment
  ip redirects
  ip unreachables
@@ -1032,7 +1072,6 @@ interface Port-channel10.367
  ip load-sharing per-destination
  standby version 2
  standby 367 ip 10.250.54.36
- standby 367 priority 255
  ip route-cache
  ip split-horizon
  ip igmp robustness-variable 2
@@ -1077,7 +1116,7 @@ interface Port-channel10.367
 interface Port-channel10.368
  description MOI
  encapsulation dot1Q 368
- ip address 10.250.55.34 255.255.255.248
+ ip address 10.250.55.35 255.255.255.248
  ip clear-dont-fragment
  ip redirects
  ip unreachables
@@ -1096,7 +1135,6 @@ interface Port-channel10.368
  ip load-sharing per-destination
  standby version 2
  standby 368 ip 10.250.55.36
- standby 368 priority 255
  ip route-cache
  ip split-horizon
  ip igmp robustness-variable 2
@@ -1141,7 +1179,7 @@ interface Port-channel10.368
 interface Port-channel10.369
  description DEV
  encapsulation dot1Q 369
- ip address 10.250.56.34 255.255.255.248
+ ip address 10.250.56.35 255.255.255.248
  ip clear-dont-fragment
  ip redirects
  ip unreachables
@@ -1160,7 +1198,6 @@ interface Port-channel10.369
  ip load-sharing per-destination
  standby version 2
  standby 369 ip 10.250.56.36
- standby 369 priority 255
  ip route-cache
  ip split-horizon
  ip igmp robustness-variable 2
@@ -1262,7 +1299,7 @@ interface Port-channel10.470
  no bgp-policy destination ip-qos-map
 !
 interface GigabitEthernet0/0/0
- ip vrf forwarding WANGF
+ description "TEST-SSH-SCRIPT"
  no ip address
  ip clear-dont-fragment
  ip redirects
@@ -1340,7 +1377,7 @@ interface GigabitEthernet0/0/0
  no bgp-policy destination ip-qos-map
 !
 interface GigabitEthernet0/0/1
- description Connected To-MLQ-INT-SW-Gi1/0/4
+ description Connected To-MLQ-INT-SW-Gi1/0/5
  no ip address
  ip clear-dont-fragment
  ip redirects
@@ -1418,9 +1455,9 @@ interface GigabitEthernet0/0/1
  no bgp-policy destination ip-qos-map
 !
 interface GigabitEthernet0/0/2
- description Connected To-THKM-MLQ2-MGMT-SW2-Gi0/0/2
+ description Connected To-THKM-MLQ2-MGMT-SW2-Gi1/0/18
  ip vrf forwarding Mgmt-vrf
- ip address 10.250.50.200 255.255.255.0
+ ip address 10.250.50.201 255.255.255.0
  ip clear-dont-fragment
  ip redirects
  ip unreachables
@@ -1497,7 +1534,7 @@ interface GigabitEthernet0/0/2
  no bgp-policy destination ip-qos-map
 !
 interface GigabitEthernet0/0/3
- description Connected To-MLQ-INT-SW-Gi2/0/4
+ description Connected To-MLQ-INT-SW-Gi2/0/5
  no ip address
  ip clear-dont-fragment
  ip redirects
@@ -1653,11 +1690,11 @@ interface TenGigabitEthernet0/0/4
  no bgp-policy destination ip-qos-map
 !
 interface TenGigabitEthernet0/0/5
- description "INT Salam 11053081 200Mb"
- ip address 87.101.130.14 255.255.255.252
+ description 1001255227193206-100MB-Mobily
+ ip address 86.51.10.173 255.255.255.254
  ip clear-dont-fragment
- ip redirects
- ip unreachables
+ no ip redirects
+ no ip unreachables
  ip proxy-arp
  ip mtu 1500
  ip pim join-prune-interval 60
@@ -1667,7 +1704,6 @@ interface TenGigabitEthernet0/0/5
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- ip nat outside
  no ip flowspec
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
@@ -1715,6 +1751,8 @@ interface TenGigabitEthernet0/0/5
  mka default-policy
  arp arpa
  arp timeout 14400
+ no lldp transmit
+ no lldp receive
    clns route-cache
  spanning-tree port-priority 128
  spanning-tree cost 0
@@ -1760,7 +1798,7 @@ no ip http server
 ip http port 80
 no ip http upload overwrite
 ip http authentication local
-no ip http secure-server
+ip http secure-server
 ip http HSTS-Header
 ip http secure-port 443
 ip http secure-active-session-modules all
@@ -1794,16 +1832,9 @@ ip ftp passive
 no ip tftp claim-netascii
 ip tftp blocksize 512
 ip nat service all-algs
-ip nat inside source list 1 interface TenGigabitEthernet0/0/5 overload
 ip route static adjust-time 60
 ip route static inter-vrf
-ip route 0.0.0.0 0.0.0.0 87.101.130.13
-ip route 1.2.3.1 255.255.255.255 10.250.56.33
-ip route 3.2.1.1 255.255.255.255 10.250.56.33
-ip route 10.19.0.0 255.255.0.0 10.19.200.2
-ip route 10.250.0.0 255.255.0.0 10.250.53.33
-ip route 87.101.138.9 255.255.255.255 10.19.200.2
-ip route 87.101.138.10 255.255.255.255 10.19.200.2
+ip route 0.0.0.0 0.0.0.0 192.168.114.73
 ip route vrf Mgmt-vrf 0.0.0.0 0.0.0.0 10.250.50.254
 ip rsvp authentication type md5
 ip rsvp authentication lifetime 00:30:00
@@ -1842,16 +1873,10 @@ ip ssh client algorithm encryption aes128-gcm aes256-gcm aes128-ctr aes192-ctr a
 ip ssh client algorithm kex ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1
 !
 !
-ip access-list extended VTY
- 10 permit ip 10.111.1.0 0.0.0.255 any log
- 20 permit ip 10.111.150.0 0.0.0.255 any log
- 30 permit ip host 10.172.1.100 any log
-ip access-list extended VTY-OUT
- 10 deny   ip any any
 no ip access-list helper egress check
 !
  ip prefix-list sequence-number
-ip sla low-memory 903686683
+ip sla low-memory 903858419
 ip sla server twamp
  port 862
  timer inactivity 900
@@ -1868,15 +1893,13 @@ no logging origin-id
 logging facility local7
 no logging source-interface
 logging server-arp
-ip access-list standard 1
- 10 permit any
 ethernet cfm mep crosscheck start-delay 30
 terminal-queue entry-retry-interval 60
 !
  ipv6 prefix-list sequence-number
 ipv6 mux cache 1000000
 no route-tag notation dotted-decimal
-snmp-server engineID local 800000090300482E726B86D0
+snmp-server engineID local 800000090300482E726BBF10
 snmp-server group TAH v3 priv match exact read v1default 
 snmp-server group SpiderManOne v3 priv match exact notify *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF7F 
 snmp-server view *ilmi system included
@@ -1901,7 +1924,7 @@ snmp-server packetsize 1500
 snmp-server queue-length 10
 snmp-server location Riyadh, Saudi Arabia
 snmp-server contact aalseghayer@tahakom.com
-snmp-server chassis-id FDO2618M30S
+snmp-server chassis-id FDO2618M30K
 snmp-server enable logging setop
 snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
 no snmp-server enable traps call-home
@@ -1962,20 +1985,13 @@ no snmp mib nhrp
 snmp mib flowmon alarmhistorysize 500
 snmp mib notification-log globalsize 500
 snmp mib notification-log globalageout 15
-snmp mib community-map T@hakom!321# engineid 800000090300482E726B86D0
+snmp mib community-map T@hakom!321# engineid 800000090300482E726BBF10
 !
 tacacs-server cache expiry 24 enforce hours
 ipv6 access-list log-update threshold 2147483647
 !
 control-plane
 !
-privilege exec level 7 more
-privilege exec level 7 show startup-config
-privilege exec level 7 show running-config view full
-privilege exec level 7 show running-config view
-privilege exec level 7 show running-config
-privilege exec level 7 show configuration
-privilege exec level 7 show
 alias exec h help
 alias exec lo logout
 alias exec p ping
@@ -1984,7 +2000,7 @@ alias exec s show
 alias exec u undebug
 alias exec un undebug
 alias exec w where
-configuration mode exclusive
+no configuration mode exclusive
 parser cache
 parser config partition
 parser command serializer
@@ -2082,7 +2098,7 @@ line vty 0 4
  history
   editing
  monitor
- transport input ssh
+ transport input all
  escape-character soft DEFAULT
  escape-character DEFAULT
  autohangup session-timeout
@@ -2091,7 +2107,7 @@ line vty 0 4
 line vty 5 15
  motd-banner
  exec-banner
- exec-timeout 5 0
+ exec-timeout 10 0
  timeout login response 30
  privilege level 1
  flush-at-activation
@@ -2121,7 +2137,7 @@ line vty 5 15
 !
 exception data-corruption buffer truncate
 exception data-corruption buffer log
-exception crashinfo file bootflash:THM-ACI-SALAM-INT_crashinfo_RP_00_00
+exception crashinfo file bootflash:THM-ACI-MOB-INT_crashinfo_RP_00_00
 exception crashinfo buffersize 32
 exception crashinfo maximum files 1
 no exception crashinfo dump garbage-detector
@@ -2174,8 +2190,8 @@ call-home
   subscribe-to-alert-group environment severity minor 
   subscribe-to-alert-group inventory
   subscribe-to-alert-group syslog severity major pattern .*
-  subscribe-to-alert-group configuration periodic monthly 14 14:40
-  subscribe-to-alert-group inventory periodic monthly 14 14:25
+  subscribe-to-alert-group configuration periodic monthly 6 14:32
+  subscribe-to-alert-group inventory periodic monthly 6 14:17
  diagnostic-signature
   active
   profile "CiscoTAC-1"
@@ -2183,6 +2199,8 @@ ntp allow mode control 3
 ntp leap-handle
 ntp mindistance 1
 ntp maxdistance 8
+ntp source GigabitEthernet0/0/2
+ntp server vrf Mgmt-vrf 10.173.1.13 maxpoll 10 minpoll 6 version 4 burst iburst
 device-tracking binding reachable-lifetime 300 stale-lifetime 86400 down-lifetime 86400
 no device-tracking binding logging
 no device-tracking binding max-entries
@@ -2239,5 +2257,5 @@ netconf-yang feature side-effect-sync
 no netconf-yang feature turbocli
 no netconf-yang ssh port disable
 netconf-yang ssh port 830
-no restconf
+restconf
 end

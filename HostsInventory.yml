@@ -1,17 +1,22 @@
 ---
 MLQDC:
-    # THM-ACI-MOB-INT:
-    #   device_type: cisco_xe
-    #   host: 10.250.50.201
-    #   username: T!ger0ne
-    #   password: QYz)xbJWV9#
+    THM-ACI-MOB-INT:
+      device_type: cisco_xe
+      host: 10.250.50.201
+      username: T!ger0ne
+      password: QYz)xbJWV9#
     MLQ-INT-SW:
       device_type: cisco_xe
       host: 10.250.50.90
       username: T!ger0ne
       password: QYz)xbJWV9#
-    THM-ACI-SALAM-INT:
+    # THM-ACI-SALAM-INT:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.200
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    TAH-ACI-CORE-SW:
       device_type: cisco_xe
-      host: 10.250.50.200
+      host: 10.250.50.2
       username: T!ger0ne
       password: QYz)xbJWV9#
