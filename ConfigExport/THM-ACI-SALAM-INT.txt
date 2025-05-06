@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 68920 bytes
+Current configuration with default configurations exposed : 68922 bytes
 !
-! Last configuration change at 15:16:33 AST Thu Apr 17 2025 by HRagab7
+! Last configuration change at 10:40:48 AST Tue May 6 2025 by HRagab7
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -760,7 +760,7 @@ cdp advertise-v2
 cdp timer 60
 cdp holdtime 180
 cdp log mismatch duplex
-cdp run
+no cdp run
 cdp tlv location
 cdp tlv app
 !
@@ -945,16 +945,6 @@ interface Port-channel10.365
  no bgp-policy source ip-qos-map
  no bgp-policy destination ip-prec-map
  no bgp-policy destination ip-qos-map
-!
-interface Port-channel10.866
- description Shared
- encapsulation dot1Q 866
- ip address 192.168.52.34 255.255.255.248
-!
-interface Port-channel10.966
- description Shared
- encapsulation dot1Q 966
- ip address 172.16.52.34 255.255.255.248
 !
 interface Port-channel10.366
  description Shared
@@ -1666,8 +1656,8 @@ interface TenGigabitEthernet0/0/5
  description "INT Salam 11053081 200Mb"
  ip address 87.101.130.14 255.255.255.252
  ip clear-dont-fragment
- no ip redirects
- no ip unreachables
+ ip redirects
+ ip unreachables
  ip proxy-arp
  ip mtu 1500
  ip pim join-prune-interval 60
@@ -1699,9 +1689,8 @@ interface TenGigabitEthernet0/0/5
  no shutdown
  negotiation auto
  no medium p2p
- cdp log mismatch duplex
+  cdp log mismatch duplex
  cdp tlv location
- cdp enable
  cdp tlv server-location 
  cdp tlv app
  ipv6 nd reachable-time 0
@@ -2102,7 +2091,7 @@ line vty 0 4
 line vty 5 15
  motd-banner
  exec-banner
- exec-timeout 10 0
+ exec-timeout 5 0
  timeout login response 30
  privilege level 1
  flush-at-activation
@@ -2122,6 +2111,7 @@ line vty 5 15
  history
   editing
  monitor
+ transport input all
  transport output all
  escape-character soft DEFAULT
  escape-character DEFAULT
@@ -2250,5 +2240,4 @@ no netconf-yang feature turbocli
 no netconf-yang ssh port disable
 netconf-yang ssh port 830
 no restconf
-aaa local authentication attempts max-fail 3
 end

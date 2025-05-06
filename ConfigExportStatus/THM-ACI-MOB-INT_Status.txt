@@ -42,4 +42,26 @@ Port-channel10.366     10.250.52.35    YES NVRAM  up                    up
 Port-channel10.367     10.250.54.35    YES NVRAM  up                    up      
 Port-channel10.368     10.250.55.35    YES NVRAM  up                    up      
 Port-channel10.369     10.250.56.35    YES NVRAM  up                    up      
-Port-channel10.470     unassigned      YES unset  administratively down down    
+Port-channel10.470     unassigned      YES unset  administratively down down    Clock is synchronized, stratum 3, reference is 10.173.1.13    
+nominal freq is 250.0000 Hz, actual freq is 249.9860 Hz, precision is 2**10
+ntp uptime is 43696600 (1/100 of seconds), resolution is 4016
+reference time is EBC4806F.1B645A68 (12:34:55.107 UTC Tue May 6 2025)
+clock offset is -2.0517 msec, root delay is 33.86 msec
+root dispersion is 273.82 msec, peer dispersion is 1.08 msec
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000055972 s/s
+system poll interval is 512, last update was 5168 sec ago.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512
+KEX Algorithms:ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-2379032192
+Modulus Size : 2048 bits
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCf/T/Cv0rqgiKFwIalWKVY/thmqeZ59lHCU7e/P/g4
+PuiackXfynG+wpDXW3ZZ32s4z2b3VudomvAfHxHHEmcBNUXX8Cr8X33lMslHLVbmd7DO2F4K+wCf0UBE
+yTIMEzzw7GjMXr2GBODCrwTpZkLxuaclCkKIInUhh9N1diWSbnpWn0g5UqxpiJQQpzDr1CbZzE4vcx13
+bPQZl/ZhHoKRCIxtBWQ8GCdstAlF8UfatbVqVlHYErTRCkfOvja9oSg1eWhEPpkCPF/5p2RLpLvI5Y70
+tjWU40qbRDEAOr50ZUZ8VbgzQdZT6CPhHr49sdoa39v8Vb56wgPF8w9Wqs8D                    

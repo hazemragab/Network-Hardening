@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 228432 bytes
+Current configuration with default configurations exposed : 228431 bytes
 !
-! Last configuration change at 09:30:46 UTC Thu May 1 2025 by T!ger0ne
+! Last configuration change at 10:35:20 UTC Sun May 4 2025 by HRagab7
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -38,7 +38,7 @@ no service pt-vty-logging
 no service disable-ip-fast-frag
 no service sequence-numbers
 service counters max age 0
-no service dhcp
+service dhcp
 no service call-home
 no service performance
 platform punt-keepalive disable-kernel-core
@@ -3691,7 +3691,7 @@ interface TenGigabitEthernet1/1/3
  lldp transmit
  lldp receive
  lldp tlv-select power-management
- lldp tlv-select 4-wire-pConfigure inactivity time-out for the sessions ower-management
+ lldp tlv-select 4-wire-power-management
  lldp med-tlv-select network-policy
  lldp med-tlv-select location
  lldp med-tlv-select inventory-management
@@ -7704,7 +7704,7 @@ line con 0
 line vty 0 4
  motd-banner
  exec-banner
- exec-timeout 10 0
+ exec-timeout 5 0
  timeout login response 30
  privilege level 1
  logging synchronous
@@ -7907,5 +7907,4 @@ netconf-yang ssh server algorithm mac hmac-sha2-512
 restconf
 cloud-services endpoint api/tethering/v1/enrollment/enroll/byname
 cloud-services url https://dnaservices.cisco.com
-tftp-server bootflash:cat9k-lni.17.12.04.SPA.pkg
 end

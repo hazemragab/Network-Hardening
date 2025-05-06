@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 383451 bytes
+Current configuration with default configurations exposed : 383604 bytes
 !
-! Last configuration change at 12:36:14 GMT Mon May 5 2025 by mhassane
+! Last configuration change at 12:48:26 GMT Tue May 6 2025 by skadira
 ! NVRAM config last updated at 15:00:52 GMT Sun May 4 2025 by T!ger0ne
 !
 no issu config-sync policy lbl prc
@@ -13220,6 +13220,7 @@ ip route vrf SHARED 10.1.128.0 255.255.252.0 10.250.51.209 name STC-SIM-Subnets
 ip route vrf SHARED 10.1.132.0 255.255.254.0 10.250.51.209 name STC-SIM-Subnets
 ip route vrf SHARED 10.2.0.0 255.255.0.0 10.250.51.209 name STC-SIM-Subnets
 ip route vrf SHARED 10.5.0.0 255.255.0.0 10.250.51.209 name STC-SIM-Subnets
+ip route vrf SHARED 10.16.10.0 255.255.255.0 10.250.51.209 name AD-old-HQ
 ip route vrf SHARED 10.30.0.0 255.255.0.0 10.250.51.209 name TCC
 ip route vrf SHARED 10.33.0.0 255.255.0.0 10.250.51.209 name NIC
 ip route vrf SHARED 10.33.1.0 255.255.255.0 10.250.51.209 name INFOBLOX-NIC
@@ -13336,6 +13337,7 @@ ip route vrf DEV 10.173.0.0 255.255.255.0 10.250.51.193 name MALQA
 ip route vrf DEV 10.173.1.0 255.255.255.0 10.250.51.193 name MALQA
 ip route vrf DEV 10.175.0.0 255.255.0.0 10.250.51.193 name OLD-HQ
 ip route vrf DEV 10.220.23.0 255.255.255.0 10.250.51.193 name FMG-POC-ACCESS
+ip route vrf DEV 10.220.91.41 255.255.255.255 10.250.51.193 name FMG-POC-ACCESS
 ip route vrf DEV 172.21.1.0 255.255.255.0 10.250.51.193 name R3
 ip route vrf DEV 192.168.109.0 255.255.255.0 10.250.51.193 name TCC
 ip ssh bulk-mode 131072

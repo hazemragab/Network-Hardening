@@ -100,4 +100,19 @@ Ap2/0/1                unassigned      YES unset  up                    up
 Port-channel10         unassigned      YES unset  up                    up      
 Port-channel20         unassigned      YES unset  up                    up      
 Port-channel102        unassigned      YES unset  up                    up      
-Port-channel103        unassigned      YES unset  up                    up      
+Port-channel103        unassigned      YES unset  up                    up      %NTP is not enabled.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512,x509v3-rsa2048-sha256
+Hostkey Algorithms:rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:chacha20-poly1305@openssh.com,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+KEX Algorithms:curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-4156985961
+Modulus Size : 2048 bits
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqm/CKsygz7IBwOMPMKvxT1silVTZ9CTKQRrrWH+Mz
+O3PleSqcn9dIRX18C9JKOMrhqLK20Y/jc4fKrFN4fZptvG3mO9tPqYldSztUSW/HUOI4RFB+E2eCQpo+
+2CRmxkt0ZbBWiRZyNhR/QRu277uDt8IdpDU4XnOqqmkA6+oDn3oTD4DK9SYjm918ya3bCLn+OQIPZACa
+JbeWmU98b9nIonMNMlr2K6dPrp1QwqeDlUm76mWG74YNdTdiEa2VSQr18mp2EXjmblJFZdvmrf+XwqXJ
+/XZ74TqcCVniVHj7RDGf/ft5MgJeWAzIis6MzlBmvEbQ5zvqUZMn4TLmdLI9                    

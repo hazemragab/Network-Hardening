@@ -296,3 +296,25 @@
     
 
 ---------------------------------------------------------------------------------------------------
+
+    def upinterfaceslist(self, mgmt_acl: Optional[list[dict[str, str]]] = None):
+        """
+        Print out the current status of interfaces
+        THis function pending on appending CiscoDeviceConfigsExport function to output list
+        """
+
+        if mgmt_acl is None:
+            mgmt_acl = self.CiscoDeviceConfigs()
+        NEWUPLIST = []
+        for each_element in (mgmt_acl):
+            if each_element['proto'] == 'up':
+                if each_element['status'] == 'up' :
+                    NEWUPLIST.append(each_element['intf'])
+                    # print(each_element['intf'])
+        # print(f"This is the new list  " + str(NEWUPLIST))
+
+
+
+---------------------------------------------------------------------------------------------------
+
+    

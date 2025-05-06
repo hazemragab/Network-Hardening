@@ -192,4 +192,26 @@ Port-channel103        unassigned      YES unset  up                    up
 Port-channel105        unassigned      YES unset  up                    up      
 Port-channel106        unassigned      YES unset  up                    up      
 Port-channel107        unassigned      YES unset  up                    up      
-Port-channel108        unassigned      YES unset  up                    up      
+Port-channel108        unassigned      YES unset  up                    up      Clock is unsynchronized, stratum 16, no reference clock
+nominal freq is 250.0000 Hz, actual freq is 250.0000 Hz, precision is 2**10
+ntp uptime is 885103800 (1/100 of seconds), resolution is 4000
+reference time is 00000000.00000000 (03:00:00.000 GMT Mon Jan 1 1900)
+clock offset is 0.0000 msec, root delay is 0.00 msec
+root dispersion is 132765.26 msec, peer dispersion is 0.00 msec
+loopfilter state is 'FSET' (Drift set from file), drift is 0.000000000 s/s
+system poll interval is 8, never updated.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:chacha20-poly1305@openssh.com,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+KEX Algorithms:curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521
+Authentication timeout: 60 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-2788396236
+Modulus Size : 2048 bits
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmLHrTojOSz+LDQnfRCgXzJupNh66+jEuGDsH0/Pns
+RBOs+3OjcJI8SH83AYVKFfD3INOffEGiedlYf7E6Ht7gNsCAO5PQ/zuzjip1FY4qb51ZEAj1X75PUF8M
+L/7Pnqf/GGuO4WvGogOooy7CeJJMidz3KHk7d8IqoS2mSKPy1qVNWiug1P3Z8YYT/g20Jkg7/Oxm8Xt3
+Bu16lwqrRKvOt7HQYy5SB+afa0agfIUAQwOnAANp/48TVoPXnAavZgtL6Um93UxUsgnh5oMVIevTlpr0
+9aKjKhSsdIqCkiqGmb46DAEPlpapZu3UGkm01g/dF1npSFuMgtD7H9oU/ean                    

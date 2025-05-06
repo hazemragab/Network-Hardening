@@ -75,18 +75,16 @@ class NetworkAudit:
 
         
         #NewFilePathName=(f"./ConfigExportStatus/%s_Status.txt" %hostname)
-        Commands = ['show ip route','show ip int br']
+        # Commands = ['show ip route', 'show ip int br', 'show ntp status']
+        Commands = ['show ip route', 'show ip int br','show ntp status', 'show ip ssh']
+        # CommandsListOutput = ""
         for CommandsList in Commands:
+        #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
            CommandsListOutput = net_connect.send_command(CommandsList)
            newfile2=open(NewFilePathName, "a")
            newfile2.write(CommandsListOutput)
            newfile2.close()
-        
-
-        # UpIfacesList_raw=net_connect.send_command(f"show ip int br")
-        # UpIfacesList = parse_output(platform="cisco_ios",
-        #                             command=f"show ip int br",
-        #                             data=UpIfacesList_raw)
+        #
         net_connect.disconnect()       # Disconnect from the device
         print(f"🟢 Export-Job Successful for device  {self.hostname}")
         # print(UpIfacesList)
@@ -95,11 +93,13 @@ class NetworkAudit:
         #    CommandsListOutput = net_connect.send_command(CommandsList, use_textfsm=True)
         #    CommandsListOutput = net_connect.send_multiline(CommandsList)   
         #    CommandsListOutputs = str(CommandsListOutput)
+        #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
 
 
     def CiscoCheckList(self, hostname, FileExport, MgmtIP, NewFileName) :
         
-        parse=CiscoConfParse(f"./ConfigExport/%s.txt" %hostname)
+        ShowRunAllParse=CiscoConfParse(FileExport)
+        ShowStatusParse = CiscoConfParse(NewFileName, syntax='ios')
         
         ##Encrypt configuration passwords 
         global Check01
@@ -107,10 +107,10 @@ class NetworkAudit:
         Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s0\s')
         Encrypt_conf_pwds_pattern2 = re.compile(r'^username\s(.+?)\spassword\s0\s') #Hint this Rule also catches the above regex
         clearpwdslist = []
-        for obj1 in parse.find_objects(Encrypt_conf_pwds_pattern1):
+        for obj1 in ShowRunAllParse.find_objects(Encrypt_conf_pwds_pattern1):
             clearpwdslist.append(obj1.text)    
         
-        for obj2 in parse.find_objects(Encrypt_conf_pwds_pattern2):  
+        for obj2 in ShowRunAllParse.find_objects(Encrypt_conf_pwds_pattern2):  
             clearpwdslist.append(obj2.text) 
 
         if not clearpwdslist:
@@ -127,7 +127,7 @@ class NetworkAudit:
         global Check02
         Check02=""
         Tiger0neAccount = re.compile(r'^username\sT!ger0ne\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
-        if parse.find_objects(Tiger0neAccount):
+        if ShowRunAllParse.find_objects(Tiger0neAccount):
             Check02 = 'PASS'
         else:
             Check02 = 'FAIL'
@@ -148,7 +148,7 @@ class NetworkAudit:
         Check03=""
         PasswordRetryLockout = re.compile(r'^aaa\slocal\sauthentication\sattempts\smax-fail\s([0-9]{1,2})')
         # PasswordRetryLockout = re.compile(r'^aaa\slocal')
-        if parse.find_objects(PasswordRetryLockout):
+        if ShowRunAllParse.find_objects(PasswordRetryLockout):
             Check03 = 'PASS'
         else:
             Check03 = 'FAIL'
@@ -167,8 +167,8 @@ class NetworkAudit:
         """
         global Check04
         find_lines_pattern = re.compile(r'^line\s(con|vty|aux)\s')
-        for eachline in parse.find_objects(find_lines_pattern):
-            if parse.find_child_objects(eachline, 'exec-timeout'):
+        for eachline in ShowRunAllParse.find_objects(find_lines_pattern):
+            if ShowRunAllParse.find_child_objects(eachline, 'exec-timeout'):
                 Check04 = 'PASS'
             else:
                 Check04 = 'FAIL'
@@ -194,7 +194,7 @@ class NetworkAudit:
         Check05=""
         
         DisableDHCPServices = re.compile(r'^no service dhcp')
-        if parse.find_objects(DisableDHCPServices):
+        if ShowRunAllParse.find_objects(DisableDHCPServices):
             Check05 = 'PASS'
         else:
             Check05 = 'FAIL'
@@ -219,7 +219,7 @@ class NetworkAudit:
         """ 
         global Check06
         DisableHTTPService = re.compile(r'^no ip http server')
-        if parse.find_objects(DisableHTTPService):
+        if ShowRunAllParse.find_objects(DisableHTTPService):
             Check06 = 'PASS'
         else:
             Check06 = 'FAIL'
@@ -247,7 +247,7 @@ class NetworkAudit:
         """ 
         global Check07        
         DisableHTTPSService = re.compile(r'^no ip http secure-server')
-        if parse.find_objects(DisableHTTPSService):
+        if ShowRunAllParse.find_objects(DisableHTTPSService):
             Check07 = 'PASS'
         else:
             Check07 = 'FAIL'
@@ -273,7 +273,7 @@ class NetworkAudit:
         # Check08=""
         
         DisableTFTPService = re.compile(r'^tftp-server')
-        if parse.find_objects(DisableTFTPService):
+        if ShowRunAllParse.find_objects(DisableTFTPService):
             Check08 = 'FAIL'
         else:
             Check08 = 'PASS'
@@ -304,8 +304,8 @@ class NetworkAudit:
         """ 
         global Check09
         find_lines_pattern = re.compile(r'^line\s(con|vty|aux)\s')
-        for eachline in parse.find_objects(find_lines_pattern):
-            if parse.find_child_objects(eachline, 'transport input telnet') or parse.find_child_objects(eachline, 'transport input telnet ssh') or parse.find_child_objects(eachline, 'transport input ssh telnet') or parse.find_child_objects(eachline, 'transport input all'):
+        for eachline in ShowRunAllParse.find_objects(find_lines_pattern):
+            if ShowRunAllParse.find_child_objects(eachline, 'transport input telnet') or ShowRunAllParse.find_child_objects(eachline, 'transport input telnet ssh') or ShowRunAllParse.find_child_objects(eachline, 'transport input ssh telnet') or ShowRunAllParse.find_child_objects(eachline, 'transport input all'):
                 Check09 = 'FAIL'
                 break
             else:
@@ -370,10 +370,10 @@ class NetworkAudit:
         PublicSubnetsList = []
         ExternalIfacesList = []
         #
-        for eachline in parse.find_objects(find_Ifaces_pattern):
+        for eachline in ShowRunAllParse.find_objects(find_Ifaces_pattern):
             IfacesList.append(eachline.text)
-            if parse.find_child_objects(eachline, r'\sip\saddress\s(([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3}))'):
-                IpAddressListIOS= parse.find_child_objects(eachline, r'\sip\saddress\s(([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3}))')
+            if ShowRunAllParse.find_child_objects(eachline, r'\sip\saddress\s(([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3}))'):
+                IpAddressListIOS= ShowRunAllParse.find_child_objects(eachline, r'\sip\saddress\s(([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3}))')
                 for eachitem in IpAddressListIOS:
                     SubnetsList.append(eachitem.text)
                     if re.findall(ValidSubnetPattern01, eachitem.text) or re.findall(ValidSubnetPattern02, eachitem.text) or re.findall(ValidSubnetPattern03, eachitem.text):
@@ -381,15 +381,16 @@ class NetworkAudit:
                     else:
                         PublicSubnetsList.append(eachitem.text)
         #                
-        for eachline in parse.find_objects(find_Ifaces_pattern):
+        for eachline in ShowRunAllParse.find_objects(find_Ifaces_pattern):
             for PubSubnet in PublicSubnetsList:
-                if parse.find_child_objects(eachline, PubSubnet):
+                if ShowRunAllParse.find_child_objects(eachline, PubSubnet):
                     ExternalIfacesList.append(eachline.text)
+        # print(ExternalIfacesList)
         #
-        if parse.find_objects(CdpGlobalEnablePattern):
+        if ShowRunAllParse.find_objects(CdpGlobalEnablePattern):
             if ExternalIfacesList:
                 for eachitem in ExternalIfacesList:
-                    if parse.find_child_objects(eachitem, ' cdp enable'):
+                    if ShowRunAllParse.find_child_objects(eachitem, ' cdp enable'):
                         Check10 = 'FAIL'
                         break
                     else:
@@ -417,10 +418,10 @@ class NetworkAudit:
         #
         LldpGlobalEnablePattern = re.compile(r'^lldp run')
         #
-        if parse.find_objects(LldpGlobalEnablePattern):
+        if ShowRunAllParse.find_objects(LldpGlobalEnablePattern):
             if ExternalIfacesList:
                 for eachitem in ExternalIfacesList:
-                    if parse.find_child_objects(eachitem, ' no lldp transmit'):
+                    if ShowRunAllParse.find_child_objects(eachitem, ' no lldp transmit'):
                         Check11 = 'PASS'
                     else:
                         Check11 = 'FAIL'
@@ -447,12 +448,12 @@ class NetworkAudit:
         #
         # IpIcmpRedirectMsgs = re.compile(r'^\s no ip redirects')
         #
-        tt=open(f"./ConfigExportStatus/%s_Status.txt" %hostname,"r")
-        tt.seek(0)
-        xx=tt.read()
+        LoadExportedStatusFiles=open(f"./ConfigExportStatus/%s_Status.txt" %hostname,"r")
+        LoadExportedStatusFiles.seek(0)
+        ReadExportedStatusFiles=LoadExportedStatusFiles.read()
         UpIfacesList = parse_output(platform="cisco_ios",
                                     command=f"show ip int br",
-                                    data=xx)
+                                    data=ReadExportedStatusFiles)
         #
         NEWUPLIST = []
         if UpIfacesList:
@@ -480,7 +481,7 @@ class NetworkAudit:
         #
         if ExternalIfacesList:
             for eachitem in ExternalIfacesList:
-                if parse.find_child_objects(eachitem, ' no ip redirects') and eachitem in UpIfaceListWIface:
+                if ShowRunAllParse.find_child_objects(eachitem, ' no ip redirects') and eachitem in UpIfaceListWIface:
                     Check12 = 'PASS'
                 else:
                     Check12 = 'FAIL'
@@ -505,7 +506,7 @@ class NetworkAudit:
         #
         if ExternalIfacesList:
             for eachitem in ExternalIfacesList:
-                if parse.find_child_objects(eachitem, ' no ip unreachables') and eachitem in UpIfaceListWIface:
+                if ShowRunAllParse.find_child_objects(eachitem, ' no ip unreachables') and eachitem in UpIfaceListWIface:
                     Check13 = 'PASS'
                 else:
                     Check13 = 'FAIL'
@@ -526,59 +527,107 @@ class NetworkAudit:
         #
         # MR72:: Configure the source address for NTP  NTPSourceAddressConf
         """
-        MR72:: Configure the source address for NTP 
-            Consider each of the following conditions in order:
-            Evaluate the following condition:
-                PASSED if a line matching re.compile('\\s?ntp source') is found.
-                otherwise, FAILED
-            If it is PASSED, perform the following:
-                Always PASSED
-            If the condition was not met, continue
-            ---
-            Evaluate the following condition:
-                PASSED if a line matching re.compile('\\s?s?ntp source-interface') is found.
-                otherwise, FAILED
-            If it is PASSED, perform the following:
-                Always PASSED
-            If the condition was not met, continue
-            ---
-            Evaluate the following condition:
-                PASSED if a line matching re.compile('\\sntp source Vlan') is found.
-                otherwise, FAILED
-            If it is PASSED, perform the following:
-                Always PASSED
-            If the condition was not met, continue
-            ---
-            Evaluate the following condition:
-                PASSED if a line matching re.compile('\\s?ntp server') is found.
-                otherwise, FAILED
-            If it is PASSED, perform the following:
-                Find every line matching re.compile('ntp server (?:vrf [^ ]+ )?([^ ]+).*$')
-                and use it as the input to:
-                    PASSED if a line matching re.compile('.* source') is found.
-                    otherwise, FAILED
-            If the condition was not met, continue
-            ---
-        If none of the above conditions were met:
-            Always FAILED   
         """ 
+        """"
+        ● [1] ntp source
+        ● [2] ntp server
+        ● [3] ntp status >> #Clock is unsynchronized #%NTP is not enabled. #Clock is unsynchronized
+        """
+
         global Check14
         #
         NTPSourceAddressConf01 = re.compile(r'^ntp\ssource\s(Ethernet|GigabitEthernet)')
         NTPSourceAddressConf02 = re.compile(r'^ntp\ssource-interface\s')
         NTPSourceAddressConf03 = re.compile(r'^ntp\ssource\sVlan')
         NTPSRVConf = re.compile(r"^ntp\sserver\s")
-        if parse.find_objects(NTPSourceAddressConf01) or parse.find_objects(NTPSourceAddressConf02) or parse.find_objects(NTPSourceAddressConf03) and parse.find_objects(NTPSRVConf):
+        #
+        ntpsycline = re.compile(r"Clock\sis\ssynchronized,\sstratum\s[0-9],\sreference\sis\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}")
+        ntpunsycline = re.compile(r"Clock\sis\sunsynchronized")
+
+        # cheching = parse2._find_line_OBJ(ntpsycline)
+        # print(cheching[0].text)
+        if ShowStatusParse._find_line_OBJ(ntpsycline):
+            ntpsyncstatus = 'Synchronized'
+        elif ShowStatusParse._find_line_OBJ(ntpunsycline):
+            ntpsyncstatus = 'UnSynchronized'
+        else:
+            ntpsyncstatus = 'NtpNotEnabled'
+        #
+        if ShowRunAllParse.find_objects(NTPSourceAddressConf01) or ShowRunAllParse.find_objects(NTPSourceAddressConf02) or ShowRunAllParse.find_objects(NTPSourceAddressConf03) and ShowRunAllParse.find_objects(NTPSRVConf) and ntpsyncstatus == 'Synchronized':
             Check14 = 'PASS'
         else:
             Check14 = 'FAIL'
         
         if Check14 == 'FAIL':
-            print(f'❌ Node %s Failed for parameter "NTPSourceAddressConf"  ' %hostname )
+            print(f'❌ Node %s Failed for parameter "NTPConf"' %hostname )
         elif Check14 == 'PASS': 
-            print(f'🟢 Node %s Passed for parameter "NTPSourceAddressConf" ' %hostname )
+            print(f'🟢 Node %s Passed for parameter "NTPConf"' %hostname )
         else:
             print("No Check14 Value")
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # MR58:: Set the SSH version SHHv2
+        """"
+        ● [1] SSHv2 Enabled "show ip ssh" "SSH Enabled - version 2.0"
+        ● [2] ip ssh version 2 "Command Existing"
+        """
+
+        global Check15
+        #
+        SSHv2Enabled = re.compile(r"SSH Enabled - version 2.0", re.IGNORECASE)
+        SSHv2EnableCommand = re.compile(r'^ip ssh version 2')
+        # print(ShowStatusParse._find_line_OBJ(SSHv2Enabled)[0].text)
+        #
+        if ShowStatusParse._find_line_OBJ(SSHv2Enabled) and ShowRunAllParse.find_objects(SSHv2EnableCommand):
+            Check15 = 'PASS'
+        else:
+            Check15 = 'FAIL'
+        #
+        #
+        if Check15 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "SHHv2"' %hostname )
+        elif Check15 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "SHHv2"' %hostname )
+        else:
+            print("No Check15 Value")
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # MR59:: Set the IP domain name
+        """"
+        ● [1] SSHv2 Enabled "show ip ssh" "SSH Enabled - version 2.0"
+        ● [2] ip ssh version 2 "Command Existing"
+
+        MR59:: Set the IP domain name 
+    PASSED if a line matching re.compile('ip domain[ -]name') is found.
+    otherwise, FAILED
+        """
+        global Check16
+        #
+        IpDomainNameCommand = re.compile(r'^ip\sdomain\sname\stahakom\.com', re.IGNORECASE)
+        #
+        if ShowRunAllParse.find_objects(IpDomainNameCommand):
+            # print(ShowRunAllParse._find_line_OBJ(IpDomainNameCommand)[0].text)
+            Check16 = 'PASS'
+        else:
+            Check16 = 'FAIL'
+        #
+        #
+        if Check16 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "IpDomainName"' %hostname )
+        elif Check16 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "IpDomainName"' %hostname )
+        else:
+            print("No Check16 Value")
+        #
+        #
+        #
         
         
         
@@ -588,9 +637,6 @@ class NetworkAudit:
         
         
         
-        
-        
-        
 
 
 
@@ -610,10 +656,10 @@ class NetworkAudit:
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16
     
         
-    def ExportedData(self, hostname,MgmtIP):
+    def ExportedData(self, hostname,MgmtIP) -> csv:
         data = {
             'Hostname': [hostname],
             'IPADDRESS': [MgmtIP],
@@ -630,24 +676,14 @@ class NetworkAudit:
             'LldpDisableExternalIfaces' : [Check11],
             'IpIcmpRedirectMsgsDisabled' : [Check12],
             'IpIcmpUnreachablesMsgsDisabled' : [Check13],
-            'NTPSourceAddressConf' : [Check14]
+            'NTPConf' : [Check14],
+            'SHHv2' : [Check15],
+            'IpDomainName' : [Check16]
             }
-        
+        #
         df = pd.DataFrame(data)
         df.to_csv('OutputReport.csv', mode='a', index=False, header=False)
-    
-    def upinterfaceslist(self, mgmt_acl: Optional[list[dict[str, str]]] = None):
-        """
-        Print out the current status of interfaces
-        THis function pending on appending CiscoDeviceConfigsExport function to output list
-        """
-
-        if mgmt_acl is None:
-            mgmt_acl = self.CiscoDeviceConfigs()
-        NEWUPLIST = []
-        for each_element in (mgmt_acl):
-            if each_element['proto'] == 'up':
-                if each_element['status'] == 'up' :
-                    NEWUPLIST.append(each_element['intf'])
-                    # print(each_element['intf'])
-        # print(f"This is the new list  " + str(NEWUPLIST))
+        return csv
+        #
+        #
+        #
