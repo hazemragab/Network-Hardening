@@ -66,4 +66,72 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzxa4A1TPGCn7Z9Wj8q2M1JbiU2Wy1JQvBKdNVTpma
 jc5O+d7b+VlRWWhks1TtuLyEDcCh8mjVB1EB8fvxPIwi7N+TK3K6z3S+WLxqw8d8Vh9PC8aNX4I9I6aB
 T7F0SOhVufLJwYfPINKenIATSv9cDFis84ZXhdtbWZFXX1T/rymY89abPAOFzM92e4Es42SeWXDywCSm
 qZEI8E3avzcDHrRPlJgiZUYFO5LC/K9gfnf+XJLT8OaGD/3zVuno8GvaADbFVuJKTtKa2xYL4q6MgPjh
+Y3CYI6BN4Ir6RKfYfN4zoxUfds4JZJ5E4JkqFSfm1uF93jgdkNwd+8czUOOl                    Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is 87.101.130.13 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 87.101.130.13
+      1.0.0.0/32 is subnetted, 1 subnets
+S        1.2.3.1 [1/0] via 10.250.56.33
+      3.0.0.0/32 is subnetted, 1 subnets
+S        3.2.1.1 [1/0] via 10.250.56.33
+      10.0.0.0/8 is variably subnetted, 11 subnets, 3 masks
+S        10.250.0.0/16 [1/0] via 10.250.53.33
+C        10.250.52.32/29 is directly connected, Port-channel10.366
+L        10.250.52.34/32 is directly connected, Port-channel10.366
+C        10.250.53.32/29 is directly connected, Port-channel10.365
+L        10.250.53.34/32 is directly connected, Port-channel10.365
+C        10.250.54.32/29 is directly connected, Port-channel10.367
+L        10.250.54.34/32 is directly connected, Port-channel10.367
+C        10.250.55.32/29 is directly connected, Port-channel10.368
+L        10.250.55.34/32 is directly connected, Port-channel10.368
+C        10.250.56.32/29 is directly connected, Port-channel10.369
+L        10.250.56.34/32 is directly connected, Port-channel10.369
+      87.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C        87.101.130.12/30 is directly connected, TenGigabitEthernet0/0/5
+L        87.101.130.14/32 is directly connected, TenGigabitEthernet0/0/5Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   unassigned      YES unset  administratively down down    
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0/2   10.250.50.200   YES NVRAM  up                    up      
+GigabitEthernet0/0/3   unassigned      YES NVRAM  up                    up      
+Te0/0/4                unassigned      YES TFTP   administratively down down    
+Te0/0/5                87.101.130.14   YES manual up                    up      
+Port-channel10         unassigned      YES manual up                    up      
+Port-channel10.123     unassigned      YES manual deleted               down    
+Port-channel10.365     10.250.53.34    YES manual up                    up      
+Port-channel10.366     10.250.52.34    YES manual up                    up      
+Port-channel10.367     10.250.54.34    YES manual up                    up      
+Port-channel10.368     10.250.55.34    YES manual up                    up      
+Port-channel10.369     10.250.56.34    YES manual up                    up      
+Port-channel10.465     unassigned      YES manual deleted               down    
+Port-channel10.466     unassigned      YES manual deleted               down    
+Port-channel10.467     unassigned      YES manual deleted               down    
+Port-channel10.468     unassigned      YES manual deleted               down    
+Port-channel10.470     unassigned      YES manual administratively down down    
+Port-channel10.567     unassigned      YES manual deleted               down    %NTP is not enabled.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512
+KEX Algorithms:ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-4208109341
+Modulus Size : 2048 bits
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzxa4A1TPGCn7Z9Wj8q2M1JbiU2Wy1JQvBKdNVTpma
+jc5O+d7b+VlRWWhks1TtuLyEDcCh8mjVB1EB8fvxPIwi7N+TK3K6z3S+WLxqw8d8Vh9PC8aNX4I9I6aB
+T7F0SOhVufLJwYfPINKenIATSv9cDFis84ZXhdtbWZFXX1T/rymY89abPAOFzM92e4Es42SeWXDywCSm
+qZEI8E3avzcDHrRPlJgiZUYFO5LC/K9gfnf+XJLT8OaGD/3zVuno8GvaADbFVuJKTtKa2xYL4q6MgPjh
 Y3CYI6BN4Ir6RKfYfN4zoxUfds4JZJ5E4JkqFSfm1uF93jgdkNwd+8czUOOl                    

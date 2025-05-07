@@ -601,8 +601,8 @@ class NetworkAudit:
         #
         # MR59:: Set the IP domain name
         """"
-        ● [1] SSHv2 Enabled "show ip ssh" "SSH Enabled - version 2.0"
-        ● [2] ip ssh version 2 "Command Existing"
+        ● [1] ip domain name tahakom.com
+        ● 
 
         MR59:: Set the IP domain name 
     PASSED if a line matching re.compile('ip domain[ -]name') is found.
@@ -628,6 +628,86 @@ class NetworkAudit:
         #
         #
         #
+        #
+        #**************************************************************************************************#
+        #
+        # Define the time zone as UTC 
+        """"
+        ● [1] "clock timezone GMT 3 0" or "clock timezone AST 3 0"
+        ●   
+        """
+        global Check17
+        #
+        ClockTimeZone = re.compile(r'^clock\stimezone\sGMT\s3\s0', re.IGNORECASE)
+        ClockTimeZone02 = re.compile(r'^clock\stimezone\sAST\s3\s0', re.IGNORECASE)
+        #
+        if ShowRunAllParse.find_objects(ClockTimeZone):
+            Check17 = 'PASS'
+            # print(ShowRunAllParse._find_line_OBJ(ClockTimeZone)[0].text)
+        elif ShowRunAllParse.find_objects(ClockTimeZone02):
+            Check17 = 'PASS'
+            # print(ShowRunAllParse._find_line_OBJ(ClockTimeZone02)[0].text)
+        else:
+            Check17 = 'FAIL'
+        #
+        #
+        if Check17 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "ClockTimeZone"' %hostname )
+        elif Check17 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "ClockTimeZone"' %hostname )
+        else:
+            print("No Check17 Value")
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # Configure at least two NTP servers 
+        """"
+        ● [1] ntp server 10.173.1.13 maxpoll 10 minpoll 6 version 4 burst iburst
+        ● [2] ntp server vrf Mgmt-vrf 10.173.1.13  or ntp server vrf TAHAKOM 10.173.1.13 or ntp server 10.30.5.66
+        ● [3] This condition can be modified to be more specific about the SRvIPs configured after Infoblox/DDI implementation
+        """
+        global Check18
+        #
+        NtpSRVs = re.compile(r'^ntp\sserver\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}', re.IGNORECASE)
+        NtpSRVs02 = re.compile(r'^ntp\sserver\svrf\s(.+)\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}', re.IGNORECASE)
+        NtpSrvsList = []
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(NtpSRVs):
+            for ntp in ShowRunAllParse._find_line_OBJ(NtpSRVs):
+                NtpSrvsList.append(ntp.text)
+        else:
+            pass
+        #
+        if ShowRunAllParse._find_line_OBJ(NtpSRVs02):
+            for ntp2 in ShowRunAllParse._find_line_OBJ(NtpSRVs02):
+                NtpSrvsList.append(ntp2.text)
+        else:
+            pass
+        #
+        #
+        if len(NtpSrvsList) >= 2 :
+            Check18 = 'PASS'
+        else:
+            Check18 = 'FAIL'
+        #
+        #
+        if Check18 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "NtpSRVsCount"' %hostname )
+        elif Check18 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "NtpSRVsCount"' %hostname )
+        else:
+            print("No Check18 Value")
+        #
+        #
+        
+
         
         
         
@@ -637,6 +717,9 @@ class NetworkAudit:
         
         
         
+        
+        
+        
 
 
 
@@ -656,7 +739,7 @@ class NetworkAudit:
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18
     
         
     def ExportedData(self, hostname,MgmtIP) -> csv:
@@ -677,8 +760,11 @@ class NetworkAudit:
             'IpIcmpRedirectMsgsDisabled' : [Check12],
             'IpIcmpUnreachablesMsgsDisabled' : [Check13],
             'NTPConf' : [Check14],
+            'NtpSRVsCount' : [Check18],
             'SHHv2' : [Check15],
-            'IpDomainName' : [Check16]
+            'IpDomainName' : [Check16],
+            'CLockTimeZone' : [Check17]
+
             }
         #
         df = pd.DataFrame(data)

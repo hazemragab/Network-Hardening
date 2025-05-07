@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 383604 bytes
+Current configuration with default configurations exposed : 383831 bytes
 !
-! Last configuration change at 12:48:26 GMT Tue May 6 2025 by skadira
-! NVRAM config last updated at 15:00:52 GMT Sun May 4 2025 by T!ger0ne
+! Last configuration change at 15:06:03 GMT Wed May 7 2025 by HRagab7
+! NVRAM config last updated at 13:58:21 GMT Wed May 7 2025 by HRagab7
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -13290,6 +13290,7 @@ ip route vrf TAHAKOM 10.57.0.0 255.255.0.0 10.250.51.1 name OBJECTION-Sites
 ip route vrf TAHAKOM 10.59.0.0 255.255.0.0 10.250.51.1 name VOICE
 ip route vrf TAHAKOM 10.111.0.0 255.255.0.0 10.250.51.1 name OLD-HQ
 ip route vrf TAHAKOM 10.111.200.0 255.255.255.0 10.250.51.105 name SAP
+ip route vrf TAHAKOM 10.111.210.0 255.255.255.0 10.250.51.105 name SAP
 ip route vrf TAHAKOM 10.128.0.0 255.255.0.0 10.250.51.1 name R2
 ip route vrf TAHAKOM 10.150.10.0 255.255.254.0 10.250.51.105 name MALQA-RAVPNsub
 ip route vrf TAHAKOM 10.150.12.0 255.255.252.0 10.250.51.105 name MALQA-RAVPNsub-Internal
@@ -13704,7 +13705,9 @@ ntp leap-handle
 ntp mindistance 1
 ntp maxdistance 8
 ntp source Vlan2250
+ntp server vrf TAHAKOM 10.30.5.66 maxpoll 10 minpoll 6 version 4 burst iburst
 ntp server 10.173.1.13 maxpoll 10 minpoll 6 version 4 burst iburst
+ntp server vrf TAHAKOM 10.173.1.13 maxpoll 10 minpoll 6 version 4 burst iburst
 device-tracking binding reachable-lifetime 300 stale-lifetime 86400 down-lifetime 86400
 no device-tracking binding logging
 no device-tracking binding max-entries
