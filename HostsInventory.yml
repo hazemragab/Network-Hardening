@@ -8,8 +8,8 @@ MLQDC:
     # MLQ-INT-SW:
     #   device_type: cisco_xe
     #   host: 10.250.50.90
-    #   username: T!ger0ne
-    #   password: QYz)xbJWV9#
+    #   username: devops
+    #   password: o1If1rcw
     THM-ACI-SALAM-INT:
       device_type: cisco_xe
       host: 10.250.50.200
@@ -18,6 +18,11 @@ MLQDC:
     TAH-ACI-CORE-SW:
       device_type: cisco_xe
       host: 10.250.50.2
+      username: T!ger0ne
+      password: QYz)xbJWV9#
+    Malqa-RTR01-WAN:
+      device_type: cisco_xe
+      host: 10.250.50.80
       username: T!ger0ne
       password: QYz)xbJWV9#
 
@@ -54,5 +59,10 @@ ALLDC:
     # TAH-ACI-CORE-SW:
     #   device_type: cisco_xe
     #   host: 10.250.50.2
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    # Malqa-RTR01-WAN:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.80
     #   username: T!ger0ne
     #   password: QYz)xbJWV9#

@@ -1,0 +1,52 @@
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+
+      10.0.0.0/8 is variably subnetted, 2 subnets, 3 masks
+C        10.250.51.8/29 is directly connected, BDI100
+L        10.250.51.10/32 is directly connected, BDI100Interface              IP-Address      OK? Method Status                Protocol
+Te0/0/0                unassigned      YES NVRAM  up                    up      
+Te0/0/1                unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0/0   192.168.114.70  YES manual up                    up      
+GigabitEthernet0/0/1   unassigned      YES NVRAM  down                  down    
+GigabitEthernet0/0/2   unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0/0/3   unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0/0/4   unassigned      YES NVRAM  down                  down    
+GigabitEthernet0/0/5   unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0       10.250.50.80    YES NVRAM  up                    up      
+BDI100                 10.250.51.10    YES NVRAM  up                    up      
+BDI101                 10.250.51.18    YES manual up                    up      
+Loopback2              169.254.254.4   YES manual up                    up      
+Port-channel10         unassigned      YES unset  up                    up      %NTP is not enabled.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:chacha20-poly1305@openssh.com,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+KEX Algorithms:curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-2357413519
+Modulus Size : 2048 bits
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDabdqC5a9dNtFrTApCDU0HuW1u70qK3ZJtBSeZJpRQ
+9jv4IxNPuxrsFGJenfDKxue2m/CIfeSPrMEM58/WaX4q/KfVdySA3JRhh2uqjxRn/V6S5SlE5sUCHeoA
+QEPVS0Y9AtYss7sxrh7B6qZxpn3kmqfL6HMRmOV4eGc9ydK+HrwGcusOtpcVKhAB9PHeNw7oPp3vfc0s
+A+RlcBR3XJZ0ngztPd9MZ8uesEGDBQGFJ74/p6MYzvGY611AyZMLo4eeXGii+8g/MmvCPAj4evYk+QxN
+/teX+LClV+U61+TJzjh3HE0nSWoiNXTFTk0veidvjOcIWyu+eouBP+xsKWbh                    
+User name: Tahkom-SDWAN
+Engine ID: 800000090300DC774C147900
+storage-type: nonvolatile	 active
+Authentication Protocol: SHA
+Privacy Protocol: AES128
+Group-name: SDWAN-GROUP

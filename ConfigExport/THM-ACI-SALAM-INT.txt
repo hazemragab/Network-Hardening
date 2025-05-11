@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 68922 bytes
+Current configuration with default configurations exposed : 69210 bytes
 !
-! Last configuration change at 10:40:48 AST Tue May 6 2025 by HRagab7
+! Last configuration change at 10:45:19 AST Thu May 8 2025 by skadira
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -1671,6 +1671,7 @@ interface TenGigabitEthernet0/0/5
  no ip flowspec
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
+ ip access-group DenyInside in
  ip route-cache cef
  ip route-cache
  ip split-horizon
@@ -1842,6 +1843,9 @@ ip ssh client algorithm encryption aes128-gcm aes256-gcm aes128-ctr aes192-ctr a
 ip ssh client algorithm kex ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1
 !
 !
+ip access-list extended DenyInside
+ 10 deny   udp any any eq snmp snmptrap
+ 20 permit ip any any
 ip access-list extended VTY
  10 permit ip 10.111.1.0 0.0.0.255 any log
  20 permit ip 10.111.150.0 0.0.0.255 any log
@@ -2183,6 +2187,8 @@ ntp allow mode control 3
 ntp leap-handle
 ntp mindistance 1
 ntp maxdistance 8
+ntp server vrf Mgmt-vrf 10.80.28.18 maxpoll 10 minpoll 6 version 4 burst iburst
+ntp server vrf Mgmt-vrf 10.80.28.28 maxpoll 10 minpoll 6 version 4 burst iburst
 device-tracking binding reachable-lifetime 300 stale-lifetime 86400 down-lifetime 86400
 no device-tracking binding logging
 no device-tracking binding max-entries
@@ -2240,4 +2246,15 @@ no netconf-yang feature turbocli
 no netconf-yang ssh port disable
 netconf-yang ssh port 830
 no restconf
+aaa authentication login VTYISE group Malqa-PSN-Group local
+aaa authorization commands 15 default group Malqa-PSN-Group local
+aaa accounting commands 15 default start-stop group Malqa-PSN-Group
+aaa accounting exec default start-stop group Malqa-PSN-Group
+tacacs server Malqa-PSN01
+ address ipv4 10.172.1.107
+ key W@Z6$xsM2a0
+tacacs server Malqa-PSN02
+ address ipv4 10.172.1.108
+ key W@Z6$xsM2a0
+aaa group server tacacs+ Malqa-PSN-Group
 end

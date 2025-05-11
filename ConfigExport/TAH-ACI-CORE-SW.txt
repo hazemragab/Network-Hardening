@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 383831 bytes
+Current configuration with default configurations exposed : 384010 bytes
 !
-! Last configuration change at 15:06:03 GMT Wed May 7 2025 by HRagab7
+! Last configuration change at 18:50:38 GMT Thu May 8 2025 by skadira
 ! NVRAM config last updated at 13:58:21 GMT Wed May 7 2025 by HRagab7
 !
 no issu config-sync policy lbl prc
@@ -3509,6 +3509,7 @@ interface FiftyGigE1/2/0/1
  hold-queue 2000 in
  hold-queue 40 out
  ip igmp snooping tcn flood
+ no ip dhcp snooping information option allow-untrusted
  no bgp-policy accounting input
  no bgp-policy accounting output
  no bgp-policy accounting input source
@@ -6068,6 +6069,7 @@ interface TwoHundredGigE1/2/0/42
  hold-queue 2000 in
  hold-queue 40 out
  ip igmp snooping tcn flood
+ no ip dhcp snooping information option allow-untrusted
  no bgp-policy accounting input
  no bgp-policy accounting output
  no bgp-policy accounting input source
@@ -13336,6 +13338,7 @@ ip route vrf DEV 10.172.6.0 255.255.255.0 10.250.51.193 name MALQA-DAM-AGENT
 ip route vrf DEV 10.172.12.0 255.255.255.0 10.250.51.193 name MALQA
 ip route vrf DEV 10.173.0.0 255.255.255.0 10.250.51.193 name MALQA
 ip route vrf DEV 10.173.1.0 255.255.255.0 10.250.51.193 name MALQA
+ip route vrf DEV 10.173.2.0 255.255.255.0 10.250.51.193 name MALQA
 ip route vrf DEV 10.175.0.0 255.255.0.0 10.250.51.193 name OLD-HQ
 ip route vrf DEV 10.220.23.0 255.255.255.0 10.250.51.193 name FMG-POC-ACCESS
 ip route vrf DEV 10.220.91.41 255.255.255.255 10.250.51.193 name FMG-POC-ACCESS

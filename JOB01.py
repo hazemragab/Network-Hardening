@@ -51,9 +51,13 @@ class NetworkAudit:
             'password': self.password,
             'port': self.port,
             'device_type': "cisco_xe",
+            # 'use_keys': 'True',
+            # 'auth_timeout': 60,
             # 'session_log': self.FileExport,
         }
-        net_connect = ConnectHandler(**device)
+        net_connect = ConnectHandler(**device, disabled_algorithms = {'pubkeys': ['rsa-sha2-256', 'rsa-sha2-512']})
+        # net_connect = ConnectHandler(**device, disabled_algorithms = {'keys': ['rsa-sha2-256', 'rsa-sha2-512']})
+        # net_connect = ConnectHandler(**device)
         
         return net_connect
 
@@ -68,32 +72,40 @@ class NetworkAudit:
         showrunall = ['show run all']
         net_connect = self.connect()   # Connect to the device
         for ShowRunAllCommand in showrunall:
-            mgmt_acl_raw = net_connect.send_command(ShowRunAllCommand, delay_factor=5)
+            mgmt_acl_raw = net_connect.send_command(ShowRunAllCommand, delay_factor=2)
             newfile=open(FileExport, "a")
             newfile.write(mgmt_acl_raw )
             newfile.close
-
-        
-        #NewFilePathName=(f"./ConfigExportStatus/%s_Status.txt" %hostname)
-        # Commands = ['show ip route', 'show ip int br', 'show ntp status']
-        Commands = ['show ip route', 'show ip int br','show ntp status', 'show ip ssh']
+        #
+        #
+        #
+        Commands = ['show ip route', 'show ip int br','show ntp status', 'show ip ssh', 'show snmp user']
         # CommandsListOutput = ""
         for CommandsList in Commands:
         #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
-           CommandsListOutput = net_connect.send_command(CommandsList)
+           CommandsListOutput = net_connect.send_command(CommandsList, delay_factor=6)
            newfile2=open(NewFilePathName, "a")
            newfile2.write(CommandsListOutput)
            newfile2.close()
         #
         net_connect.disconnect()       # Disconnect from the device
         print(f"🟢 Export-Job Successful for device  {self.hostname}")
-        # print(UpIfacesList)
         return newfile, newfile2
 
         #    CommandsListOutput = net_connect.send_command(CommandsList, use_textfsm=True)
         #    CommandsListOutput = net_connect.send_multiline(CommandsList)   
         #    CommandsListOutputs = str(CommandsListOutput)
         #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
+
+        """
+        https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md
+        command = "show ip int brief"
+        with ConnectHandler(**cisco1) as net_connect:
+            # Use TextFSM to retrieve structured data
+            output = net_connect.send_command(command, use_textfsm=True)
+        
+        """
+
 
 
     def CiscoCheckList(self, hostname, FileExport, MgmtIP, NewFileName) :
@@ -706,20 +718,324 @@ class NetworkAudit:
             print("No Check18 Value")
         #
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # SNMPv2Disabled 
+        """"
+        ● [1] snmp-server host 10.172.1.100 informs version 2c T@hakom!321#
+        ● [2] snmp-server community T@hakom!321# RO
+        ● [3] 
+    NOT:
+        OR:
+                PASSED if a line matching re.compile('snmp-server community') is found.
+                otherwise, FAILED
+            ---
+                PASSED if a line matching re.compile('snmp-server host ([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}) version 2c?') is found.
+                otherwise, FAILED
+            ---
+        MLQ-VPN-Router#show snmp sessions brief
+            Destination: 10.172.1.100.162, V2C community: T@hakom!321#
+
+        
+        """
+        global Check19
+        #
+        DisableSnmpV2_02 = re.compile(r'^snmp-server\shost\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\sversion\s2c?')
+        DisableSnmpV2 = re.compile(r'^snmp-server\shost\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\sinforms\sversion\s2c')
+        SNMPv2Community = re.compile(r'^snmp-server\scommunity\s(.+)\s(.+)')
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(DisableSnmpV2) or ShowRunAllParse._find_line_OBJ(DisableSnmpV2_02) or ShowRunAllParse._find_line_OBJ(SNMPv2Community):
+            Check19 = 'FAIL'
+        else:
+            Check19 = 'PASS'
+        #
+        #
+        #
+        if Check19 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "SNMPv2Disabled"' %hostname )
+        elif Check19 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "SNMPv2Disabled"' %hostname )
+        else:
+            print("No Check19 Value")
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # SNMPv3Enabled 
+        """"
+        ● [1] snmp-server host 10.172.1.100 traps version 3 priv nac udp-port 162 #PASSED if a line matching re.compile('snmp-server host (.+) version 3') is found
+        ● [2] snmp-server group nac v3 priv                                       #PASSED if a line matching re.compile('snmp-server group (.+) v3') is found.
+        ● [3] snmp-server view nac-view iso included                              #PASSED if a line matching re.compile('snmp-server view') is found
+
+        Hint: Multiple groups found but not certain which one to use for which [ Groups: nac, nac-view, nac-group,SDWAN-GROUP]
+        Hint: Multiple views found but not certain which one to use for which [ views: nac-view,v1default ...etc ]
+
+
+        Malqa-RTR01-WAN#show snmp user
+            User name: Tahkom-SDWAN
+            Engine ID: 800000090300DC774C147900
+            storage-type: nonvolatile        active
+            Authentication Protocol: SHA
+            Privacy Protocol: AES128
+            Group-name: SDWAN-GROUP
+
+        Malqa-RTR01-WAN#show snmp sessions brief
+            %%SNMP manager not enabled
+        """
+        global Check20
+        #
+        SNMPv3Enabled = re.compile(r'^snmp-server\shost\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\straps\sversion\s3\spriv\s(.+)\sudp-port\s162?')
+        SNMPv3Enabled01 = re.compile(r'^snmp-server\sgroup(.+)\sv3\spriv(.+)')
+        SNMPv3Enabled02 = re.compile(r'^snmp-server\sview\s(.+)\siso\sincluded')
+        SNMPv3Enabled03 = re.compile(r'Group-name:\s(.+)', re.IGNORECASE)
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(SNMPv3Enabled) and ShowRunAllParse._find_line_OBJ(SNMPv3Enabled01) and ShowRunAllParse._find_line_OBJ(SNMPv3Enabled02) and ShowStatusParse._find_line_OBJ(SNMPv3Enabled03) :
+            Check20 = 'PASS'
+        else:
+            Check20 = 'FAIL'
+        #
+        #
+        #
+        if Check20 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "SNMPv3Enabled"' %hostname )
+        elif Check20 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "SNMPv3Enabled"' %hostname )
+        else:
+            print("No Check20 Value")
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # Define the AAA login authentication method  - AAALoginAuth
+        """"
+        ● [1] aaa authentication login VTYISE group Malqa-PSN-Group local
+        ● [2]                        
+        ● [3]                          
+        
+        MR50:: Define the AAA login authentication method 
+            PASSED if a line matching re.compile('aaa authentication login') is found.
+            otherwise, FAILED
+        
+        """
+        global Check21
+        #
+        AAALoginAuth = re.compile(r'^aaa\sauthentication\slogin\sVTYISE\sgroup\sMalqa-PSN-Group\slocal')
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(AAALoginAuth):
+            Check21 = 'PASS'
+        else:
+            Check21 = 'FAIL'
+        #
+        #
+        #
+        if Check21 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "AAALoginAuth"' %hostname )
+        elif Check21 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "AAALoginAuth"' %hostname )
+        else:
+            print("No Check21 Value")
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # Enable AAA Authorization   - AaaAuthorize
+        """"
+        ● [1] aaa authorization commands 15 default group Malqa-PSN-Group local
+        ● [2]                        
+        ● [3]                          
+            PASSED if a line matching re.compile('aaa authorization commands') is found.
+            otherwise, FAILED
+        """
+        global Check22
+        #
+        AAA_Authen = re.compile(r'^aaa\sauthorization\scommands\s[0-9]{1,2}\sdefault\sgroup\s')
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(AAA_Authen):
+            Check22 = 'PASS'
+        else:
+            Check22 = 'FAIL'
+        #
+        #
+        #
+        if Check22 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "AAA Authorization"' %hostname )
+        elif Check22 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "AAA Authorization"' %hostname )
+        else:
+            print("No Check22 Value")
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # Enable AAA accounting    - AAA_Accounting
+        """"
+        ● [1] aaa accounting commands 15 default start-stop group Malqa-PSN-Group
+        ● [2] aaa accounting exec default start-stop group Malqa-PSN-Group                        
+        ● [3] #aaa accounting system start-stop group Malqa-PSN-Group     # not included                      
+            PASSED if a line matching re.compile('aaa authorization commands') is found.
+            otherwise, FAILED
+        """
+        global Check23
+        #
+        # AAA_Accounting = re.compile(r'^aaa\saccounting\scommands\s[0-9]{1,2}\sdefault\sstart-stop\sgroup\s')
+        AAA_Accounting = re.compile(r'^aaa\saccounting\scommands\s[0-9]{1,2}\sdefault\sstart-stop\sgroup\s')
+        AAA_Accounting02 = re.compile(r'^aaa\saccounting\sexec\sdefault\sstart-stop\sgroup\s')
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(AAA_Accounting) and ShowRunAllParse._find_line_OBJ(AAA_Accounting02):
+            Check23 = 'PASS'
+        else:
+            Check23 = 'FAIL'
+        #
+        if Check23 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "AAA Accounting"' %hostname )
+        elif Check23 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "AAA Accounting"' %hostname )
+        else:
+            print("No Check23 Value")
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # Define at least two TACACS servers --- TacacsSRVs
+        """"
+        ● [1]  At least two tacacs servers    ---- tacacs server Malqa-PSN01/Malqa-PSN02
+        ● [2]                                   -- address ipv4 10.172.1.108
+        ● [3]                                   -- aaa group server tacacs+ Malqa-PSN-Group
+        
+                    AND:
+                    PASSED if a line matching re.compile('tacacs server .+') is found.
+                    otherwise, FAILED
+                ---
+                    Let n be the number of lines that match re.compile(' address ipv4 ([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})')
+                    PASSED if n >= 2, otherwise FAILED
+                ---
+        ---
+        
+         address ipv4 10.172.1.10
+        
+        """
+        global Check24
+        #
+        TacacsSRVs01 = re.compile(r'^tacacs\sserver\s')
+        TacacsSRVs02 = re.compile(r'^\saddress\sipv4\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+        TacacsSRVs03 = re.compile(r'^aaa\sgroup\sserver\stacacs\+\s')
+        tacacsSrvsList = []
+        #
+        #
+        if ShowRunAllParse._find_line_OBJ(TacacsSRVs01) and ShowRunAllParse._find_line_OBJ(TacacsSRVs02) and ShowRunAllParse._find_line_OBJ(TacacsSRVs03):
+            for SRV in ShowRunAllParse._find_line_OBJ(TacacsSRVs01):
+                tacacsSrvsList.append(SRV.text)
+        else:
+            pass
+        #
+        if len(tacacsSrvsList) >= 2:
+            Check24 = 'PASS'
+        else:
+            Check24 = 'FAIL'
+        #
+        #
+        if Check24 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "TacacsSRVs"' %hostname )
+        elif Check24 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "TacacsSRVs"' %hostname )
+        else:
+            print("No Check24 Value")
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # Authenticate communication with TACACS server  --- TacacsSRVsAuthen
+        """"
+        ● [1]      ---- tacacs server Malqa-PSN02, key W@Z6$xsM2a0
+    
+        ---
+        
+         tacacs server Malqa-PSN02
+            address ipv4 10.172.1.108
+            key W@Z6$xsM2a0
+            port 49
+        
+        """
+        # global Check25
+        # Check25 = ""
+        # #
+        # TacacsSRVs01 = re.compile(r'^tacacs\sserver\s')
+        # for eachline in ShowRunAllParse.find_objects(TacacsSRVs01):
+        #     if ShowRunAllParse.find_child_objects(eachline, r' key '):
+        #         # print(ShowRunAllParse.find_child_objects(eachline, ' key '))
+        #         Check25 = 'PASS'
+        #     else:
+        #         Check25 = 'FAIL'
+        #         break
+        # #
+        # #
+        # if Check25 == 'FAIL':
+        #     print(f'❌ Node %s Failed for parameter "TacacsSRVsAuthen"' %hostname )
+        # elif Check25 == 'PASS': 
+        #     print(f'🟢 Node %s Passed for parameter "TacacsSRVsAuthen"' %hostname )
+        # else:
+        #     print("No Check25 Value")
+        # #
+        # #
+        # #
+        # #
+        # #
+        # #
+        
+        
+        
+        
+        
+        
+        
+        
         
 
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
 
 
@@ -739,7 +1055,7 @@ class NetworkAudit:
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24#,Check25
     
         
     def ExportedData(self, hostname,MgmtIP) -> csv:
@@ -763,8 +1079,14 @@ class NetworkAudit:
             'NtpSRVsCount' : [Check18],
             'SHHv2' : [Check15],
             'IpDomainName' : [Check16],
-            'CLockTimeZone' : [Check17]
-
+            'CLockTimeZone' : [Check17],
+            'SNMPv2Disabled' : [Check19],
+            'SNMPv3Enabled' : [Check20],
+            'AAA_Author' : [Check21],
+            'AAA_Authen' : [Check22],
+            'AAA_Accounting' : [Check23],
+            'TacacsSRVs' : [Check24]
+            # 'TacacsSRVsAuthen' : [Check25]
             }
         #
         df = pd.DataFrame(data)
