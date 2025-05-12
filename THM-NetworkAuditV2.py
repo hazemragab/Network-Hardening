@@ -57,6 +57,7 @@ def main():
         
         hostname = key
         MgmtIP = value['host']
+        DeviceRole = value['devicerole']
         port = 22
         FileExportPath=Path(f"./ConfigExport/%s.txt" %hostname)
         FileExport=(f"./ConfigExport/%s.txt" %hostname)
@@ -70,7 +71,7 @@ def main():
             print(f"🟢 Now Procceeding with the Audit for host %s" %hostname)
         
             RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig
-            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName)
+            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName,DeviceRole)
             RunFn.ExportedData(hostname, MgmtIP)
             
             print("*" * os.get_terminal_size().columns)
@@ -87,7 +88,7 @@ def main():
             
             RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig Fn
             RunFn.CiscoDeviceConfigsExport(hostname, FileExport, NewFilePathName)
-            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName)
+            RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName, DeviceRole)
             RunFn.ExportedData(hostname, MgmtIP)
             
             print("-" * os.get_terminal_size().columns)

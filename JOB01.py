@@ -79,7 +79,7 @@ class NetworkAudit:
         #
         #
         #
-        Commands = ['show ip route', 'show ip int br','show ntp status', 'show ip ssh', 'show snmp user']
+        Commands = [ 'show version | inc Cisco IOS XE Software, Version|uptime|Last' , 'show ip route', 'show ip int br','show ntp status', 'show ip ssh', 'show snmp user']
         # CommandsListOutput = ""
         for CommandsList in Commands:
         #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
@@ -93,8 +93,7 @@ class NetworkAudit:
         return newfile, newfile2
 
         #    CommandsListOutput = net_connect.send_command(CommandsList, use_textfsm=True)
-        #    CommandsListOutput = net_connect.send_multiline(CommandsList)   
-        #    CommandsListOutputs = str(CommandsListOutput)
+        #    CommandsListOutput = net_connect.send_multiline(CommandsList)
         #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
 
         """
@@ -108,7 +107,7 @@ class NetworkAudit:
 
 
 
-    def CiscoCheckList(self, hostname, FileExport, MgmtIP, NewFileName) :
+    def CiscoCheckList(self, hostname, FileExport, MgmtIP, NewFileName, DeviceRole) :
         
         ShowRunAllParse=CiscoConfParse(FileExport)
         ShowStatusParse = CiscoConfParse(NewFileName, syntax='ios')
@@ -770,12 +769,6 @@ class NetworkAudit:
         #
         #
         #
-        #
-        #
-        #
-        #
-        #
-        #
         #**************************************************************************************************#
         #
         # SNMPv3Enabled 
@@ -999,40 +992,265 @@ class NetworkAudit:
             port 49
         
         """
-        # global Check25
-        # Check25 = ""
-        # #
-        # TacacsSRVs01 = re.compile(r'^tacacs\sserver\s')
-        # for eachline in ShowRunAllParse.find_objects(TacacsSRVs01):
-        #     if ShowRunAllParse.find_child_objects(eachline, r' key '):
-        #         # print(ShowRunAllParse.find_child_objects(eachline, ' key '))
-        #         Check25 = 'PASS'
-        #     else:
-        #         Check25 = 'FAIL'
-        #         break
-        # #
-        # #
-        # if Check25 == 'FAIL':
-        #     print(f'❌ Node %s Failed for parameter "TacacsSRVsAuthen"' %hostname )
-        # elif Check25 == 'PASS': 
-        #     print(f'🟢 Node %s Passed for parameter "TacacsSRVsAuthen"' %hostname )
-        # else:
-        #     print("No Check25 Value")
-        # #
-        # #
-        # #
-        # #
-        # #
-        # #
+        global Check25
+        #
+        #
+        if ShowRunAllParse.find_objects(TacacsSRVs01):
+            for eachline in ShowRunAllParse.find_objects(TacacsSRVs01):
+                if ShowRunAllParse.find_child_objects(eachline, r' key '):
+                    Check25 = 'PASS'
+                else:
+                    Check25 = 'FAIL'
+                    break
+        else:
+            Check25 = 'FAIL'
+        #
+        #
+        if Check25 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "TacacsSRVsAuthen"' %hostname )
+        elif Check25 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "TacacsSRVsAuthen"' %hostname )
+        else:
+            print("No Check25 Value")
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        #
+        # Set the source IP address for the TACACS  --- TacacsSrcIface
+        """"
+        ● [1]      ---- ip tacacs source-interface GigabitEthernet0/0
+        ---
+            MR57:: Set the source IP address for the TACACS 
+                PASSED if a line matching re.compile('(^ip|^\\s+ip) tacacs source-interface (.+)') is found.
+                otherwise, FAILED
+        """
+        global Check26
+        #
+        TacacsSrcIface = re.compile(r'^ip\stacacs\ssource-interface\s(Ethernet|GigabitEthernet)')
+        #
+        if ShowRunAllParse.find_objects(TacacsSrcIface):
+            Check26 = 'PASS'
+        else:
+            Check26 = 'FAIL'
+        #
+        #
+        if Check26 == 'FAIL':
+            print(f'❌ Node %s Failed for parameter "TacacsSrcIface"' %hostname )
+        elif Check26 == 'PASS': 
+            print(f'🟢 Node %s Passed for parameter "TacacsSrcIface"' %hostname )
+        else:
+            print("No Check26 Value")
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        #
+        # SwVersion  
+        """"
+        ● [1]      
+        ---
+            show version | inc Cisco IOS XE Software, Version|uptime|Last
+            #Cisco IOS XE Software, Version 17.12.04
+        """
+        global Check27
+        #
+        SwVersion = re.compile(r'Cisco\sIOS\sXE\sSoftware\,\sVersion\s(.+)', re.IGNORECASE)
+        #
+        SwVersionLine = ShowStatusParse._find_line_OBJ(SwVersion)[0].text
+        SwVersionExport =  re.search(SwVersion, SwVersionLine)
+        CurrentSwVersion = SwVersionExport.group(1)
+        # print(Check27)
+        # print(Check27)
+
+        # Version = 
+        if not CurrentSwVersion:
+            Check27 = 'NoVersion'
+            print('❌ No SoftWare Version Exported')
+        else:
+            Check27 = CurrentSwVersion
+            print('🟢 Current SoftWare Version is %s' %CurrentSwVersion)
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        #
+        # UpTime 
+        """"
+        ● [1]      
+        ---
+            show version | inc Cisco IOS XE Software, Version|uptime|Last
+            #THM-ACI-MOB-INT uptime is 1 week, 3 days, 19 hours, 30 minutes
+            #Last reload reason: PowerOn
+        """
+        global Check28
+        #
+        UpTime = re.compile(r'%s\suptime\sis\s(.+),\s(.+),\s(.+),\s(.+)' %hostname)
+        LastReload = re.compile(r'Last\sreload\sreason:\s(.+)Codes:')
+        #
+        UpTimeLine = ShowStatusParse._find_line_OBJ(UpTime)[0].text
+        UpTimeLineExport =  re.search(UpTime, UpTimeLine)
+        CurrentUpTime = UpTimeLineExport.group(1)
+
+        # print(CurrentUpTime)
+        if not CurrentUpTime:
+            Check28 = 'NoExportedUpTime'
+            print('❌ No Exported UpTime')
+        else:
+            Check28 = CurrentUpTime
+            print('🟢 Current UpTime is %s' %CurrentUpTime)
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        #
+        # LastReloadReason
+        """"
+        ● [1]      
+        ---
+            show version | inc Cisco IOS XE Software, Version|uptime|Last
+            #THM-ACI-MOB-INT uptime is 1 week, 3 days, 19 hours, 30 minutes
+            #Last reload reason: PowerOn
+        """
+        global Check29
+        #
+        LastReload = re.compile(r'Last\sreload\sreason:\s(.+)Codes:')
+        #      
+        LastReloadTimeLine = ShowStatusParse._find_line_OBJ(LastReload)[0].text
+        LastReloadExport =  re.search(LastReload, LastReloadTimeLine)
+        LastReloadReason = LastReloadExport.group(1)
+        # print(CurrentUpTime)
+        if not LastReloadReason:
+            Check29 = 'No LastReloadReason'
+            print('❌ No Exported LastReloadReason')
+        else:
+            Check29 = LastReloadReason
+            print('🟢 Last Reload Reason is %s' %LastReloadReason)
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        # print(NEWUPLIST)
+                #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        #
+        # For ports that are configured to be trunk ports limit VLANs on trunk ports    ---- TrunkVlansLimit
+        """"
+        ● [1]      
+        ---
+
+        """
+        global Check30
+        
+        '''
+        if ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4}-[0-9]{1,4}'):
+            TrunkPortswithVlanSetcfg.append(ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4}-[0-9]{1,4}')) 
+        else:
+            pass
+        
+
+        if ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\strunk\sallowed\svlan\sall'):
+            TrunkPortswithNoVlanSetcfg.append(ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(r'interface', r'\sswitchport\strunk\sallowed\svlan\sall'))
+        else:
+            pass
+
+        for each in TrunkPortswithVlanSetcfg[0]:
+            TrunkPortswithVlanSet.append(each.text)
+        for each333 in TrunkPortswithNoVlanSetcfg[0]:
+            TrunkPortswithNoVlanSet.append(each333.text)
+
+
+        # print(TrunkPortswithVlanSet)
+        res = [ele for ele in TrunkPortswithNoVlanSet if ele not in TrunkPortswithVlanSet]
+        res2 = [ele for ele in res if ele in UpIfaceListWIface]
+        FailTrunkifacelist = []
+        for element in res:
+            if ShowRunAllParse.find_child_objects(element, r' no shutdown') and ShowRunAllParse.find_child_objects(element, r'\sswitchport\strunk\sallowed\s'):
+                FailTrunkifacelist.append(element) 
+            else:
+                pass
+        '''
+        #switchport trunk allowed vlan 2250,2251,2310
+
+        TrunkPortsList = []
+        TrunkPortswithNoVlanLimitx = []
+        TrunkPortswithVlanLimitx = []
+        for oo in UpIfaceListWIface:
+            if ShowRunAllParse.find_parent_objects(oo, r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(oo, r'\sswitchport\strunk\sallowed\svlan\s'):
+                TrunkPortsList.append(oo) 
+        #
+        for oo2 in TrunkPortsList:
+            if ShowRunAllParse.find_parent_objects(oo2, r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4}-[0-9]{1,4}') or ShowRunAllParse.find_parent_objects(oo2, r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4},[0-9]{1,4}'):
+                TrunkPortswithVlanLimitx.append(oo2)
+            else:
+                TrunkPortswithNoVlanLimitx.append(oo2)
+        #
+        TrunkPortswithNoVlanLimit = list(set(TrunkPortswithNoVlanLimitx))
+        TrunkPortswithVlanLimit = list(set(TrunkPortswithVlanLimitx))
+        if not TrunkPortswithNoVlanLimit:
+            Check30 = 'PASS'
+            print(f'🟢 Node %s Passed for parameter "TrunkVlansLimit"' %hostname )
+        else:
+            Check30 = 'FAIL'
+            print(f'❌ Node %s Failed for parameter "TrunkVlansLimit "' %hostname)
+        #
+        # print(TrunkPortswithNoVlanLimit)
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        # ShutDown unused device Physical Interfaces - IfacesNotShut
+        #
+        """
+        can use #show interfaces status for switches with notconnect output also can use same show for Vlan1 checks
+        """
+        global Check31
+        NotShutIfaces = []
+        if UpIfacesList:
+            for each_element in (UpIfacesList):
+                if each_element['proto'] == 'down' and each_element['status'] == 'down':
+                    NotShutIfaces.append(each_element['interface'])
+                else:
+                    continue
+        else:
+            print("emptylist - ")
+        # print(NotShutIfaces)
+        NotShutIfacesList = list(set(NotShutIfaces))
+        # print(NotShutIfacesList)
+        if not NotShutIfacesList:
+            Check31 = 'PASS'
+            print(f'🟢 Node %s Passed for parameter "IfacesNotShut"' %hostname )
+        else:
+            Check31 = 'FAIL'
+            print(f'❌ Node %s Failed for parameter "IfacesNotShut "' %hostname)
         
         
         
-        
-        
-        
-        
-        
-        
 
         
         
@@ -1055,7 +1273,7 @@ class NetworkAudit:
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24#,Check25
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24,Check25,Check26,Check27,Check28,Check29,Check30,Check31
     
         
     def ExportedData(self, hostname,MgmtIP) -> csv:
@@ -1085,8 +1303,14 @@ class NetworkAudit:
             'AAA_Author' : [Check21],
             'AAA_Authen' : [Check22],
             'AAA_Accounting' : [Check23],
-            'TacacsSRVs' : [Check24]
-            # 'TacacsSRVsAuthen' : [Check25]
+            'TacacsSRVs' : [Check24],
+            'TacacsSRVsAuthen' : [Check25],
+            'TacacsSrcIface' : [Check26],
+            'CurrentSwVersion' : [Check27],
+            'CurrentUpTime' : [Check28],
+            'LastReloadReason' : [Check29],
+            'TrunkVlansLimit' : [Check30],
+            'IfacesNotShut' : [Check31]
             }
         #
         df = pd.DataFrame(data)

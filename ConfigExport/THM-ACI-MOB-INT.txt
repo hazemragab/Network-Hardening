@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 69223 bytes
+Current configuration with default configurations exposed : 69227 bytes
 !
-! Last configuration change at 10:54:50 GMT Thu May 8 2025 by skadira
+! Last configuration change at 20:28:52 GMT Mon May 12 2025 by HRagab7
 ! NVRAM config last updated at 16:55:09 GMT Wed May 7 2025 by HRagab7
 !
 no issu config-sync policy lbl prc
@@ -1645,7 +1645,7 @@ interface TenGigabitEthernet0/0/4
  logging event link-status
  load-interval 300
  carrier-delay 2
- shutdown
+ no shutdown
  no medium p2p
   cdp log mismatch duplex
  cdp tlv location
