@@ -1,0 +1,48 @@
+Cisco IOS XE Software, Version 17.03.04a
+MLQ-VPN-Router uptime is 12 weeks, 6 days, 16 hours, 16 minutes
+Last reload reason: PowerOnCodes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is 87.101.130.33 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 87.101.130.33
+      85.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C        85.194.107.64/31 is directly connected, GigabitEthernet0/0/3
+L        85.194.107.65/32 is directly connected, GigabitEthernet0/0/3
+      87.0.0.0/8 is variably subnetted, 4 subnets, 3 masks
+C        87.101.130.32/30 is directly connected, GigabitEthernet0/0/2
+L        87.101.130.34/32 is directly connected, GigabitEthernet0/0/2
+C        87.101.138.8/29 is directly connected, Port-channel10.11
+L        87.101.138.10/32 is directly connected, Port-channel10.11Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0/2   87.101.130.34   YES manual up                    up      
+GigabitEthernet0/0/3   85.194.107.65   YES manual up                    up      
+GigabitEthernet0       10.250.50.59    YES NVRAM  up                    up      
+Port-channel10         unassigned      YES unset  up                    up      
+Port-channel10.10      unassigned      YES TFTP   administratively down down    
+Port-channel10.11      87.101.138.10   YES manual up                    up      %NTP is not enabled.SSH Enabled - version 1.99
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512
+KEX Algorithms:ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-394250524
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCaNrBUmZnSjC+u3xptDlCQ3Z7uYGpV4F+McupJAWV+
+zosja52SPhag7e2A2PTaujkPGpde1rw2Aqdd2PeX+1RR1K/1FAhqIEQNkqmsfq14IGcZJrEJnYl9Zw4p
+m/R4mbE+lqxBYL8acXPV2lLGcDJiFgmhlEofj6JZaXaNp6eajFdufaqU+IBecxAWViKxTfUGNtfZpAgZ
+P3JkWiQdeTfhI8hQcfH3xe7IP685DMo3YWF34qaKyZnhg2cAlUiFVasYwOL2otD4zHCnGveofLpKCjCp
+4biGDPvEWnmL4ZxAbobMN6MlSVSME+9dMhfXzrJpwj0G5rt0RNsAvOSLNB9r                    

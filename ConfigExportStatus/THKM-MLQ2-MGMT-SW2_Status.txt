@@ -1,0 +1,174 @@
+Cisco IOS XE Software, Version 17.03.04
+THKM-MLQ2-MGMT-SW2 uptime is 1 year, 29 weeks, 5 days, 17 hours, 59 minutes
+Last reload reason: PowerOn
+Switch uptime                      : 1 year, 29 weeks, 5 days, 17 hours, 50 minutes 
+Last reload reason                 : Reload CommandExtended Host Mode is enabled
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES unset  up                    up      
+GigabitEthernet0/0     10.250.50.1     YES manual up                    up      
+GigabitEthernet1/0/1   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/2   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/3   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/4   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/5   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/6   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/7   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/8   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/9   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/10  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/11  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/12  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/13  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/14  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/15  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/16  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/17  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/18  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/19  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/20  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/21  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/22  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/23  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/24  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/25  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/26  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/27  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/28  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/29  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/30  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/31  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/32  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/33  unassigned      YES unset  up                    up      
+GigabitEthernet1/0/34  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/35  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/36  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/37  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/38  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/39  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/40  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/41  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/42  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/43  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/44  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/45  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/46  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/47  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/48  unassigned      YES unset  up                    up      
+GigabitEthernet1/1/1   unassigned      YES unset  down                  down    
+GigabitEthernet1/1/2   unassigned      YES unset  down                  down    
+GigabitEthernet1/1/3   unassigned      YES unset  down                  down    
+GigabitEthernet1/1/4   unassigned      YES unset  down                  down    
+Te1/1/1                unassigned      YES unset  up                    up      
+Te1/1/2                unassigned      YES unset  down                  down    
+Te1/1/3                unassigned      YES unset  down                  down    
+Te1/1/4                unassigned      YES unset  down                  down    
+Te1/1/5                unassigned      YES unset  down                  down    
+Te1/1/6                unassigned      YES unset  down                  down    
+Te1/1/7                unassigned      YES unset  down                  down    
+Te1/1/8                unassigned      YES unset  down                  down    
+Fo1/1/1                unassigned      YES unset  down                  down    
+Fo1/1/2                unassigned      YES unset  down                  down    
+TwentyFiveGigE1/1/1    unassigned      YES unset  down                  down    
+TwentyFiveGigE1/1/2    unassigned      YES unset  down                  down    
+Ap1/0/1                unassigned      YES unset  up                    up      
+GigabitEthernet2/0/1   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/2   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/3   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/4   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/5   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/6   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/7   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/8   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/9   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/10  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/11  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/12  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/13  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/14  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/15  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/16  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/17  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/18  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/19  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/20  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/21  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/22  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/23  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/24  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/25  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/26  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/27  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/28  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/29  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/30  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/31  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/32  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/33  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/34  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/35  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/36  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/37  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/38  unassigned      YES unset  up                    up      
+GigabitEthernet2/0/39  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/40  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/41  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/42  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/43  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/44  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/45  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/46  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/47  unassigned      YES unset  down                  down    
+GigabitEthernet2/0/48  unassigned      YES unset  up                    up      
+GigabitEthernet2/1/1   unassigned      YES unset  down                  down    
+GigabitEthernet2/1/2   unassigned      YES unset  down                  down    
+GigabitEthernet2/1/3   unassigned      YES unset  down                  down    
+GigabitEthernet2/1/4   unassigned      YES unset  down                  down    
+Te2/1/1                unassigned      YES unset  up                    up      
+Te2/1/2                unassigned      YES unset  down                  down    
+Te2/1/3                unassigned      YES unset  down                  down    
+Te2/1/4                unassigned      YES unset  down                  down    
+Te2/1/5                unassigned      YES unset  down                  down    
+Te2/1/6                unassigned      YES unset  down                  down    
+Te2/1/7                unassigned      YES unset  down                  down    
+Te2/1/8                unassigned      YES unset  down                  down    
+Fo2/1/1                unassigned      YES unset  down                  down    
+Fo2/1/2                unassigned      YES unset  down                  down    
+TwentyFiveGigE2/1/1    unassigned      YES unset  down                  down    
+TwentyFiveGigE2/1/2    unassigned      YES unset  down                  down    
+Ap2/0/1                unassigned      YES unset  up                    up      
+Port-channel22         unassigned      YES unset  up                    up      Clock is unsynchronized, stratum 16, no reference clock
+nominal freq is 250.0000 Hz, actual freq is 250.0000 Hz, precision is 2**10
+ntp uptime is 2658869000 (1/100 of seconds), resolution is 4000
+reference time is 00000000.00000000 (00:00:00.000 UTC Mon Jan 1 1900)
+clock offset is 0.0000 msec, root delay is 0.00 msec
+root dispersion is 398830.34 msec, peer dispersion is 0.00 msec
+loopfilter state is 'NSET' (Never set), drift is 0.000000000 s/s
+system poll interval is 8, never updated.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512
+KEX Algorithms:ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-4289686720
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx9yeg7EnX6PRtTG9w/2Fk7qVhMTsXE9crjUdsxiTT
+kYlAAtczrc0PCrlSKv8cfykZHAvfR7q31LPb0jlzVytQ/XCBG1YkEJSFjrqmMB85WbbVx6AvAylnMH0t
+HhbZlqXhDW1pxdGe2Zb17+gstqa0GUbC7quV9hFNvPxVKN1mewnaJJGSzz+Wfhi0zEEhdA+xNS1RNgH0
+cX3EVZu/dqsJdSyoWX4yzDbxc5NQv7r4DMeMm04VTLWx5p/zS9rDAEvdxtLx2Vzt+RQ6XnpkWFpUMxXe
+ez0EfZg/t5SnQGnGRMmuh2CYyyL860aD/sznP+ySW6l+pXZKxsuGT25G8fd3                    

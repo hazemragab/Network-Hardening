@@ -112,7 +112,11 @@ class NetworkAudit:
         ShowRunAllParse=CiscoConfParse(FileExport)
         ShowStatusParse = CiscoConfParse(NewFileName, syntax='ios')
         
-        ##Encrypt configuration passwords 
+        ##Encrypt configuration passwords                   --- EncryptConfigurationPasswords
+        """
+        username nameee privilege 15 password 0
+        username aaa password 0 as
+        """
         global Check01
         Check01=""
         Encrypt_conf_pwds_pattern1 = re.compile(r'^username\s(.+?)\sprivilege\s([0-9]{1,2})\spassword\s0\s')
@@ -131,10 +135,22 @@ class NetworkAudit:
         else:
             print(f'❌ Node %s failed for parameter "EncryptConfigurationPasswords" ' %hostname )
             Check01 = 'FAIL'
-        
-        
-        
-        ##Create a Fallback Account 
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        # 
+        #
+        ##Create a Fallback Account   --- Create Fallback Accoun
+        """
+            username T!ger0ne privilege 15 secret 9
+        """
         global Check02
         Check02=""
         Tiger0neAccount = re.compile(r'^username\sT!ger0ne\sprivilege\s([0-9]{1,2})\ssecret\s[0-9]\s')
@@ -150,8 +166,19 @@ class NetworkAudit:
         else:
             print("No Check02 Value")
         
-
-        #Configure the password retry lockout 
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        # 
+        #
+        #Configure the password retry lockout       --- PasswordRetryLockout
         """"
         aaa local authentication attempts max-fail 3
         """
@@ -171,10 +198,21 @@ class NetworkAudit:
         else:
             print("No Check03 Value")
         #
-        
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        # 
+        #
         #Configure inactivity time-out for the sessions 
         """"
-        MR47:: Configure inactivity time-out for the sessions 
+                line vty 0 4
+                    exec-timeout 5 0
         """
         global Check04
         find_lines_pattern = re.compile(r'^line\s(con|vty|aux)\s')
@@ -194,9 +232,18 @@ class NetworkAudit:
             print("No Check04 Value")
         #
         #
+        #
+        #
+        #
+        #
+        #
+        #
+        # 
+        #
+        #
         #**************************************************************************************************#
         # 
-        # Disable DHCP services
+        # Disable DHCP services                         --- DisableDHCPServices
         """
         PASSED if a line matching re.compile('no service dhcp') is found.
         otherwise, FAILED
@@ -219,7 +266,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # DisableHTTPService
+        # DisableHTTPService                            --- DisableHTTPService
         """
             PASSED if a line matching re.compile('no ip http server') is found.
             otherwise, FAILED
@@ -244,7 +291,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # DisableHTTPSService
+        # DisableHTTPSService                           ---   DisableHTTPSService
         """
         MR17:: Disable HTTPS service 
             OR:
@@ -272,16 +319,15 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # DisableTFTPService
+        # DisableTFTPService                    --- DisableTFTPService
         """
         MR19:: Disable TFTP service 
         NOT:
-        PASSED if a line matching re.compile('tftp-server') is found.
+        PASSED if a line matching re.compile('^tftp-server') is found.
         otherwise, FAILED
         ---
         """ 
         global Check08
-        # Check08=""
         
         DisableTFTPService = re.compile(r'^tftp-server')
         if ShowRunAllParse.find_objects(DisableTFTPService):
@@ -299,7 +345,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # ProhibitTelnetConnections
+        # ProhibitTelnetConnections                 --- ProhibitTelnetConnections
         """
         MR25:: Prohibit telnet connections 
             NOT:
@@ -331,7 +377,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # CdpDisableExternalIfaces
+        # CdpDisableExternalIfaces                  --- CdpDisableExternalIfaces
         """
             MR14:: Disable neighbour discovery for external facing interfaces 
                 Consider each of the following conditions in order:
@@ -421,7 +467,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # LldpDisableExternalIfaces
+        # LldpDisableExternalIfaces             ---  LldpDisableExternalIfaces
         """
          no lldp transmit no lldp receive
         """ 
@@ -451,13 +497,12 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # MR66:: Disable IP ICMP redirect messages IpIcmpRedirectMsgs
+        # MR66:: Disable IP ICMP redirect messages IpIcmpRedirectMsgs  --- IpIcmpRedirectMsgsDisabled
         """
          Disable IP ICMP redirect messages on external facing interfaces 
         """ 
         global Check12
         #
-        # IpIcmpRedirectMsgs = re.compile(r'^\s no ip redirects')
         #
         LoadExportedStatusFiles=open(f"./ConfigExportStatus/%s_Status.txt" %hostname,"r")
         LoadExportedStatusFiles.seek(0)
@@ -509,7 +554,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # MR67:: Disable IP ICMP unreachable messages IpIcmpUnreachablesMsgs
+        # MR67:: Disable IP ICMP unreachable messages IpIcmpUnreachablesMsgs  --- IpIcmpUnreachablesMsgsDisabled
         """
          Disable IP ICMP unreachable messages on external facing interfaces 
         """ 
@@ -536,9 +581,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # MR72:: Configure the source address for NTP  NTPSourceAddressConf
-        """
-        """ 
+        # MR72:: Configure the source address for NTP  NTPSourceAddressConf  --- NTPConf
         """"
         ● [1] ntp source
         ● [2] ntp server
@@ -579,7 +622,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # MR58:: Set the SSH version SHHv2
+        # MR58:: Set the SSH version SHHv2                      --- NtpSRVsCount
         """"
         ● [1] SSHv2 Enabled "show ip ssh" "SSH Enabled - version 2.0"
         ● [2] ip ssh version 2 "Command Existing"
@@ -610,7 +653,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # MR59:: Set the IP domain name
+        # MR59:: Set the IP domain name                     --- IpDomainName
         """"
         ● [1] ip domain name tahakom.com
         ● 
@@ -642,7 +685,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # Define the time zone as UTC 
+        # Define the time zone as UTC                           --- CLockTimeZone
         """"
         ● [1] "clock timezone GMT 3 0" or "clock timezone AST 3 0"
         ●   
@@ -677,7 +720,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # Configure at least two NTP servers 
+        # Configure at least two NTP servers                        --- NtpSRVsCount
         """"
         ● [1] ntp server 10.173.1.13 maxpoll 10 minpoll 6 version 4 burst iburst
         ● [2] ntp server vrf Mgmt-vrf 10.173.1.13  or ntp server vrf TAHAKOM 10.173.1.13 or ntp server 10.30.5.66
@@ -726,7 +769,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # SNMPv2Disabled 
+        # SNMPv2Disabled                                    --- SNMPv2Disabled
         """"
         ● [1] snmp-server host 10.172.1.100 informs version 2c T@hakom!321#
         ● [2] snmp-server community T@hakom!321# RO
@@ -771,7 +814,7 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # SNMPv3Enabled 
+        # SNMPv3Enabled                                 --- SNMPv3Enabled
         """"
         ● [1] snmp-server host 10.172.1.100 traps version 3 priv nac udp-port 162 #PASSED if a line matching re.compile('snmp-server host (.+) version 3') is found
         ● [2] snmp-server group nac v3 priv                                       #PASSED if a line matching re.compile('snmp-server group (.+) v3') is found.
@@ -824,11 +867,10 @@ class NetworkAudit:
         #
         #**************************************************************************************************#
         #
-        # Define the AAA login authentication method  - AAALoginAuth
+        # Define the AAA login authentication method  - AAALoginAuth  
         """"
         ● [1] aaa authentication login VTYISE group Malqa-PSN-Group local
-        ● [2]                        
-        ● [3]                          
+        ● [2]                                                
         
         MR50:: Define the AAA login authentication method 
             PASSED if a line matching re.compile('aaa authentication login') is found.
@@ -861,8 +903,7 @@ class NetworkAudit:
         # Enable AAA Authorization   - AaaAuthorize
         """"
         ● [1] aaa authorization commands 15 default group Malqa-PSN-Group local
-        ● [2]                        
-        ● [3]                          
+        ● [2]                                                
             PASSED if a line matching re.compile('aaa authorization commands') is found.
             otherwise, FAILED
         """
@@ -1067,8 +1108,7 @@ class NetworkAudit:
         SwVersionExport =  re.search(SwVersion, SwVersionLine)
         CurrentSwVersion = SwVersionExport.group(1)
         # print(Check27)
-        # print(Check27)
-
+        #
         # Version = 
         if not CurrentSwVersion:
             Check27 = 'NoVersion'
@@ -1128,7 +1168,7 @@ class NetworkAudit:
         """
         global Check29
         #
-        LastReload = re.compile(r'Last\sreload\sreason:\s(.+)Codes:')
+        LastReload = re.compile(r'Last\sreload\sreason:\s(PowerOn|Reload Command|CPUReset)')
         #      
         LastReloadTimeLine = ShowStatusParse._find_line_OBJ(LastReload)[0].text
         LastReloadExport =  re.search(LastReload, LastReloadTimeLine)
@@ -1190,28 +1230,33 @@ class NetworkAudit:
                 pass
         '''
         #switchport trunk allowed vlan 2250,2251,2310
-
+        # print(DeviceRole)
         TrunkPortsList = []
         TrunkPortswithNoVlanLimitx = []
         TrunkPortswithVlanLimitx = []
-        for oo in UpIfaceListWIface:
-            if ShowRunAllParse.find_parent_objects(oo, r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(oo, r'\sswitchport\strunk\sallowed\svlan\s'):
-                TrunkPortsList.append(oo) 
-        #
-        for oo2 in TrunkPortsList:
-            if ShowRunAllParse.find_parent_objects(oo2, r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4}-[0-9]{1,4}') or ShowRunAllParse.find_parent_objects(oo2, r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4},[0-9]{1,4}'):
-                TrunkPortswithVlanLimitx.append(oo2)
+        
+        if DeviceRole == 'CiscoSwitch':
+            for oo in UpIfaceListWIface:
+                if ShowRunAllParse.find_parent_objects(oo, r'\sswitchport\smode\strunk') and ShowRunAllParse.find_parent_objects(oo, r'\sswitchport\strunk\sallowed\svlan\s'):
+                    TrunkPortsList.append(oo) 
+            #
+            for oo2 in TrunkPortsList:
+                if ShowRunAllParse.find_parent_objects(oo2, r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4}-[0-9]{1,4}') or ShowRunAllParse.find_parent_objects(oo2, r'\sswitchport\strunk\sallowed\svlan\s[0-9]{1,4},[0-9]{1,4}'):
+                    TrunkPortswithVlanLimitx.append(oo2)
+                else:
+                    TrunkPortswithNoVlanLimitx.append(oo2)
+            #
+            TrunkPortswithNoVlanLimit = list(set(TrunkPortswithNoVlanLimitx))
+            TrunkPortswithVlanLimit = list(set(TrunkPortswithVlanLimitx))
+            if not TrunkPortswithNoVlanLimit:
+                Check30 = 'PASS'
+                print(f'🟢 Node %s Passed for parameter "TrunkVlansLimit"' %hostname )
             else:
-                TrunkPortswithNoVlanLimitx.append(oo2)
-        #
-        TrunkPortswithNoVlanLimit = list(set(TrunkPortswithNoVlanLimitx))
-        TrunkPortswithVlanLimit = list(set(TrunkPortswithVlanLimitx))
-        if not TrunkPortswithNoVlanLimit:
-            Check30 = 'PASS'
-            print(f'🟢 Node %s Passed for parameter "TrunkVlansLimit"' %hostname )
+                Check30 = 'FAIL'
+                print(f'❌ Node %s Failed for parameter "TrunkVlansLimit "' %hostname)
         else:
-            Check30 = 'FAIL'
-            print(f'❌ Node %s Failed for parameter "TrunkVlansLimit "' %hostname)
+            Check30 = 'NA'
+            print(f'🟢 Node %s is Router NA for "TrunkVlansLimit"' %hostname )
         #
         # print(TrunkPortswithNoVlanLimit)
         #
