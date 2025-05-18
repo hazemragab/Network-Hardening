@@ -44,7 +44,6 @@ class NetworkAudit:
         """
         Create and return a ConnectHandler for the device and log the session
         """
-        
         device = {
             'host': self.MgmtIP,
             'username': self.username,
@@ -55,9 +54,9 @@ class NetworkAudit:
             # 'auth_timeout': 60,
             # 'session_log': self.FileExport,
         }
-        net_connect = ConnectHandler(**device, disabled_algorithms = {'pubkeys': ['rsa-sha2-256', 'rsa-sha2-512']})
+        # net_connect = ConnectHandler(**device, disabled_algorithms = {'pubkeys': ['rsa-sha2-256', 'rsa-sha2-512']})
         # net_connect = ConnectHandler(**device, disabled_algorithms = {'keys': ['rsa-sha2-256', 'rsa-sha2-512']})
-        # net_connect = ConnectHandler(**device)
+        net_connect = ConnectHandler(**device)
         
         return net_connect
 

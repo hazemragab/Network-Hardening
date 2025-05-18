@@ -39,10 +39,9 @@ def ping_ip(ips):                                   # Use ping command to check 
 def main():
 
     os.system("/bin/bash -c \"cp OutputReportDraft.csv OutputReport.csv" + "\"")
-    username = os.getenv("USERNAME")
-    password = os.getenv("PASSWORD")
-    if not username or not password:
-        print("Credentials for network access must be set as ENVs 'XE_VAR_USER' and 'XE_VAR_PASS' to use this utility.")
+    # username = os.getenv("USERNAME")
+    # password = os.getenv("PASSWORD")
+
     
     args = parse_arguments()                               # Parse command-line arguments
     with open(args.hosts_file, 'r') as file:               # Load ansible hosts file in yaml format
@@ -58,11 +57,16 @@ def main():
         hostname = key
         MgmtIP = value['host']
         DeviceRole = value['devicerole']
+        username = value['username']
+        password = value['password']
         port = 22
         FileExportPath=Path(f"./ConfigExport/%s.txt" %hostname)
         FileExport=(f"./ConfigExport/%s.txt" %hostname)
         NewFilePathName=Path(f"./ConfigExportStatus/%s_Status.txt" %hostname)
         NewFileName=(f"./ConfigExportStatus/%s_Status.txt" %hostname)
+        if not username or not password:
+            print("Credentials for network access must be set as ENVs 'XE_VAR_USER' and 'XE_VAR_PASS' to use this utility.")
+
     	
         if FileExportPath.exists() & NewFilePathName.exists():
 
