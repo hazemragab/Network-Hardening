@@ -6,50 +6,50 @@ MLQDC:
       username: T!ger0ne
       password: QYz)xbJWV9#
       devicerole: CiscoRouter
-    MLQ-INT-SW:
-      device_type: cisco_xe
-      host: 10.250.50.90
-      # username: devops
-      # password: o1If1rcw
-      username: haahmed.c
-      password: Yarab@2026
-      devicerole: CiscoSwitch 
-    THM-ACI-SALAM-INT:
-      device_type: cisco_xe
-      host: 10.250.50.200
-      username: T!ger0ne
-      password: QYz)xbJWV9#
-      devicerole: CiscoRouter
-    TAH-ACI-CORE-SW:
-      device_type: cisco_xe
-      host: 10.250.50.2
-      username: T!ger0ne
-      password: QYz)xbJWV9#
-      devicerole: CiscoSwitch
-    Malqa-RTR01-WAN:
-      device_type: cisco_xe
-      host: 10.250.50.80
-      username: T!ger0ne
-      password: QYz)xbJWV9#
-      devicerole: CiscoRouter
-    Malqa-RTR02-WAN:
-      device_type: cisco_xe
-      host: 10.250.50.81
-      username: T!ger0ne
-      password: QYz)xbJWV9#
-      devicerole: CiscoRouter    
-    MLQ-VPN-Router:
-      device_type: cisco_xe
-      host: 10.250.50.59
-      username: T!ger0ne
-      password: QYz)xbJWV9#
-      devicerole: CiscoRouter  
-    THKM-MLQ2-MGMT-SW2:
-      device_type: cisco_xe
-      host: 10.250.50.1
-      username: T!ger0ne
-      password: QYz)xbJWV9#
-      devicerole: CiscoSwitch 
+    # MLQ-INT-SW:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.90
+    #   # username: devops
+    #   # password: o1If1rcw
+    #   username: haahmed.c
+    #   password: Yarab@2026
+    #   devicerole: CiscoSwitch 
+    # THM-ACI-SALAM-INT:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.200
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoRouter
+    # TAH-ACI-CORE-SW:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.2
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoSwitch
+    # Malqa-RTR01-WAN:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.80
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoRouter
+    # Malqa-RTR02-WAN:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.81
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoRouter    
+    # MLQ-VPN-Router:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.59
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoRouter  
+    # THKM-MLQ2-MGMT-SW2:
+    #   device_type: cisco_xe
+    #   host: 10.250.50.1
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoSwitch 
 
 
 

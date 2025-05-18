@@ -68,24 +68,36 @@ class NetworkAudit:
         """
         global newfile, newfile2
 
+        net_connect = self.connect()
+        output = net_connect.send_command('show run all')
+        output += net_connect.send_command('\n')
+        output += net_connect.send_command('\n')
+        newfile=open(FileExport, "a")
+        newfile.write(output )
+        newfile.close
+        
+        """
         showrunall = ['show run all']
-        net_connect = self.connect()   # Connect to the device
         for ShowRunAllCommand in showrunall:
-            mgmt_acl_raw = net_connect.send_command(ShowRunAllCommand, delay_factor=2)
+            mgmt_acl_raw = net_connect.send_command(ShowRunAllCommand)
             newfile=open(FileExport, "a")
             newfile.write(mgmt_acl_raw )
             newfile.close
+        """
         #
         #
         #
         Commands = [ 'show version | inc Cisco IOS XE Software, Version|uptime|Last' , 'show ip route', 'show ip int br','show ntp status', 'show ip ssh', 'show snmp user']
-        # CommandsListOutput = ""
+        #### CommandsListOutput = ""
         for CommandsList in Commands:
         #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
-           CommandsListOutput = net_connect.send_command(CommandsList, delay_factor=6)
+
+           CommandsListOutput = net_connect.send_command(CommandsList, delay_factor=2)
+           CommandsListOutput += net_connect.send_command('\n')
            newfile2=open(NewFilePathName, "a")
            newfile2.write(CommandsListOutput)
            newfile2.close()
+
         #
         net_connect.disconnect()       # Disconnect from the device
         print(f"🟢 Export-Job Successful for device  {self.hostname}")

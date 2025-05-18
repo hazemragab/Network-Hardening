@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 69227 bytes
+Current configuration with default configurations exposed : 69331 bytes
 !
-! Last configuration change at 20:28:52 GMT Mon May 12 2025 by HRagab7
-! NVRAM config last updated at 16:55:09 GMT Wed May 7 2025 by HRagab7
+! Last configuration change at 11:29:30 GMT Wed May 14 2025 by mhassane
+! NVRAM config last updated at 11:24:29 GMT Wed May 14 2025 by skadira
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -722,6 +722,7 @@ username aalnour privilege 15 secret 9 $9$xDv75KV3N6ghUE$7TSop7VxKaq1/F2n7KZAZO3
 username skadira privilege 15 secret 9 $9$XF6Pt.rGkSTvWE$xBOpxyXsKN3z7sngdyt0vVWrdjeckKlYphX5.O4iI2g
 username HRagab7 privilege 15 secret 9 $9$KGh2gyMZ8KVm2E$7tokPTDf9kqEmSt48PfMskJhUI7BThy6kKyCz56GYyI
 username T!ger0ne privilege 15 secret 9 $9$iUKJo2aorec3x.$H1qoFAWWa7BSRtS58i9iDNGm9U/qz6kerFc8DBji0Ok
+username mhassane privilege 15 secret 9 $9$uB7kFbRNGLbAKU$Fh.DYBFPTX/IhdMliDk/57Ycily56PDAc5dVq.H2ruw
 !
 redundancy
  mode none

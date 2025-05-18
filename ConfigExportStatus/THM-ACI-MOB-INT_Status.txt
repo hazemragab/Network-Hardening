@@ -1,5 +1,5 @@
 Cisco IOS XE Software, Version 17.06.01a
-THM-ACI-MOB-INT uptime is 1 week, 4 days, 4 hours, 53 minutes
+THM-ACI-MOB-INT uptime is 2 weeks, 2 days, 23 hours, 58 minutes
 Last reload reason: PowerOnCodes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
@@ -46,12 +46,12 @@ Port-channel10.368     10.250.55.35    YES NVRAM  up                    up
 Port-channel10.369     10.250.56.35    YES NVRAM  up                    up      
 Port-channel10.470     unassigned      YES unset  administratively down down    Clock is synchronized, stratum 4, reference is 10.80.28.18    
 nominal freq is 250.0000 Hz, actual freq is 249.9817 Hz, precision is 2**10
-ntp uptime is 96797700 (1/100 of seconds), resolution is 4016
-reference time is EBCC9938.FD70A690 (18:58:48.990 GMT Mon May 12 2025)
-clock offset is 3.1267 msec, root delay is 8.51 msec
-root dispersion is 92.84 msec, peer dispersion is 1.11 msec
-loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000072926 s/s
-system poll interval is 1024, last update was 5551 sec ago.SSH Enabled - version 2.0
+ntp uptime is 146870200 (1/100 of seconds), resolution is 4016
+reference time is EBD447C5.FD2F1D58 (14:49:25.989 GMT Sun May 18 2025)
+clock offset is 0.5223 msec, root delay is 5.71 msec
+root dispersion is 51.01 msec, peer dispersion is 1.08 msec
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000072999 s/s
+system poll interval is 1024, last update was 2840 sec ago.SSH Enabled - version 2.0
 Authentication methods:publickey,keyboard-interactive,password
 Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
 Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
