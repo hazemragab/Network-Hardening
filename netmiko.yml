@@ -24,11 +24,178 @@ TAH-ACI-CORE-SW:
   username: T!ger0ne
   password: QYz)xbJWV9#
 
-Malqa-RTR01-WAN:
+MLQ-SDWAN-Router-01:
   device_type: cisco_xe
   host: 10.250.50.80
   username: T!ger0ne
   password: QYz)xbJWV9#
+
+MLQ-SDWAN-Router-02:
+  device_type: cisco_xe
+  host: 10.250.50.81
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+
+
+MLQ-VPN-Router:
+  device_type: cisco_xe
+  host: 10.250.50.59
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+
+THKM-MLQ2-MGMT-SW2:
+  device_type: cisco_xe
+  host: 10.250.50.1
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+
+THKM-SDWAN-SW:
+  device_type: cisco_xe
+  host: 10.250.50.82
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch 
+
+THKM-MLQ2-COR-SW:
+  device_type: cisco_xe
+  host: 10.175.0.12
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-DMZ-SW1:
+  device_type: cisco_xe
+  host: 10.175.0.74
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+THKM-MLQ2-PRE-SW:
+  device_type: cisco_xe
+  host: 10.175.0.54
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-MGMT-SW1:
+  device_type: cisco_xe
+  host: 10.175.0.11
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-WAN-SW1:
+  device_type: cisco_xe
+  host: 10.175.0.24
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-WANRTR1:
+  device_type: cisco_xe
+  host: 10.175.0.20
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-INTRTR1:
+  device_type: cisco_xe
+  host: 10.175.0.70
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+RUH-MLQ2-VG:
+  device_type: cisco_xe
+  host: 10.250.50.91
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-2F-COR-SW:
+  device_type: cisco_xe
+  host: 10.175.19.45
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+THKM-MLQ2-CORE-EXT:
+  device_type: cisco_xe
+  host: 10.175.0.13
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoSwitch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1-RTR01-WAN:
+  device_type: cisco_xe
+  host: 10.250.10.80
+  username: HRagab7
+  password: Lara@2025
+  devicerole: CiscoRouter
+  Region: R1
+  #
+R1-NASSRIYAH-CORE-SW:
+  device_type: cisco_xe
+  host: 10.1.254.1
+  username: haahmed.c
+  password: Yarab@2026
+  devicerole: CiscoRouter
+  Region: R1
+  #
+R1-DIST-SW:
+  device_type: cisco_xe
+  host: 10.1.254.2
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoRouter
+  Region: R1 
+  #
+  #
+R1-RTR02-WAN:
+  device_type: cisco_xe
+  host: 10.250.10.81
+  username: T!ger0ne
+  password: QYz)xbJWV9#
+  devicerole: CiscoRouter
+  Region: R1 
+  #
+R1-NASSRIYAH-WAN-SW:
+  device_type: cisco_xe
+  host: 10.1.254.102
+  username: haahmed.c
+  password: Yarab@2026
+  devicerole: CiscoRouter
+  Region: R1 
+#
+R1-SD-WAN-SWs:
+  device_type: cisco_xe
+  host: 10.250.10.82
+  username: haahmed.c
+  password: Yarab@2026
+  devicerole: CiscoRouter
+  Region: R1 
+#  
+
+
+
+
+
+
 
 # Any list is group of devices
 MLQDC:
@@ -36,9 +203,31 @@ MLQDC:
   - MLQ-INT-SW
   - THM-ACI-SALAM-INT
   - TAH-ACI-CORE-SW
-  - Malqa-RTR01-WAN
+  - MLQ-SDWAN-Router-01
+  - MLQ-SDWAN-Router-02
+  - MLQ-VPN-Router
+  - THKM-MLQ2-MGMT-SW2
+  - THKM-SDWAN-SW
+  - THKM-MLQ2-COR-SW
+  - THKM-MLQ2-DMZ-SW1
+  - THKM-MLQ2-PRE-SW
+  - THKM-MLQ2-MGMT-SW1
+  - THKM-MLQ2-WAN-SW1
+  - THKM-MLQ2-WANRTR1
+  - THKM-MLQ2-INTRTR1
+  - RUH-MLQ2-VG
+  - THKM-MLQ2-2F-COR-SW
+  - THKM-MLQ2-CORE-EXT
+
 
 R1DC:
+  - R1-RTR01-WAN
+  - R1-RTR02-WAN
+  - R1-NASSRIYAH-CORE-SW
+  - R1-DIST-SW
+  - R1-NASSRIYAH-WAN-SW
+  - R1-SD-WAN-SWs
+
 R2DC:
 R3DC:
 

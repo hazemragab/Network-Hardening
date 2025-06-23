@@ -38,6 +38,7 @@ class NetworkAudit:
     password: str
     FileExport: str
     hostname: str
+    Region: str
 
 
     def connect(self) -> ConnectHandler:
@@ -1115,9 +1116,12 @@ class NetworkAudit:
         #
         SwVersion = re.compile(r'Cisco\sIOS\sXE\sSoftware\,\sVersion\s(.+)', re.IGNORECASE)
         #
-        SwVersionLine = ShowStatusParse._find_line_OBJ(SwVersion)[0].text
-        SwVersionExport =  re.search(SwVersion, SwVersionLine)
-        CurrentSwVersion = SwVersionExport.group(1)
+        try:
+            SwVersionLine = ShowStatusParse._find_line_OBJ(SwVersion)[0].text
+            SwVersionExport =  re.search(SwVersion, SwVersionLine)
+            CurrentSwVersion = SwVersionExport.group(1)
+        except IndexError:
+            CurrentSwVersion = "None"
         # print(Check27)
         #
         # Version = 
@@ -1152,10 +1156,13 @@ class NetworkAudit:
         UpTime = re.compile(r'%s\suptime\sis\s(.+),\s(.+),\s(.+),\s(.+)' %hostname)
         LastReload = re.compile(r'Last\sreload\sreason:\s(.+)Codes:')
         #
-        UpTimeLine = ShowStatusParse._find_line_OBJ(UpTime)[0].text
-        UpTimeLineExport =  re.search(UpTime, UpTimeLine)
-        CurrentUpTime = UpTimeLineExport.group(1)
-
+        try:
+            ShowStatusParse._find_line_OBJ(UpTime)[0].text
+            UpTimeLine = ShowStatusParse._find_line_OBJ(UpTime)[0].text
+            UpTimeLineExport =  re.search(UpTime, UpTimeLine)
+            CurrentUpTime = UpTimeLineExport.group(1)
+        except IndexError:
+            CurrentUpTime = "None"
         # print(CurrentUpTime)
         if not CurrentUpTime:
             Check28 = 'NoExportedUpTime'
@@ -1179,7 +1186,8 @@ class NetworkAudit:
         """
         global Check29
         #
-        LastReload = re.compile(r'Last\sreload\sreason:\s(PowerOn|Reload Command|CPUReset)')
+        # LastReload = re.compile(r'Last\sreload\sreason:\s(PowerOn|Reload Command|CPUReset|Critical software exception|power-on)')
+        LastReload = re.compile(r'Last\sreload\sreason\s{0,}:\s(PowerOn|Reload Command|CPUReset|Critical software exception|power-on)')
         #      
         LastReloadTimeLine = ShowStatusParse._find_line_OBJ(LastReload)[0].text
         LastReloadExport =  re.search(LastReload, LastReloadTimeLine)
@@ -1304,9 +1312,27 @@ class NetworkAudit:
         else:
             Check31 = 'FAIL'
             print(f'❌ Node %s Failed for parameter "IfacesNotShut "' %hostname)
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        # Region
+        #
+        """
+        ###Region
+        """
+        global Check32
+        Check32 = self.Region
         
         
         
+        
 
         
         
@@ -1329,13 +1355,14 @@ class NetworkAudit:
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24,Check25,Check26,Check27,Check28,Check29,Check30,Check31
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24,Check25,Check26,Check27,Check28,Check29,Check30,Check31,Check32
     
         
     def ExportedData(self, hostname,MgmtIP) -> csv:
         data = {
             'Hostname': [hostname],
             'IPADDRESS': [MgmtIP],
+            'Region' : [Check32],
             'EncryptConfigurationPasswords': [Check01],
             'Create Fallback Account': [Check02],
             'PasswordRetryLockout' : [Check03],

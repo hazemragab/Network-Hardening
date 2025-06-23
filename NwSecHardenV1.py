@@ -2,6 +2,12 @@
 
 """
 usage : python THM-NetworkAuditV2.py --hosts_file HostsInventory.yml --group MLQDC
+usage : python NwSecHardenV1.py --hosts_file HostsInventory.yml --group MLQDC
+usage : netmiko-grep --list-devices
+#
+#debug ip ssh
+#debug aaa authentication
+#
 """
 
 import os
@@ -27,14 +33,14 @@ def parse_arguments():                                     # to parse command-li
     return parser.parse_args()
 
 
-def ping_ip(ips):                                   # Use ping command to check if switch alive
-    param = '-c'                                           # for linux os
-    command = ['ping', param, '2', ips]             # Build the ping command
-    try:
-        subprocess.check_output(command, stderr=subprocess.STDOUT, universal_newlines=True)    # Execute the ping command
-        return "yes"
-    except subprocess.CalledProcessError:
-        return "no"
+# def ping_ip(ips):                                   # Use ping command to check if switch alive
+#     param = '-c'                                           # for linux os
+#     command = ['ping', param, '2', ips]             # Build the ping command
+#     try:
+#         subprocess.check_output(command, stderr=subprocess.STDOUT, universal_newlines=True)    # Execute the ping command
+#         return "yes"
+#     except subprocess.CalledProcessError:
+#         return "no"
 
 def main():
 
@@ -59,6 +65,8 @@ def main():
         DeviceRole = value['devicerole']
         username = value['username']
         password = value['password']
+        Region = value['Region']
+        # print(Region)
         port = 22
         FileExportPath=Path(f"./ConfigExport/%s.txt" %hostname)
         FileExport=(f"./ConfigExport/%s.txt" %hostname)
@@ -74,23 +82,24 @@ def main():
             print(f"🟢 Files for host %s already Exported" %hostname)
             print(f"🟢 Now Procceeding with the Audit for host %s" %hostname)
         
-            RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig
+            RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname, Region)    # Create a CiscoDeviceConfig
             RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName,DeviceRole)
             RunFn.ExportedData(hostname, MgmtIP)
             
             print("*" * os.get_terminal_size().columns)
 
-        elif ping_ip(value['host']) == "no":
-            print(f' ❌ Device %s MgmtIP:%s is not reachable' %(key,value['host']))
-            print("-" * os.get_terminal_size().columns)
-            continue
+        # elif ping_ip(value['host']) == "no":
+        #     print(f' ❌ Device %s MgmtIP:%s is not reachable' %(key,value['host']))
+        #     print("-" * os.get_terminal_size().columns)
+        #     continue
+
 
         else:
 		
-            print(f'🟢 Device %s MgmtIP:%s is reachable'  %(key,value['host']))
+            #print(f'🟢 Device %s MgmtIP:%s is reachable'  %(key,value['host']))
             print(f"🟢 Exporting ConfigurationFiles from device {hostname}. to Directory ./ConfigsExport ")
             
-            RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname)    # Create a CiscoDeviceConfig Fn
+            RunFn = NetworkAudit(MgmtIP, port, username, password, FileExport, hostname, Region)    # Create a CiscoDeviceConfig Fn
             RunFn.CiscoDeviceConfigsExport(hostname, FileExport, NewFilePathName)
             RunFn.CiscoCheckList(hostname, FileExport, MgmtIP, NewFileName, DeviceRole)
             RunFn.ExportedData(hostname, MgmtIP)
