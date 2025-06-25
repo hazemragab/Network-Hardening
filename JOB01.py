@@ -1114,7 +1114,9 @@ class NetworkAudit:
         """
         global Check27
         #
+        #### Need Adjustement to accomodate IOS versions >> Ex. Node JED-CoreSW
         SwVersion = re.compile(r'Cisco\sIOS\sXE\sSoftware\,\sVersion\s(.+)', re.IGNORECASE)
+        # SwVersion = re.compile(r'Cisco\sIOS\sXE{0,1}\s{0,1}Software\,(.+)\,\sVersion\s(.+)', re.IGNORECASE)
         #
         try:
             SwVersionLine = ShowStatusParse._find_line_OBJ(SwVersion)[0].text
@@ -1153,8 +1155,9 @@ class NetworkAudit:
         """
         global Check28
         #
-        UpTime = re.compile(r'%s\suptime\sis\s(.+),\s(.+),\s(.+),\s(.+)' %hostname)
-        LastReload = re.compile(r'Last\sreload\sreason:\s(.+)Codes:')
+        # UpTime = re.compile(r'%s\suptime\sis\s(.+),\s(.+),\s(.+),\s(.+)' %hostname)
+        UpTime = re.compile(r'%s\suptime\sis\s(.+),\s(.+){1,4}' %hostname)
+        # LastReload = re.compile(r'Last\sreload\sreason:\s(.+)Codes:')
         #
         try:
             ShowStatusParse._find_line_OBJ(UpTime)[0].text
@@ -1187,11 +1190,14 @@ class NetworkAudit:
         global Check29
         #
         # LastReload = re.compile(r'Last\sreload\sreason:\s(PowerOn|Reload Command|CPUReset|Critical software exception|power-on)')
-        LastReload = re.compile(r'Last\sreload\sreason\s{0,}:\s(PowerOn|Reload Command|CPUReset|Critical software exception|power-on)')
+        LastReload = re.compile(r'Last\sreload\sreason\s{0,}:\s{0,}(PowerOn|Reload Command|CPUReset|Critical software exception|power-on|Power Failure or Unknown|Reload reason not captured|- From Active Switch. reload peer unit)')
         #      
-        LastReloadTimeLine = ShowStatusParse._find_line_OBJ(LastReload)[0].text
-        LastReloadExport =  re.search(LastReload, LastReloadTimeLine)
-        LastReloadReason = LastReloadExport.group(1)
+        try:
+            LastReloadTimeLine = ShowStatusParse._find_line_OBJ(LastReload)[0].text
+            LastReloadExport =  re.search(LastReload, LastReloadTimeLine)
+            LastReloadReason = LastReloadExport.group(1)
+        except IndexError:
+            LastReloadReason = "None"
         # print(CurrentUpTime)
         if not LastReloadReason:
             Check29 = 'No LastReloadReason'
