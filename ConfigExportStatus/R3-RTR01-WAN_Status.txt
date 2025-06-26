@@ -1,5 +1,5 @@
 Cisco IOS XE Software, Version 17.04.01a
-R3-RTR01-WAN uptime is 1 year, 18 weeks, 6 days, 22 hours, 44 minutes
+R3-RTR01-WAN uptime is 1 year, 19 weeks, 22 minutes
 Last reload reason: Reload CommandCodes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
@@ -63,3 +63,4 @@ storage-type: nonvolatile	 active
 Authentication Protocol: SHA
 Privacy Protocol: AES128
 Group-name: SDWAN-GROUP
+Chassis type: C8500L-8S4X

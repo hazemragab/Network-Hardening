@@ -7,13 +7,13 @@ MLQDC:
     #   password: Yarab@2026
     #   devicerole: CiscoRouter
     #   Region: MLQ
-    # MLQ-INT-SW:
-    #   device_type: cisco_xe
-    #   host: 10.250.50.90
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ 
+    MLQ-INT-SW:
+      device_type: cisco_xe
+      host: 10.250.50.90
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ 
     # THM-ACI-SALAM-INT:
     #   device_type: cisco_xe
     #   host: 10.250.50.200
@@ -21,13 +21,13 @@ MLQDC:
     #   password: Yarab@2026
     #   devicerole: CiscoRouter
     #   Region: MLQ
-    # TAH-ACI-CORE-SW:
-    #   device_type: cisco_xe
-    #   host: 10.250.50.2
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
+    TAH-ACI-CORE-SW:
+      device_type: cisco_xe
+      host: 10.250.50.2
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
     # MLQ-SDWAN-Router-01:
     #   device_type: cisco_xe
     #   host: 10.250.50.80
@@ -49,55 +49,55 @@ MLQDC:
     #   password: Yarab@2026
     #   devicerole: CiscoRouter
     #   Region: MLQ  
-    # THKM-MLQ2-MGMT-SW2:
-    #   device_type: cisco_xe
-    #   host: 10.250.50.1
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ 
-    # THKM-SDWAN-SW:
-    #   device_type: cisco_xe
-    #   host: 10.250.50.82
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
-    # THKM-MLQ2-COR-SW:
-    #   device_type: cisco_xe
-    #   host: 10.175.0.12
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
-    # THKM-MLQ2-DMZ-SW1:
-    #   device_type: cisco_xe
-    #   host: 10.175.0.74
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
-    # THKM-MLQ2-PRE-SW:
-    #   device_type: cisco_xe
-    #   host: 10.175.0.54
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
-    # THKM-MLQ2-MGMT-SW1:
-    #   device_type: cisco_xe
-    #   host: 10.175.0.11
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
-    # THKM-MLQ2-WAN-SW1:
-    #   device_type: cisco_xe
-    #   host: 10.175.0.24
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
+    THKM-MLQ2-MGMT-SW2:
+      device_type: cisco_xe
+      host: 10.250.50.1
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ 
+    THKM-SDWAN-SW:
+      device_type: cisco_xe
+      host: 10.250.50.82
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
+    THKM-MLQ2-COR-SW:
+      device_type: cisco_xe
+      host: 10.175.0.12
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
+    THKM-MLQ2-DMZ-SW1:
+      device_type: cisco_xe
+      host: 10.175.0.74
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
+    THKM-MLQ2-PRE-SW:
+      device_type: cisco_xe
+      host: 10.175.0.54
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
+    THKM-MLQ2-MGMT-SW1:
+      device_type: cisco_xe
+      host: 10.175.0.11
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
+    THKM-MLQ2-WAN-SW1:
+      device_type: cisco_xe
+      host: 10.175.0.24
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
     # THKM-MLQ2-WANRTR1:
     #   device_type: cisco_xe
     #   host: 10.175.0.20
@@ -119,20 +119,20 @@ MLQDC:
     #   password: Yarab@2026
     #   devicerole: CiscoSwitch
     #   Region: MLQ
-    # THKM-MLQ2-2F-COR-SW:
-    #   device_type: cisco_xe
-    #   host: 10.175.19.45
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
-    # THKM-MLQ2-CORE-EXT:
-    #   device_type: cisco_xe
-    #   host: 10.175.0.13
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: MLQ
+    THKM-MLQ2-2F-COR-SW:
+      device_type: cisco_xe
+      host: 10.175.19.45
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
+    THKM-MLQ2-CORE-EXT:
+      device_type: cisco_xe
+      host: 10.175.0.13
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: MLQ
 
 
 
@@ -152,7 +152,7 @@ R1DC:
     #   host: 10.1.254.1
     #   username: haahmed.c
     #   password: Yarab@2026
-    #   devicerole: CiscoRouter
+    #   devicerole: CiscoSwitch
     #   Region: R1
     # #
     # R1-DIST-SW:
@@ -160,7 +160,7 @@ R1DC:
     #   host: 10.1.254.2
     #   username: haahmed.c
     #   password: Yarab@2026
-    #   devicerole: CiscoRouter
+    #   devicerole: CiscoSwitch
     #   Region: R1
     # #
     # R1-RTR02-WAN:
@@ -168,7 +168,7 @@ R1DC:
     #   host: 10.250.10.81
     #   username: haahmed.c
     #   password: Yarab@2026
-    #   devicerole: CiscoRouter
+    #   devicerole: CiscoSwitch
     #   Region: R1 
     # #
     # R1-SD-WAN-SWs:
@@ -176,7 +176,7 @@ R1DC:
     #   host: 10.250.10.82
     #   username: haahmed.c
     #   password: Yarab@2026
-    #   devicerole: CiscoRouter
+    #   devicerole: CiscoSwitch
     #   Region: R1 
     # #
     # #
@@ -197,15 +197,15 @@ R1DC:
     #   devicerole: CiscoSwitch
     #   Region: R1 
     # ##
-    #
-    VPCR1-Core-SW:
-      device_type: cisco_xe
-      host: 10.221.254.1
-      username: haahmed.c
-      password: Yarab@2026
-      devicerole: CiscoSwitch
-      Region: R1 
-    #
+    
+    # VPCR1-Core-SW:
+    #   device_type: cisco_xe
+    #   host: 10.221.254.1
+    #   username: haahmed.c
+    #   password: Yarab@2026
+    #   devicerole: CiscoSwitch
+    #   Region: R1 
+    
     # #
     # #
     # R1-ARUBA-WAN-INT-SW-02:
@@ -263,10 +263,10 @@ R1DC:
     #   host: 10.1.254.102
     #   username: haahmed.c
     #   password: Yarab@2026
-    #   devicerole: CiscoRouter
+    #   devicerole: CiscoSwitch
     #   Region: R1 
-    # #
-    ##
+    #
+    #
     # Connectivity Issue
     # VPCR1-RTR01-WAN:
     #   device_type: cisco_xe
@@ -406,7 +406,7 @@ R2DC:
     #   password: Yarab@2026
     #   devicerole: CiscoSwitch
     #   Region: R2
-    #
+    
     #
     #
     #
@@ -440,38 +440,38 @@ R2DC:
     #
     #
 R3DC:
-    # F5-L2-SW:
-    #   device_type: cisco_xe
-    #   host: 10.250.30.150
-    #   username: T!ger0ne
-    #   password: QYz)xbJWV9#
-    #   devicerole: CiscoSwitch
-    #   Region: R3
-    # #
-    # R3-RTR01-WAN:
-    #   device_type: cisco_xe
-    #   host: 10.250.30.80
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoRouter
-    #   Region: R3
-    # #
-    # R3-RTR02-WAN:
-    #   device_type: cisco_xe
-    #   host: 10.250.30.81
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoRouter
-    #   Region: R3
-    # #
-    # #
-    # R3-SDWAN-SW:
-    #   device_type: cisco_xe
-    #   host: 10.250.30.82
-    #   username: haahmed.c
-    #   password: Yarab@2026
-    #   devicerole: CiscoSwitch
-    #   Region: R3
+    F5-L2-SW:
+      device_type: cisco_xe
+      host: 10.250.30.150
+      username: T!ger0ne
+      password: QYz)xbJWV9#
+      devicerole: CiscoSwitch
+      Region: R3
+    #
+    R3-RTR01-WAN:
+      device_type: cisco_xe
+      host: 10.250.30.80
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoRouter
+      Region: R3
+    #
+    R3-RTR02-WAN:
+      device_type: cisco_xe
+      host: 10.250.30.81
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoRouter
+      Region: R3
+    #
+    #
+    R3-SDWAN-SW:
+      device_type: cisco_xe
+      host: 10.250.30.82
+      username: haahmed.c
+      password: Yarab@2026
+      devicerole: CiscoSwitch
+      Region: R3
     #
     
     ##

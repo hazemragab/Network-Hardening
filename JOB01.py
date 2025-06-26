@@ -88,7 +88,7 @@ class NetworkAudit:
         #
         #
         #
-        Commands = [ 'show version | inc Cisco IOS XE Software, Version|uptime|Last' , 'show ip route', 'show ip int br','show ntp status', 'show ip ssh', 'show snmp user']
+        Commands = [ 'show version | inc Cisco IOS XE Software, Version|uptime|Last' , 'show ip route', 'show ip int br','show ntp status', 'show ip ssh', 'show snmp user', 'show platform | inc Chassis type:', 'show version | inc Model Number']
         #### CommandsListOutput = ""
         for CommandsList in Commands:
         #    CommandsListOutput = net_connect.send_command_timing(CommandsList, delay_factor=5)
@@ -196,8 +196,8 @@ class NetworkAudit:
         """
         global Check03
         Check03=""
-        PasswordRetryLockout = re.compile(r'^aaa\slocal\sauthentication\sattempts\smax-fail\s([0-9]{1,2})')
-        # PasswordRetryLockout = re.compile(r'^aaa\slocal')
+        # PasswordRetryLockout = re.compile(r'^aaa\slocal\sauthentication\sattempts\smax-fail\s([0-9]{1,2})')
+        PasswordRetryLockout = re.compile(r'^aaa\slocal\sauthentication\sattempts\s')
         if ShowRunAllParse.find_objects(PasswordRetryLockout):
             Check03 = 'PASS'
         else:
@@ -921,7 +921,8 @@ class NetworkAudit:
         """
         global Check22
         #
-        AAA_Authen = re.compile(r'^aaa\sauthorization\scommands\s[0-9]{1,2}\sdefault\sgroup\s')
+        # AAA_Authen = re.compile(r'^aaa\sauthorization\scommands\s[0-9]{1,2}\sdefault\sgroup\s')
+        AAA_Authen = re.compile(r'^aaa\sauthorization\scommands\s')
         #
         #
         if ShowRunAllParse._find_line_OBJ(AAA_Authen):
@@ -1070,6 +1071,7 @@ class NetworkAudit:
         #
         #
         #**************************************************************************************************#
+        """"""
         #
         #
         # Set the source IP address for the TACACS  --- TacacsSrcIface
@@ -1079,6 +1081,8 @@ class NetworkAudit:
             MR57:: Set the source IP address for the TACACS 
                 PASSED if a line matching re.compile('(^ip|^\\s+ip) tacacs source-interface (.+)') is found.
                 otherwise, FAILED
+        """
+        
         """
         global Check26
         #
@@ -1097,7 +1101,8 @@ class NetworkAudit:
         else:
             print("No Check26 Value")
         #
-        #
+        """
+         #
         #
         #
         #
@@ -1335,10 +1340,54 @@ class NetworkAudit:
         """
         global Check32
         Check32 = self.Region
+               #
+        #
+        #
+        #**************************************************************************************************#
+        #
+        #
+        # Platform
+        """"
+        ● [1]      
+        ---
+            show platform | inc Chassis type:
+            #Chassis type: C8300-2N2S-4T2X
+            #Model Number                       : C9200L-24T-4X
+        """
+        global Check33
+        #
+        # LastReload = re.compile(r'Last\sreload\sreason:\s(PowerOn|Reload Command|CPUReset|Critical software exception|power-on)')
+        # Platform = re.compile(r'Last\sreload\sreason\s{0,}:\s{0,}(PowerOn|Reload Command|CPUReset|Critical software exception|power-on|Power Failure or Unknown|Reload reason not captured|- From Active Switch. reload peer unit|Image Install)')
+        # Platform01 = re.compile(r'Chassis type:\s(.+)')
+        # Platform02= re.compile(r'Model Number\s{0,}:\s(.+)')
+        #      
+        if DeviceRole == 'CiscoSwitch':
+            Platform = re.compile(r'Model Number\s{0,}:\s(.+)')
+        else:
+            Platform = re.compile(r'Chassis type:\s(.+)')
+        # print(Platform)
+        try:
+            PlatformTimeLine = ShowStatusParse._find_line_OBJ(Platform)[0].text
+            LastReloadExport =  re.search(Platform, PlatformTimeLine)
+            PlatformExport = LastReloadExport.group(1)
+        except IndexError:
+            PlatformExport = "None"
+        # print(CurrentUpTime)
+        if not PlatformExport:
+            Check29 = 'No LastReloadReason'
+            print('❌ No Exported Platform')
+        else:
+            Check33 = PlatformExport
+            print('🟢 Platform is %s' %PlatformExport)
+        #
+        #
+        #
+        #
+        #**************************************************************************************************#
+        #
         
         
         
-        
 
         
         
@@ -1361,7 +1410,8 @@ class NetworkAudit:
 
 
 
-        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24,Check25,Check26,Check27,Check28,Check29,Check30,Check31,Check32
+        # return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24,Check25,Check26,Check27,Check28,Check29,Check30,Check31,Check32,Check33
+        return Check01,Check02,Check03,Check04,Check05,Check06,Check07,Check08,Check09,Check10,Check11,Check12,Check13,Check14,Check15,Check16,Check17,Check18,Check19,Check20,Check21,Check22,Check23,Check24,Check25,Check27,Check28,Check29,Check30,Check31,Check32,Check33
     
         
     def ExportedData(self, hostname,MgmtIP) -> csv:
@@ -1394,12 +1444,13 @@ class NetworkAudit:
             'AAA_Accounting' : [Check23],
             'TacacsSRVs' : [Check24],
             'TacacsSRVsAuthen' : [Check25],
-            'TacacsSrcIface' : [Check26],
+            # 'TacacsSrcIface' : [Check26],
             'CurrentSwVersion' : [Check27],
             'CurrentUpTime' : [Check28],
             'LastReloadReason' : [Check29],
             'TrunkVlansLimit' : [Check30],
-            'IfacesNotShut' : [Check31]
+            'IfacesNotShut' : [Check31],
+            'Platform' : [Check33]
             }
         #
         df = pd.DataFrame(data)

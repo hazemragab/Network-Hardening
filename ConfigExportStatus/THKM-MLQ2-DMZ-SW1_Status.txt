@@ -1,8 +1,8 @@
 Cisco IOS XE Software, Version 16.12.04
-F5-L2-SW uptime is 1 year, 34 weeks, 6 days, 22 hours, 37 minutes
+THKM-MLQ2-DMZ-SW1 uptime is 3 years, 51 weeks, 2 days, 49 minutes
 Last reload reason: Reload Command
-Switch uptime                      : 1 year, 34 weeks, 6 days, 22 hours, 17 minutes 
-Last reload reason                 : active removed before switch became readyExtended Host Mode is enabled
+Switch uptime                      : 3 years, 51 weeks, 2 days, 50 minutes 
+Last reload reason                 : Reload CommandExtended Host Mode is enabled
 Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
@@ -15,15 +15,10 @@ Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        a - application route
        + - replicated route, % - next hop override, p - overrides from PfR
 
-Gateway of last resort is 10.250.30.254 to network 0.0.0.0
-
-S*    0.0.0.0/0 [0/0] via 10.250.30.254
-      10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
-C        10.250.30.0/24 is directly connected, Vlan250
-L        10.250.30.150/32 is directly connected, Vlan250Interface              IP-Address      OK? Method Status                Protocol
-Vlan1                  unassigned      YES NVRAM  up                    up      
-Vlan250                10.250.30.150   YES manual up                    up      
-GigabitEthernet0/0     unassigned      YES NVRAM  administratively down down    
+Gateway of last resort is not set
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES unset  up                    up      
+GigabitEthernet0/0     10.175.0.74     YES manual up                    up      
 GigabitEthernet1/0/1   unassigned      YES unset  up                    up      
 GigabitEthernet1/0/2   unassigned      YES unset  down                  down    
 GigabitEthernet1/0/3   unassigned      YES unset  down                  down    
@@ -54,18 +49,18 @@ GigabitEthernet1/1/3   unassigned      YES unset  down                  down
 GigabitEthernet1/1/4   unassigned      YES unset  down                  down    
 Te1/1/1                unassigned      YES unset  up                    up      
 Te1/1/2                unassigned      YES unset  up                    up      
-Te1/1/3                unassigned      YES unset  up                    up      
-Te1/1/4                unassigned      YES unset  up                    up      
+Te1/1/3                unassigned      YES unset  down                  down    
+Te1/1/4                unassigned      YES unset  down                  down    
 Te1/1/5                unassigned      YES unset  down                  down    
 Te1/1/6                unassigned      YES unset  down                  down    
-Te1/1/7                unassigned      YES unset  down                  down    
+Te1/1/7                unassigned      YES unset  administratively down down    
 Te1/1/8                unassigned      YES unset  down                  down    
 Fo1/1/1                unassigned      YES unset  down                  down    
 Fo1/1/2                unassigned      YES unset  down                  down    
 TwentyFiveGigE1/1/1    unassigned      YES unset  down                  down    
 TwentyFiveGigE1/1/2    unassigned      YES unset  down                  down    
 Ap1/0/1                unassigned      YES unset  up                    up      
-GigabitEthernet2/0/1   unassigned      YES unset  up                    up      
+GigabitEthernet2/0/1   unassigned      YES unset  down                  down    
 GigabitEthernet2/0/2   unassigned      YES unset  down                  down    
 GigabitEthernet2/0/3   unassigned      YES unset  down                  down    
 GigabitEthernet2/0/4   unassigned      YES unset  down                  down    
@@ -95,8 +90,8 @@ GigabitEthernet2/1/3   unassigned      YES unset  down                  down
 GigabitEthernet2/1/4   unassigned      YES unset  down                  down    
 Te2/1/1                unassigned      YES unset  up                    up      
 Te2/1/2                unassigned      YES unset  up                    up      
-Te2/1/3                unassigned      YES unset  up                    up      
-Te2/1/4                unassigned      YES unset  up                    up      
+Te2/1/3                unassigned      YES unset  down                  down    
+Te2/1/4                unassigned      YES unset  down                  down    
 Te2/1/5                unassigned      YES unset  down                  down    
 Te2/1/6                unassigned      YES unset  down                  down    
 Te2/1/7                unassigned      YES unset  down                  down    
@@ -106,17 +101,15 @@ Fo2/1/2                unassigned      YES unset  down                  down
 TwentyFiveGigE2/1/1    unassigned      YES unset  down                  down    
 TwentyFiveGigE2/1/2    unassigned      YES unset  down                  down    
 Ap2/0/1                unassigned      YES unset  up                    up      
-Port-channel1          unassigned      YES unset  up                    up      
-Port-channel2          unassigned      YES unset  up                    up      
-Port-channel3          unassigned      YES unset  up                    up      
-Port-channel4          unassigned      YES unset  up                    up      Clock is synchronized, stratum 4, reference is 172.21.28.12   
-nominal freq is 250.0000 Hz, actual freq is 249.9966 Hz, precision is 2**10
-ntp uptime is 380855400 (1/100 of seconds), resolution is 4016
-reference time is EC07AB86.760419D8 (14:20:38.461 UTC Thu Jun 26 2025)
-clock offset is 2.4013 msec, root delay is 15.60 msec
-root dispersion is 56.95 msec, peer dispersion is 1.10 msec
-loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000013574 s/s
-system poll interval is 1024, last update was 1385 sec ago.SSH Enabled - version 2.0
+Port-channel10         unassigned      YES unset  up                    up      
+Port-channel20         unassigned      YES unset  up                    up      Clock is synchronized, stratum 4, reference is 10.80.28.28    
+nominal freq is 250.0000 Hz, actual freq is 249.9972 Hz, precision is 2**10
+ntp uptime is 337784500 (1/100 of seconds), resolution is 4016
+reference time is EC07ADB8.12F1AA30 (14:30:00.074 UTC Thu Jun 26 2025)
+clock offset is 2.0879 msec, root delay is 6.57 msec
+root dispersion is 73.73 msec, peer dispersion is 1.03 msec
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000010980 s/s
+system poll interval is 1024, last update was 1967 sec ago.SSH Enabled - version 1.99
 Authentication methods:publickey,keyboard-interactive,password
 Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa
 Hostkey Algorithms:x509v3-ssh-rsa,ssh-rsa
@@ -125,10 +118,24 @@ MAC Algorithms:hmac-sha2-256,hmac-sha2-512,hmac-sha1,hmac-sha1-96
 KEX Algorithms:diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
 Authentication timeout: 120 secs; Authentication retries: 3
 Minimum expected Diffie Hellman key size : 2048 bits
-IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-162008565
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrX+ZINrXPKL0lsblBZng2xeTTBKNeFVwS22PdA02j
-pkKeoKEqiT+mGmK3hWkfWEp72Nx6NtCuupOsznHgauHvy2PwtIkZQ2nqmeOFdaX93bNbuZtBHVaj4J6R
-khPCDNLBv8E/+qMwp7sfmr3REWKwdYy/CDb9kBwj9B/KrUGb9JFx7pEA9qEMvAlrT65s+Ed20aQFsRjm
-vUjh1V9KLAfeSUpmJTCQhTVRm1yET8ms4tatWotlQVr6yf9L5gJdV+oa2kHKNEVEDEPDItqormgT97G/
-C6msPgKZaVzEBZbDxP0kRJxodD4XCOiIY9313NgQWwCQbq73sgPDfdzR7y5b                    Model Number                       : C9300-24P
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): THKM-MLQ2-DMZ-SW1.TAHAKOMHQ
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPVY3zSHLhLZqwbmBPKFTBL9hs6kWoWWEMpVKZ5bR6
+e/8Qfhak+oXnUkuBYc9XoIEsdcB3vcCNTRDiUoGWOUIrFNWkxNxBqaJuOLcKR+sEG5TdmJyEe7+bBkCr
+m9/qoJGcCwAy1jdKR94D6ZFxsnOZBA+GXNH9NBoyNVRVKygE5g48/zIIAAgmOKbyHrMHluoBnrQXGmFx
+TDkANDlZUEnNHzT/Wauw8aMCvMPotLCATrAOwgq95r/evb6IWPXAbe90rcPi3XLUHgcQ+U/rxSBkN4YA
+ASzvPqFPp/BFKsU3tml7p5nnR+xSYA0bh5vhyLGbUSlV0uVlOH4YaQI1SxtL                    
+User name: nac
+Engine ID: 800000090300B08BD06ADF80
+storage-type: nonvolatile	 active
+Authentication Protocol: SHA
+Privacy Protocol: DES
+Group-name: nac-group
+
+User name: SpiderManOne
+Engine ID: 800000090300B08BD06ADF80
+storage-type: nonvolatile	 active	access-list: ACL-SNMP
+Authentication Protocol: SHA
+Privacy Protocol: AES256
+Group-name: TAH
+Model Number                       : C9300-24P
 Model Number                       : C9300-24P
