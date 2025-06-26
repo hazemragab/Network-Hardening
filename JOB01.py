@@ -1190,7 +1190,7 @@ class NetworkAudit:
         global Check29
         #
         # LastReload = re.compile(r'Last\sreload\sreason:\s(PowerOn|Reload Command|CPUReset|Critical software exception|power-on)')
-        LastReload = re.compile(r'Last\sreload\sreason\s{0,}:\s{0,}(PowerOn|Reload Command|CPUReset|Critical software exception|power-on|Power Failure or Unknown|Reload reason not captured|- From Active Switch. reload peer unit)')
+        LastReload = re.compile(r'Last\sreload\sreason\s{0,}:\s{0,}(PowerOn|Reload Command|CPUReset|Critical software exception|power-on|Power Failure or Unknown|Reload reason not captured|- From Active Switch. reload peer unit|Image Install)')
         #      
         try:
             LastReloadTimeLine = ShowStatusParse._find_line_OBJ(LastReload)[0].text

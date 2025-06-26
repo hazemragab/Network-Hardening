@@ -1,9 +1,8 @@
 Building configuration...
 
-Current configuration with default configurations exposed : 75017 bytes
+Current configuration with default configurations exposed : 92604 bytes
 !
-! Last configuration change at 12:40:35 KSA Wed Jun 25 2025 by salsohemy
-! NVRAM config last updated at 12:40:44 KSA Wed Jun 25 2025 by salsohemy
+! Last configuration change at 06:20:16 UTC Wed Jun 25 2025 by aalbesher
 !
 no issu config-sync policy lbl prc
 no issu config-sync policy bulk prc
@@ -20,8 +19,8 @@ no service pad from-xot
 no service pad cmns
 no service pad
 no service telnet-zeroidle
-service tcp-keepalives-in
-service tcp-keepalives-out
+no service tcp-keepalives-in
+no service tcp-keepalives-out
 service timestamps debug datetime msec
 service timestamps log datetime msec
 service password-encryption
@@ -46,14 +45,14 @@ platform qfp utilization monitor load 80
 platform punt-keepalive disable-kernel-core
 platform urpf loose counter ipv4 supress asymmetric_only
 platform urpf loose counter ipv6 supress asymmetric_only
-platform punt-policer ipv4-options 1764
-platform punt-policer ipv4-options 1323 high
-platform punt-policer unknown-encap 17640
-platform punt-policer unknown-encap 4410 high
+platform punt-policer ipv4-options 4000
+platform punt-policer ipv4-options 3000 high
+platform punt-policer unknown-encap 40000
+platform punt-policer unknown-encap 10000 high
 platform punt-policer ppp-control 2000
 platform punt-policer ppp-control 1000 high
-platform punt-policer clns-control 17640
-platform punt-policer clns-control 4410 high
+platform punt-policer clns-control 40000
+platform punt-policer clns-control 10000 high
 platform punt-policer hdlc-keepalive 2000
 platform punt-policer hdlc-keepalive 1000 high
 platform punt-policer arp 2000
@@ -64,16 +63,16 @@ platform punt-policer lmi-control 2000
 platform punt-policer lmi-control 1000 high
 platform punt-policer incomplete-adj 2000
 platform punt-policer incomplete-adj 1000 high
-platform punt-policer for-us-data 17640
-platform punt-policer for-us-data 2205 high
+platform punt-policer for-us-data 40000
+platform punt-policer for-us-data 5000 high
 platform punt-policer mcast-dcs 2000
 platform punt-policer mcast-dcs 1000 high
 platform punt-policer mcast-ipv4-options 2000
 platform punt-policer mcast-ipv4-options 1000 high
-platform punt-policer mpls-ttl 2258
-platform punt-policer mpls-ttl 882 high
-platform punt-policer mpls-res-label 2258
-platform punt-policer mpls-res-label 882 high
+platform punt-policer mpls-ttl 5120
+platform punt-policer mpls-ttl 2000 high
+platform punt-policer mpls-res-label 5120
+platform punt-policer mpls-res-label 2000 high
 platform punt-policer ipv6-hopopts 2000
 platform punt-policer ipv6-hopopts 1000 high
 platform punt-policer mcast-send-internal-copy 2000
@@ -81,14 +80,14 @@ platform punt-policer mcast-send-internal-copy 1000 high
 platform punt-policer mcast-igmp-nonroutable 2000
 platform punt-policer mcast-igmp-nonroutable 1000 high
 platform punt-policer glean-adj 2000
-platform punt-policer glean-adj 2205 high
+platform punt-policer glean-adj 5000 high
 platform punt-policer mcast-pim-signaling 2000
 platform punt-policer mcast-pim-signaling 1000 high
-platform punt-policer ess-control 4410
-platform punt-policer ess-control 17640 high
+platform punt-policer ess-control 10000
+platform punt-policer ess-control 40000 high
 platform punt-policer icmp-cfg-punt 2000
 platform punt-policer icmp-cfg-punt 1000 high
-platform punt-policer for-us-internal-data 8820
+platform punt-policer for-us-internal-data 20000
 platform punt-policer for-us-internal-data 1000 high
 platform punt-policer sbc-rtp 2000
 platform punt-policer sbc-rtp 1000 high
@@ -96,10 +95,10 @@ platform punt-policer pw-vccv 2000
 platform punt-policer pw-vccv 1000 high
 platform punt-policer slow-protocol 2000
 platform punt-policer slow-protocol 1000 high
-platform punt-policer l2tp-session 462
+platform punt-policer l2tp-session 1048
 platform punt-policer l2tp-session 1000 high
 platform punt-policer bfd-control 2000
-platform punt-policer bfd-control 2205 high
+platform punt-policer bfd-control 5000 high
 platform punt-policer dmvpn-redir-pkt 2000
 platform punt-policer dmvpn-redir-pkt 1000 high
 platform punt-policer pfr-mp-cache 2000
@@ -108,10 +107,10 @@ platform punt-policer pfr-tt-cache 2000
 platform punt-policer pfr-tt-cache 1000 high
 platform punt-policer pfr-tt-appl-cache 2000
 platform punt-policer pfr-tt-appl-cache 1000 high
-platform punt-policer for-us-ctrl 8820
-platform punt-policer for-us-ctrl 8820 high
+platform punt-policer for-us-ctrl 20000
+platform punt-policer for-us-ctrl 20000 high
 platform punt-policer for-us-internal-ctrl 2000
-platform punt-policer for-us-internal-ctrl 882 high
+platform punt-policer for-us-internal-ctrl 2000 high
 platform punt-policer layer2-bd-data 2000
 platform punt-policer layer2-bd-data 1000 high
 platform punt-policer subnet-bcast 2000
@@ -135,10 +134,10 @@ platform punt-policer otv-cntrl-pkt 1000 high
 platform punt-policer otv-arp-pkt 2000
 platform punt-policer otv-arp-pkt 1000 high
 platform punt-policer l2-bpdu 2000
-platform punt-policer l2-bpdu 1000 high
+platform punt-policer l2-bpdu 4000 high
 platform punt-policer acl-log 2000
 platform punt-policer acl-log 1000 high
-platform punt-policer epc 17640
+platform punt-policer epc 40000
 platform punt-policer epc 1000 high
 platform punt-policer lisp-dynamic-eid 2000
 platform punt-policer lisp-dynamic-eid 1000 high
@@ -146,7 +145,7 @@ platform punt-policer l2cp 2000
 platform punt-policer l2cp 1000 high
 platform punt-policer dhcp-snoop 2000
 platform punt-policer dhcp-snoop 1000 high
-platform punt-policer mma-record 1058
+platform punt-policer mma-record 2400
 platform punt-policer mma-record 1000 high
 platform punt-policer dmvpnv6-redir-req 2000
 platform punt-policer dmvpnv6-redir-req 1000 high
@@ -154,16 +153,22 @@ platform punt-policer ecfm-from-core 2000
 platform punt-policer ecfm-from-core 1000 high
 platform punt-policer ecfm-punt-fwd 2000
 platform punt-policer ecfm-punt-fwd 1000 high
+platform punt-policer ptp 8192
+platform punt-policer ptp 8192 high
 platform punt-policer isdn-channel 2000
 platform punt-policer isdn-channel 1000 high
 platform punt-policer fhs-source-guard 2000
-platform punt-policer fhs-source-guard 1000 high
+platform punt-policer fhs-source-guard 2000 high
 platform punt-policer fhs-data-glean 2000
 platform punt-policer fhs-data-glean 1000 high
 platform punt-policer sbc-dsp 2000
 platform punt-policer sbc-dsp 1000 high
+platform punt-policer serial-traffic 2000
+platform punt-policer serial-traffic 1000 high
 platform punt-policer sslvpn 2000
-platform punt-policer sslvpn 882 high
+platform punt-policer sslvpn 5000 high
+platform punt-policer deny-acl 2000
+platform punt-policer deny-acl 1000 high
 platform punt-policer cent-smp 2000
 platform punt-policer cent-smp 1000 high
 platform punt-policer automatic-hw 2000
@@ -172,13 +177,15 @@ platform punt-policer lfts-transport 2000
 platform punt-policer lfts-transport 1000 high
 platform punt-policer vlan-autosense 2000
 platform punt-policer vlan-autosense 1000 high
+platform punt-policer sv-match-unknown 2000
+platform punt-policer sv-match-unknown 1000 high
+platform punt-policer mpls-receive-adj 2000
+platform punt-policer mpls-receive-adj 2000 high
 platform punt-policer mka 2000
 platform punt-policer mka 1000 high
-platform punt-policer snooping 2000
-platform punt-policer snooping 1000 high
-platform punt-policer proto-snoop 2000
-platform punt-policer proto-snoop 1000 high
-platform punt-policer qos-cac 1000
+platform punt-policer icmp-unreachable 1048
+platform punt-policer icmp-unreachable 1000 high
+platform punt-policer qos-cac 2000
 platform punt-policer qos-cac 1000 high
 platform punt-policer active-identity 2000
 platform punt-policer active-identity 1000 high
@@ -186,58 +193,49 @@ platform punt-policer bgp-tun-pkt 2000
 platform punt-policer bgp-tun-pkt 1000 high
 platform punt-policer lisp-gsmr-ena 2000
 platform punt-policer lisp-gsmr-ena 1000 high
-platform punt-policer async-term-serv 17640
-platform punt-policer async-term-serv 17640 high
 platform punt-policer sbc-rtp-fwd 2000
 platform punt-policer sbc-rtp-fwd 1000 high
 platform punt-policer path-manager 2000
 platform punt-policer path-manager 1000 high
-platform punt-policer dialer-list 2000
-platform punt-policer dialer-list 1000 high
-platform punt-policer dialer-update-time 2000
-platform punt-policer dialer-update-time 1000 high
 platform punt-policer path-manager-ttl 2000
 platform punt-policer path-manager-ttl 1000 high
-platform punt-policer x25-control-pkt 2000
-platform punt-policer x25-control-pkt 1000 high
-platform punt-policer x25-data-pkt 300000
-platform punt-policer x25-data-pkt 1000 high
+platform punt-policer l3_ptp_message 2000
+platform punt-policer l3_ptp_message 1000 high
 platform punt-policer efp-dot1x 2000
 platform punt-policer efp-dot1x 1000 high
 platform punt-policer dmvpn-gal-check 2000
 platform punt-policer dmvpn-gal-check 1000 high
-platform punt-policer epbr 3800
+platform punt-policer epbr 2000
 platform punt-policer epbr 1000 high
 platform punt-policer pmip-ctrl 2000
-platform punt-policer pmip-ctrl 1000 high
+platform punt-policer pmip-ctrl 5000 high
 platform punt-policer mcast-udlr 2000
 platform punt-policer mcast-udlr 1000 high
 platform punt-policer l2bd-sisf-ctrl 2000
-platform punt-policer l2bd-sisf-ctrl 1000 high
-platform punt-policer Metanoia-L2-MGMT 2000
-platform punt-policer Metanoia-L2-MGMT 1000 high
+platform punt-policer l2bd-sisf-ctrl 4000 high
 platform punt-policer sr-twamp-probe 2000
 platform punt-policer sr-twamp-probe 1000 high
-platform punt-policer wpan-linkinfo 2000
-platform punt-policer wpan-linkinfo 1000 high
-platform punt-policer wpan-punt-dot1x 2000
-platform punt-policer wpan-punt-dot1x 1000 high
-platform punt-policer wpan-mpl-enabled 2000
-platform punt-policer wpan-mpl-enabled 1000 high
-platform punt-policer wpan-l2 2000
-platform punt-policer wpan-l2 1000 high
-platform punt-policer wpan-ns 2000
-platform punt-policer wpan-ns 1000 high
-platform punt-policer ext-icmp 2000
-platform punt-policer ext-icmp 1000 high
+platform punt-policer bfd-l2-control 2000
+platform punt-policer bfd-l2-control 5000 high
 !
-hostname VPC2-RTR02
+hostname R3-RTR02-WAN
 !
 boot-start-marker
+boot system flash c8000aes-universalk9.17.06.05a.SPA.bin
 boot config 
 boot-end-marker
 !
 shell processing
+!
+vrf definition Mgmt-intf
+ no ipv4 multicast multitopology
+ no ipv6 multicast multitopology
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
 !
 no logging discriminator
 logging exception 4096
@@ -260,6 +258,7 @@ logging console debugging
 logging monitor debugging
 logging cns-events informational
 logging on
+enable secret 9 $9$wjPdNn3Xf3Nbxk$uQSD1waCs8sTgxgtJ3vCa56dXXuxFAG2/gL28.jikSw
 !
 spd extended-headroom 10
 spd headroom 1000
@@ -268,18 +267,18 @@ aaa new-model
 !
 !
 aaa group server tacacs+ PSN_GROUP
+ server name R3_PSN01
+ server name R3_PSN02
  server name MOB_PSN01
  server name MOB_PSN02
  server name R1_PSN01
  server name R1_PSN02
  server name R2_PSN01
  server name R2_PSN02
- server name R3_PSN01
- server name R3_PSN02
  server name NIC_PSN01
  server name NIC_PSN02
- ip vrf forwarding MGMT-VRF
- ip tacacs source-interface GigabitEthernet0/0/0
+ ip vrf forwarding Mgmt-intf
+ ip tacacs source-interface GigabitEthernet0
  cache expiry 24 enforce hours
  timeout 5
  pick-method next
@@ -322,17 +321,16 @@ ethernet cfm logging lck
 ethernet cfm ais link-status global
  no disable
  period 60
-ppp hold-queue 32768
+ppp hold-queue 262144
 ppp packet throttle 20 1 30
 ipc holdq threshold upper 20
 ipc holdq threshold lower 1
 ipc header-cache permanent 1000 100
-ipc buffers max-free 1260
-ipc buffers min-free 126
-ipc buffers permanent 378
+ipc buffers max-free 1960
+ipc buffers min-free 196
+ipc buffers permanent 588
 process cpu extended history 12
 process cpu autoprofile hog
-clock timezone KSA 3 0
 cef table consistency-check IPv4 type lc-detect count 71 period 60
 cef table consistency-check IPv4 type scan-lc-rp count 71 period 60
 cef table consistency-check IPv4 type scan-rp-lc count 71 period 60
@@ -358,9 +356,13 @@ cef table download connected-route priority 2
 cef table download receive-route priority 2
 cef table download route-in-vrf priority 3
 cef table download catch-all priority 4
-port-channel swport load-balance src-mac
-port-channel swport auto
+!
+no software auto-upgrade source url 
+!
+software auto-upgrade enable
+!
 port-channel mc-lag
+port-channel load-balance-hash-algo src-dst-ip
 fhrp version vrrp v2
  standby redirects
  standby bfd all-interfaces
@@ -385,17 +387,15 @@ ip verify drop-rate compute window 300
 ip verify drop-rate compute interval 30
 ip verify drop-rate notify hold-down 300
 !
-ip vrf MGMT-VRF
-!
 ip vrf MOB-CLOUD
  rd 65100:520
 !
 ip vrf STC-CLOUD
  rd 65100:510
 !
-ip sap cache-timeout 1440
-ip multicast redundancy routeflush maxtime 30
-ip multicast route-limit 2147483647
+ip vrf STC-CROSS-DC
+ rd 65100:610
+!
 !
 !
 ip nbar classification dns learning cache-ttl-zero
@@ -409,12 +409,15 @@ no ip hostname strict
 ip domain timeout 5
 ip domain periodic-resolve 240
 no ip domain lookup recursive
-no ip domain lookup
+ip domain lookup
 ip domain lookup nsap
-ip domain name Tahakom.com
+ip domain name tahakom.com
 ip domain multicast in-addr.arpa
 ip domain recursive retry 10
 no ip domain recursive allow-soa
+ip sap cache-timeout 1440
+ip multicast redundancy routeflush maxtime 30
+ip multicast route-limit 2147483647
 ip admission ratelimit 100
 no ip admission watch-list enable
 ip admission watch-list expiry-time 10
@@ -429,7 +432,7 @@ ip dhcp-server query lease timeout 10
 ip dhcp-client default-router distance 254
 ip cef optimize neighbor resolution
 no ip cef accounting 
-ip cef load-sharing algorithm universal A4017DC4
+ip cef load-sharing algorithm universal 670F30A0
 ip dhcp relay information policy replace
 ip dhcp relay information check
 ip dhcp use class
@@ -438,12 +441,6 @@ ip dhcp binding cleanup interval 120
 ip dhcp compatibility suboption link-selection cisco
 ip dhcp compatibility suboption server-override cisco
 ip dhcp compatibility lease-query client cisco
-ip dhcp snooping information option
-ip dhcp snooping database write-delay 300
-ip dhcp snooping database timeout 300
-ip dhcp snooping verify mac-address
-ip dhcp snooping verify no-relay-agent-address
-no ip dhcp snooping wireless bootp-broadcast enable
 ip dhcp conflict logging
 ip dhcp ping packets 2
 ip dhcp ping timeout 500
@@ -451,8 +448,6 @@ ip dhcp ping timeout 500
 !
 !
  ip dhcp auto-broadcast
-ip arp inspection log-buffer entries 32
-ip arp inspection log-buffer logs 5 interval 1
 ip igmp ssm-map query dns
 ip igmp snooping explicit-tracking limit 100000
 ip igmp snooping report-suppression
@@ -470,9 +465,7 @@ ip igmp snooping querier tcn query count 2
 ip igmp snooping querier tcn query interval 10
 no ip igmp snooping querier
 ip igmp snooping
-ip igmp snooping vlan 1 explicit-tracking limit 100000
 no login delay
-login on-failure log
 login on-success log
 no login password-warning-interval years
 no login password-warning-interval seconds
@@ -495,6 +488,7 @@ ipv6 nd nud limit 256 refresh 10
 ipv6 nd reachable-time 0
 ipv6 nd ns-interval 0
 ipv6 nd resolution data limit 16
+ipv6 nd default-route vrf Mgmt-intf limit 4
 ipv6 nd default-route limit 4
 ipv6 nd dad time 0
 ipv6 nd dad loopback detect
@@ -511,24 +505,14 @@ ipv6 dhcp ppp terminate
 ipv6 dhcp ppp framed-prefix cache
 no ipv6 dhcp server vrf enable
 ipv6 rip vrf-mode enable
-ipv6 mld snooping explicit-tracking limit 100000
-ipv6 mld snooping listener-message-suppression
-no ipv6 mld snooping check hop-count
-no ipv6 mld snooping tcn query solicit
-ipv6 mld snooping robustness-variable 2
-ipv6 mld snooping last-listener-query-count 2
-ipv6 mld snooping last-listener-query-interval 1000
-ipv6 mld snooping vlan 1 explicit-tracking limit 100000
-no ipv6 mld snooping
 ipv6 multicast multipath
 ipv6 multicast rpf use-bgp
+ipv6 multicast vrf Mgmt-intf multipath
+ipv6 multicast vrf Mgmt-intf rpf use-bgp
 ipv6 spd queue max-threshold 74
 ipv6 spd queue min-threshold 73
 ipv6 cef optimize neighbor resolution
-ipv6 cef load-sharing algorithm universal A4017DC4
-kerberos timeout 15
-kerberos retry 4
-kerberos processes 1
+ipv6 cef load-sharing algorithm universal 670F30A0
 l2tp tunnel l2tpv3 accounting headers
 location prefer static weight 0
 location prefer lldp-med weight 2
@@ -546,8 +530,15 @@ subscriber policy recording rules
 subscriber policy recording rules limit 64
 no subscriber policy format_option82_for_cats
 subscriber templating
+kerberos timeout 15
+kerberos retry 4
+kerberos processes 1
 no eap key-name compliance
 no cisp enable
+no device-tracking logging packet drop
+no device-tracking logging theft
+no device-tracking logging resolution-veto
+no device-tracking tracking
 xdr multicast-group mode individual
 xdr multicast-group internal split threshold 7000
 xdr multicast-group internal issu-slots-split
@@ -563,29 +554,6 @@ frame-relay address registration auto-address
  glbp sso
 multilink virtual-template 0
 multilink bundle-name authenticated
-mvr vlan 1
-mvr max-groups 256
-mvr querytime 5
-no mvr
-no device-tracking logging packet drop
-no device-tracking logging theft
-no device-tracking logging resolution-veto
-no device-tracking tracking
-!
-cwmp agent
- no enable download
- no enable
- request outstanding 5
- parameter change notify interval 60
- session retry limit 11
- management server username 00000C-C8300-2N2S-4T2X-FDO2618M30H
- no management server password
- no management server url
- no provision code
- no connection request username
- no connection request password
- no wan ipaddress
-!
 no authentication mac-move deny-uncontrolled
 authentication mac-move deny
 authentication dis-scale-opt
@@ -601,59 +569,36 @@ no mab request format attribute 1
 no mab request format attribute 2
 no mab request format attribute 32
 no mab logging verbose
+mvr vlan 1
+mvr max-groups 256
+mvr querytime 5
+no mvr
+no metadata flow transmit
 fqdn ttl-timeout-factor 10
-scripting tcl low-memory 917346779
+scripting tcl low-memory 1691707835
 no virtual-template snmp
-!
 crypto pki token default removal timeout 0
 crypto pki token default max-retries 15
-!
-crypto pki trustpoint TP-self-signed-3167238538
- enrollment retry count 999
- enrollment retry period 1
- enrollment selfsigned
- subject-name cn=IOS-Self-Signed-Certificate-3167238538
- revocation-check none
- rsakeypair TP-self-signed-3167238538
- hash sha1
 !
 crypto pki trustpoint SLA-TrustPoint
  enrollment retry count 999
  enrollment retry period 1
  enrollment pkcs12
  revocation-check crl
+ authorization username subjectname  
+ authorization username subjectname  secondary
+ hash sha1
+!
+crypto pki trustpoint TP-self-signed-660264192
+ enrollment retry count 999
+ enrollment retry period 1
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-660264192
+ revocation-check none
+ rsakeypair TP-self-signed-660264192
  hash sha1
 !
 !
-crypto pki certificate chain TP-self-signed-3167238538
- certificate self-signed 01
-  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
-  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
-  69666963 6174652D 33313637 32333835 3338301E 170D3234 30383239 31313136 
-  34335A17 0D333430 38323931 31313634 335A3031 312F302D 06035504 03132649 
-  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 31363732 
-  33383533 38308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
-  0A028201 0100A822 FDCE4AB5 3813C3DC 14026B3E CBFE4532 86D54FD1 150521DB 
-  A80AB6BA DDFFA3C9 E1C92BF5 0523F53A 61FA9F12 C3F30F1B EE74FF99 64C9D841 
-  F9702F96 1CA05076 B7CA8BB7 15B3DF75 DD051045 2947A6EA 4184F55B 88F4B57C 
-  BD41443A 40793188 D0DDABFA 36BF7207 9D11B880 3CB0EDA9 9A275355 8DA16B5A 
-  CF34B3E7 74726ED6 1755734F F3B61718 401BE716 BC6EFCA3 6D3C5967 B601B9B9 
-  2ACC7D4A 674E6BAB 75F0DAB1 7CCEFBDC 3C03AE18 865FD5CD 6AB61528 2B93BBF5 
-  3803D9AE 5923FA16 EC88DBBD B45CC463 15DE56E7 50AEDA70 D24EBE50 3AD8C64E 
-  4F05D4B0 B3AEBA30 0728DA35 72F4FE56 675CD0D2 18AE964F 90683FBF B9878CFE 
-  D75DA5E2 DD450203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
-  301F0603 551D2304 18301680 14A52FE0 FCC9ECF8 BF27D8CB BD365012 78B0785D 
-  A2301D06 03551D0E 04160414 A52FE0FC C9ECF8BF 27D8CBBD 36501278 B0785DA2 
-  300D0609 2A864886 F70D0101 05050003 82010100 88A11BB1 9B8D6802 5BBAE8D3 
-  89F751CB 419E905B E6ED854E E4A9AE56 E3F23FB8 4E688102 9670033E F22DFA93 
-  339B5AA6 ADA674C2 67A2C3CC 4840118C 06A381FB 73702EED 51E1B5D0 AECC134C 
-  5278D613 F23E5ED4 96AE4C29 4B6D0B24 905CC594 26B91BB3 31749A31 FE133FD5 
-  E145D643 F26DADB6 07CCC953 3907CAEE 6077CE35 E3A90EEF 4C70C519 6F9914D5 
-  D9B4B7B4 DBFA6785 6CFAE1AD 3CDE5332 C1F2FCB7 3BABBF1C 902012C6 040D70B2 
-  7BA04DEC F9B119FA AE8AF013 FAB6465E 27D3911A 74B620FF 1ED0F673 7CFD2994 
-  0D2E340B 82C91FE5 B72DC0C5 6B57C79D 4D8F8F66 1D5E5AC3 CB37867A B4FA3E42 
-  D17CEAA5 B13ACBEA 9338C69A 976092B9 6DFF093E
-  	quit
 crypto pki certificate chain SLA-TrustPoint
  certificate ca 01
   30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
@@ -683,6 +628,35 @@ crypto pki certificate chain SLA-TrustPoint
   418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
   D697DF7F 28
   	quit
+crypto pki certificate chain TP-self-signed-660264192
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36363032 36343139 32301E17 0D323430 32313430 38323530 
+  335A170D 33343032 31333038 32353033 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3636 30323634 
+  31393230 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 
+  82010100 A0173E36 DBA3B3DE 0A65083B 8B776041 CF521AA8 87807509 C570274D 
+  8E87C95B 08704495 D7CE1F5C 9B66FB06 C10437D6 813E09CC 4D0E5655 B784053E 
+  7B5015D9 CCCF2269 A82F02EB 49AAC5E6 4DBDC823 CF1B1CE3 F6B75248 C8E0CDD6 
+  313DF85B 63F16F82 F3169A5C 8BE4B73F 3DCF8D95 53F927ED AB48BCE2 1D5C052D 
+  A8320B6F 9A60B9FB 9EF6FA02 FEE13A0F 4961CADD 23584916 3B1B8276 BFF1CD93 
+  BF0630DC 89180882 7CE3E24A 6EDEB3FB 86E765A0 6ABD5911 80942963 21EBA918 
+  8228F39D B3D67A20 02DFB3D2 622CB9D5 71CB55CD 776D4A52 ABBE5682 FB0D624D 
+  0391103E 1C605B64 1BF9BD79 D8850408 D1159E94 139A0E96 8987E967 36C68093 
+  38B945BF 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 
+  0603551D 23041830 1680146D CFB7FAEC 72329AEF 10BA7482 399D9F10 0BF5A930 
+  1D060355 1D0E0416 04146DCF B7FAEC72 329AEF10 BA748239 9D9F100B F5A9300D 
+  06092A86 4886F70D 01010505 00038201 010073D5 0EECBD4E 69548A70 2ED57E2D 
+  5E716635 9ADEFF86 0D780EBC 6836F017 76FA5CF1 7D5D3463 5D6047E4 12449CD1 
+  5D858422 CCB295A0 2E8160E8 E720F55B 35B45223 7971DB65 C87ADD74 CFED2D36 
+  2010E4EA B71049E4 EA444AFA 0BF0AA78 37C75788 13ED3B25 D904A6E7 C57C0649 
+  8F253662 D0374554 49437A63 C41199B6 1089AC2F AD07CDF8 F950FC24 20E15A06 
+  7A614618 95CA001A 49D5C6DB 39BA91BA F73C6B72 C60B8BCB 106F42A1 9B9B49CC 
+  CEABA685 D59FB43A AB2A64B5 ABE02AC3 E19BC9A9 25ED4871 256C8F43 25C6909D 
+  39D69A89 86971339 0A204ED2 877097D0 23E72D6B E3871607 8A03C43F EC185129 
+  86E531D6 D4FE6D83 2A6CC69C 176168CC B7AB
+  	quit
 !
 crypto pki crl download schedule prepublish 0
 crypto pki crl download schedule retries 5
@@ -705,32 +679,17 @@ cts sxp listener hold-time 90 180
 
 cts sxp node-id 0
 no cts sxp filter-enable
-license udi pid C8300-2N2S-4T2X sn FDO2618M30H
+license udi pid C8500L-8S4X sn FLX2603083K
+license accept end user agreement
 license agent max-sessions 9
 license call-home url https://tools.cisco.com/SWIFT/Licensing
 license smart transport cslu
-archive
- log config
-  no record rc
-  logging enable
-  no logging persistent reload
-  no logging persistent 
-  logging size 100
-  no notify syslog contenttype plaintext
-  no notify syslog contenttype xml
-  hidekeys
- path ftp://10.128.1.129/BackupRouters/$h__$t
- maximum 10
- no rollback filter adaptive
- rollback retry timeout 0
- write-memory
- time-period 0
 memory check-interval 60
 memory statistics history table 24
 memory validate-checksum 60
 memory lite
 memory chunk siblings threshold 10000
-memory free low-watermark processor 67522
+memory free low-watermark processor 67727
 file privilege 15
 file prompt alert
 no file verify auto
@@ -738,6 +697,14 @@ no file verify auto
 no object-group knob check-normal-entry-dup 
 object-group knob check-nested-entry-dup enable
 object-group knob expand-v6-ace-for-pd enable
+no dot1x logging verbose
+no dot1x auth-fail eapol
+no dot1x critical eapol
+no dot1x critical eapol block
+dot1x supplicant force-multicast
+dot1x supplicant controlled transient
+!
+!
 call-history-mib retain-timer 15
 call-history-mib max-size 100
 diagnostic event-log size 500
@@ -748,42 +715,15 @@ diagnostic monitor threshold slot R0 test TestErrorCounterMonitor failure count 
 diagnostic monitor slot R0 test TestErrorCounterMonitor cardindex 1
 no diagnostic cns publish
 no diagnostic cns subscribe
-!
-no spanning-tree dispute
-no spanning-tree sso block-tcn
-spanning-tree bridge assurance
-spanning-tree transmit hold-count 6
-no spanning-tree optimize bpdu transmission
-spanning-tree queue maxsize 12288
-spanning-tree etherchannel guard misconfig
-spanning-tree extend system-id
-spanning-tree uplinkfast max-update-rate 150
-spanning-tree pathcost method short
-spanning-tree mst simulate pvst global
-no flowspec
-no dot1x logging verbose
-no dot1x auth-fail eapol
-dot1x guest-vlan supplicant
-no dot1x critical eapol
-no dot1x critical eapol block
-dot1x supplicant force-multicast
-dot1x supplicant controlled transient
-svl l2bum optimization
 issu set rollback-timer 2700
-lacp system-priority 32768
 remote-management
   no dmi
-power inline redundant
+lacp system-priority 32768
 !
-mka suppress syslogs sak-rekey
-!
-username mtaqee privilege 15 secret 9 $9$CAilizg/otHFuk$8stki870.bzylOjcsS0M5IoyGku7J110utjnW/gvUuY
-username nezar privilege 15 secret 9 $9$b.xlq8FqtA7HDU$6W//jmz/8w8c7ZC8k3sSO89/.6HCT/s7kCOdXd16Ofg
-username salsohemy privilege 15 secret 9 $9$QuvcghN1KUvKRk$.Kjs0XRPod89hcCoHlZViq5priRm2uRI6YP9Jz9CiCY
-username balharthy privilege 15 secret 9 $9$AJNTlmoAkBcys.$LQsDZPtsmuP5r2XMY93q4c9zL1NNsFEQBxI9rw1eOds
-username VASRO privilege 15 secret 9 $9$c2mFKtpSPw5IS.$l8v1.NQ9JFJaeDWdIw1iXchtsbZ9OCqdIlMLJP6WLfw
-username T!ger0ne privilege 15 secret 9 $9$9FPZ718l/Qn/NE$4Sur8PVRR9kA3Si4fpvJ8Ygl5LkfuakZ87ukpPo5ADw
-username infoblox-csco privilege 15 secret 9 $9$mJlVUDT1CKfOcU$vsEX6zA2zEZFIjdZYuFayRp0cfES1Ghhg4wtTo5xdZ6
+username T!ger0ne privilege 15 secret 9 $9$Fx.s0Qjc2pwdBU$hFdIfWm08y1Wae.fLVklAxoqqMHbgjuy87C9NdkNjp6
+username rburaik privilege 15 secret 9 $9$im0jP2DVdTWPr.$J/NpTn/fJLLX1j5ztDOyvR48fYQDbvFZ13tV0vQd.LQ
+username taha privilege 15 secret 9 $9$NawleKR4HoTzBU$Gis4Ysz71m/MUDym8PvhhCo0JzD/jRzFVq.7rahKy2M
+username VASRO privilege 7 secret 9 $9$uD41ipCo3ujRYk$gcHyfnlhNh9EB38vTfcahjYL.MKJGIfqpgSQeW.axyI
 !
 redundancy
  mode none
@@ -793,21 +733,49 @@ redundancy
   no standby console enable
   no standby console lock
 !
+bridge-domain 100 
+ no ip igmp snooping immediate-leave
+ no ip igmp snooping robustness-variable
+ no ip igmp snooping last-member-query-count
+ no ip igmp snooping last-member-query-interval
+ ip igmp snooping check rtr-alert-option
+ ip igmp snooping check ttl
+ ip igmp snooping report-suppression
+ ip igmp snooping explicit-tracking limit 100000
+ ip igmp snooping
+bridge-domain 101 
+ no ip igmp snooping immediate-leave
+ no ip igmp snooping robustness-variable
+ no ip igmp snooping last-member-query-count
+ no ip igmp snooping last-member-query-interval
+ ip igmp snooping check rtr-alert-option
+ ip igmp snooping check ttl
+ ip igmp snooping report-suppression
+ ip igmp snooping explicit-tracking limit 100000
+ ip igmp snooping
+bridge-domain 200 
+ no ip igmp snooping immediate-leave
+ no ip igmp snooping robustness-variable
+ no ip igmp snooping last-member-query-count
+ no ip igmp snooping last-member-query-interval
+ ip igmp snooping check rtr-alert-option
+ ip igmp snooping check ttl
+ ip igmp snooping report-suppression
+ ip igmp snooping explicit-tracking limit 100000
+ ip igmp snooping
+!
 process-max-time 50
 !
 cdp advertise-v2
 cdp timer 60
 cdp holdtime 180
 cdp log mismatch duplex
-cdp run
+no cdp run
 cdp tlv location
-cdp tlv app
 !
 track 1 ip sla 1 reachability
 !
 track 2 ip sla 2 reachability
-!
-track 3 ip sla 3 reachability
 !
 track 4 ip sla 4 reachability
 !
@@ -815,13 +783,20 @@ track 5 ip sla 5 reachability
 !
 track 6 ip sla 6 reachability
 !
+track 7 ip sla 7 reachability
+!
+track 11 ip sla 11 reachability
+!
 track 150 list boolean or
  object 1
  object 2
- object 3
  object 4
  object 5
  object 6
+ object 7
+!
+track 610 list boolean or
+ object 11
 !
 !
 buffers element permanent 1000
@@ -871,21 +846,20 @@ no autoconf enable
 !
 interface Loopback1
  mtu 1514
- ip vrf forwarding MOB-CLOUD
- no ip address
+ ip vrf forwarding STC-CLOUD
+ ip address 169.254.253.3 255.255.255.255
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1514
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -918,14 +892,10 @@ interface Loopback1
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
  no arp arpa
  arp timeout 0
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  hold-queue 75 in
  hold-queue 0 out
  no bgp-policy accounting input
@@ -939,21 +909,20 @@ interface Loopback1
 !
 interface Loopback2
  mtu 1514
- ip vrf forwarding STC-CLOUD
- ip address 169.254.253.7 255.255.255.255
+ ip vrf forwarding STC-CROSS-DC
+ ip address 169.254.252.3 255.255.255.255
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1514
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -986,14 +955,10 @@ interface Loopback2
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
  no arp arpa
  arp timeout 0
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  hold-queue 75 in
  hold-queue 0 out
  no bgp-policy accounting input
@@ -1012,14 +977,13 @@ interface Port-channel10
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1038,15 +1002,11 @@ interface Port-channel10
  load-interval 300
  carrier-delay 2
  no shutdown
- negotiation auto
  no medium p2p
  snmp trap link-status
- no flowspec group
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  hold-queue 750 in
  hold-queue 40 out
  no bgp-policy accounting input
@@ -1067,24 +1027,29 @@ interface Port-channel10
   rewrite ingress tag pop 1 symmetric
   bridge-domain 101
  !
+ service instance 200 ethernet
+  description **Connected TO STC-CROSS-DC**
+  encapsulation dot1q 610
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 200
+ !
 !
 interface GigabitEthernet0/0/0
- description **MGMT VRF**
- ip vrf forwarding MGMT-VRF
- ip address 10.222.250.81 255.255.255.0
+ description **STC-CROSS-DC-Main-DAMMAM-DAMMAM IP2730**
+ ip vrf forwarding STC-CROSS-DC
+ ip address 172.18.232.154 255.255.255.252
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1105,10 +1070,6 @@ interface GigabitEthernet0/0/0
  no shutdown
  negotiation auto
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1124,14 +1085,15 @@ interface GigabitEthernet0/0/0
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
  ethernet oam remote-loopback timeout 2
@@ -1154,14 +1116,13 @@ interface GigabitEthernet0/0/1
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1179,13 +1140,9 @@ interface GigabitEthernet0/0/1
  logging event link-status
  load-interval 300
  carrier-delay 2
- shutdown
+ no shutdown
  negotiation auto
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1201,14 +1158,15 @@ interface GigabitEthernet0/0/1
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
  ethernet oam remote-loopback timeout 2
@@ -1231,14 +1189,13 @@ interface GigabitEthernet0/0/2
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1259,10 +1216,6 @@ interface GigabitEthernet0/0/2
  no shutdown
  negotiation auto
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1278,18 +1231,19 @@ interface GigabitEthernet0/0/2
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
  ethernet oam timeout 5 
- channel-group 10 mode active
  hold-queue 375 in
  hold-queue 40 out
  no bgp-policy accounting input
@@ -1308,14 +1262,13 @@ interface GigabitEthernet0/0/3
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1336,10 +1289,6 @@ interface GigabitEthernet0/0/3
  no shutdown
  negotiation auto
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1355,14 +1304,381 @@ interface GigabitEthernet0/0/3
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet0/0/4
+ no ip address
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet0/0/5
+ no ip address
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet0/0/6
+ no ip address
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet0/0/7
+ no ip address
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet0/1/0
+ description ***CONNECTED-TO-SD-WAN-SW01-PORT 1/1/6***
+ no ip address
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
+ arp arpa
+ arp timeout 14400
+   clns route-cache
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
  ethernet oam timeout 5 
@@ -1378,23 +1694,21 @@ interface GigabitEthernet0/0/3
  no bgp-policy destination ip-prec-map
  no bgp-policy destination ip-qos-map
 !
-interface TenGigabitEthernet0/0/4
- description **MOBILY-BACKUP-LINK-TAHAKOM-VRF**
- ip vrf forwarding MOB-CLOUD
- ip address 192.168.3.46 255.255.255.252
+interface TenGigabitEthernet0/1/1
+ description ***CONNECTED-TO-SD-WAN-SW02-PORT 2/1/6***
+ no ip address
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1415,10 +1729,6 @@ interface TenGigabitEthernet0/0/4
  no shutdown
  negotiation auto
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1434,20 +1744,19 @@ interface TenGigabitEthernet0/0/4
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
- no mka pre-shared-key
- mka default-policy
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
- ethernet oam remote-loopback timeout 2
  ethernet oam timeout 5 
+ channel-group 10 mode active
  hold-queue 375 in
  hold-queue 40 out
  no bgp-policy accounting input
@@ -1459,23 +1768,20 @@ interface TenGigabitEthernet0/0/4
  no bgp-policy destination ip-prec-map
  no bgp-policy destination ip-qos-map
 !
-interface TenGigabitEthernet0/0/5
- description ***MAIN-LINK-STC-TAHAKOM-VRF***
- ip vrf forwarding STC-CLOUD
- ip address 10.10.61.102 255.255.255.252
+interface TenGigabitEthernet0/1/2
+ no ip address
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
  ip route-cache cef
@@ -1494,12 +1800,8 @@ interface TenGigabitEthernet0/0/5
  load-interval 300
  carrier-delay 2
  no shutdown
- no negotiation auto
+ negotiation auto
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1515,16 +1817,15 @@ interface TenGigabitEthernet0/0/5
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
- no mka pre-shared-key
- mka default-policy
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
  ethernet oam remote-loopback timeout 2
@@ -1540,29 +1841,286 @@ interface TenGigabitEthernet0/0/5
  no bgp-policy destination ip-prec-map
  no bgp-policy destination ip-qos-map
 !
-interface BDI100
- description ***STC-ISP-LAN-INTER***
- ip vrf forwarding STC-CLOUD
- ip address 10.222.251.11 255.255.255.248
+interface TenGigabitEthernet0/1/2.323
+ description **Connected To MW-MOBILY-BACKUP-TAHAKOM-VRF-SAN:1001257112354998-1.5GB**
+ encapsulation dot1Q 323
+ ip vrf forwarding MOB-CLOUD
+ ip address 192.168.4.58 255.255.255.252
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
- standby 100 ip 10.222.251.9
- standby 100 priority 120
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ no shutdown
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ no snmp trap link-status
+ arp timeout 14400
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet0/1/3
+ no ip address
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ network-clock wait-to-restore 300
+ network-clock hold-off 300
+ network-clock source quality-level - tx
+ network-clock source quality-level - rx
+ no synchronous mode
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet0/1/3.3999
+ description ** Connected To STC-TAHAKOM-DAMMAM-DAMMAM IP11583-1.5gb***
+ encapsulation dot1Q 3999
+ ip vrf forwarding STC-CLOUD
+ ip address 172.27.43.94 255.255.255.252
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ no shutdown
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ no snmp trap link-status
+ arp timeout 14400
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ ip address 10.250.30.81 255.255.255.0
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra suppress all
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface BDI100
+ description ***STC-ISP-LAN-INTER***
+ ip vrf forwarding STC-CLOUD
+ ip address 10.250.31.11 255.255.255.248
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ standby 100 ip 10.250.31.9
+ standby 100 priority 110
  standby 100 preempt
- standby 100 track 150 decrement 30
  ip route-cache cef
  ip route-cache
  ip split-horizon
@@ -1580,10 +2138,6 @@ interface BDI100
  carrier-delay 0
  no shutdown
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1599,14 +2153,10 @@ interface BDI100
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
  ethernet oam remote-loopback timeout 2
@@ -1625,23 +2175,22 @@ interface BDI100
 interface BDI101
  description ***MOBILY-ISP-LAN-INTER***
  ip vrf forwarding MOB-CLOUD
- ip address 10.222.251.19 255.255.255.248
+ ip address 10.250.31.19 255.255.255.248
  ip clear-dont-fragment
  ip redirects
  ip unreachables
  ip proxy-arp
  ip mtu 1500
- ip pim join-prune-interval 60
- ip pim dr-priority 1
- ip pim query-interval 30
  ip mfib forwarding input
  ip mfib forwarding output
  ip mfib cef input
  ip mfib cef output
- no ip flowspec
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
  ip cef accounting non-recursive internal
  ip load-sharing per-destination
- standby 101 ip 10.222.251.17
+ standby 101 ip 10.250.31.17
  standby 101 preempt
  ip route-cache cef
  ip route-cache
@@ -1660,10 +2209,6 @@ interface BDI101
  carrier-delay 0
  no shutdown
  no medium p2p
-  cdp log mismatch duplex
- cdp tlv location
- cdp tlv server-location 
- cdp tlv app
  ipv6 nd reachable-time 0
  ipv6 nd ns-interval 0
  ipv6 nd dad attempts 1
@@ -1679,14 +2224,83 @@ interface BDI101
  ipv6 mfib forwarding output
  ipv6 mfib cef input
  ipv6 mfib cef output
- no ipv6 flowspec
  snmp trap link-status
- no flowspec group
  arp arpa
  arp timeout 14400
    clns route-cache
- spanning-tree port-priority 128
- spanning-tree cost 0
+ ethernet oam max-rate 10
+ ethernet oam min-rate 1 
+ ethernet oam remote-loopback timeout 2
+ ethernet oam timeout 5 
+ hold-queue 375 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface BDI200
+ description ***STC-CROSS-DC-ISP-LAN-INTER***
+ ip vrf forwarding STC-CROSS-DC
+ ip address 10.250.31.34 255.255.255.248
+ ip clear-dont-fragment
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip pim join-prune-interval 60
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip cef accounting non-recursive internal
+ ip load-sharing per-destination
+ standby 200 ip 10.250.31.33
+ standby 200 priority 110
+ standby 200 preempt
+ standby 200 track 610 decrement 30
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp robustness-variable 2
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ logging event link-status
+ load-interval 300
+ carrier-delay 0
+ no shutdown
+ no medium p2p
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd dad loopback detect
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
  ethernet oam max-rate 10
  ethernet oam min-rate 1 
  ethernet oam remote-loopback timeout 2
@@ -1704,7 +2318,6 @@ interface BDI101
 !
 router bgp 65100
  no synchronization
- bgp router-id 10.222.254.81
  bgp fast-external-fallover
  bgp route-map-cache
  no bgp asnotation dot
@@ -1740,14 +2353,14 @@ router bgp 65100
   no synchronization
   bgp aggregate-timer 30
   bgp listen limit 100
-  network 10.222.251.0 mask 255.255.255.248
+  network 10.170.200.0 mask 255.255.255.0
+  network 10.250.30.0 mask 255.255.255.0
   redistribute connected metric 0
-  neighbor 192.168.3.45 remote-as 35819
-  neighbor 192.168.3.45 description "BACKUP-LINK-MOBILY"
-  neighbor 192.168.3.45 password 7 143A1D090508330B757A60
-  neighbor 192.168.3.45 activate
-  neighbor 192.168.3.45 soft-reconfiguration inbound
-  neighbor 192.168.3.45 route-map AS-PER-BACKUP-LINK out
+  neighbor 192.168.4.57 remote-as 35819
+  neighbor 192.168.4.57 description **MOBILY-BACKUP-TAHAKOM-VRF**
+  neighbor 192.168.4.57 password 7 153F040E0D263204796166
+  neighbor 192.168.4.57 activate
+  neighbor 192.168.4.57 route-map AS-PER-BACKUP-LINK out
   distance bgp 20 200 200
  exit-address-family
  !
@@ -1755,11 +2368,25 @@ router bgp 65100
   no synchronization
   bgp aggregate-timer 30
   bgp listen limit 100
+  network 10.170.200.0 mask 255.255.255.0
+  network 10.250.30.0 mask 255.255.255.0
   redistribute connected metric 0
-  neighbor 10.10.61.101 remote-as 65000
-  neighbor 10.10.61.101 description "MAIN LINK STC"
-  neighbor 10.10.61.101 activate
-  neighbor 10.10.61.101 soft-reconfiguration inbound
+  neighbor 172.27.43.93 remote-as 65000
+  neighbor 172.27.43.93 description **STC-SD-WAN**
+  neighbor 172.27.43.93 activate
+  neighbor 172.27.43.93 soft-reconfiguration inbound
+  distance bgp 20 200 200
+ exit-address-family
+ !
+ address-family ipv4 vrf STC-CROSS-DC
+  no synchronization
+  bgp aggregate-timer 30
+  bgp listen limit 100
+  redistribute connected metric 0
+  neighbor 172.18.232.153 remote-as 65000
+  neighbor 172.18.232.153 description STC-CROSS-DC link
+  neighbor 172.18.232.153 activate
+  neighbor 172.18.232.153 soft-reconfiguration inbound
   distance bgp 20 200 200
  exit-address-family
 !
@@ -1790,7 +2417,7 @@ no ip http server
 ip http port 80
 no ip http upload overwrite
 ip http authentication enable
-no ip http secure-server
+ip http secure-server
 ip http HSTS-Header
 ip http secure-port 443
 ip http secure-active-session-modules all
@@ -1813,6 +2440,12 @@ ip http path
 ip classless
 ip nsf-converge 10
 ip forward-protocol nd
+!
+ip ftp passive
+ip tftp source-interface GigabitEthernet0
+no ip tftp claim-netascii
+ ip tftp arp-glean
+ip tftp blocksize 512
 ip pim dm-fallback
 ip pim autorp
 ip pim bidir-offer-interval 100 msec
@@ -1820,18 +2453,13 @@ ip pim bidir-offer-limit 3
 ip pim v1-rp-reachability
 ip pim log-neighbor-changes
 ip msdp timer 30
-ip ftp passive
-ip ftp source-interface GigabitEthernet0/0/0
-ip ftp username ftpbackup
-ip ftp password 7 06242F145F4B584B565D43595824787B767813601D270634
-ip tftp source-interface GigabitEthernet0/0/0
-no ip tftp claim-netascii
-ip tftp blocksize 512
 ip route static adjust-time 60
 ip route static inter-vrf
-ip route vrf MGMT-VRF 0.0.0.0 0.0.0.0 10.222.250.254
-ip route vrf MOB-CLOUD 10.222.251.0 255.255.255.248 10.222.251.22
-ip route vrf STC-CLOUD 10.222.251.0 255.255.255.248 10.222.251.14
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.250.30.254
+ip route vrf MOB-CLOUD 10.170.200.0 255.255.255.0 10.250.31.22
+ip route vrf MOB-CLOUD 10.250.30.0 255.255.255.0 10.250.31.22
+ip route vrf STC-CLOUD 10.170.200.0 255.255.255.0 10.250.31.14
+ip route vrf STC-CLOUD 10.250.30.0 255.255.255.0 10.250.31.14
 ip rsvp authentication type md5
 ip rsvp authentication lifetime 00:30:00
 ip rsvp pq-profile 12288 592 110
@@ -1840,7 +2468,7 @@ ip rsvp signalling refresh reduction ack-delay 250
 ip rsvp signalling refresh interval 30000
 ip rsvp signalling refresh misses 4
 no ip ssh bulk-mode
-ip ssh time-out 15
+ip ssh time-out 120
 ip ssh authentication-retries 3
 ip ssh window-size 8192
 ip ssh break-string ~break
@@ -1858,90 +2486,15 @@ ip ssh server certificate profile
  user
   no ocsp-response required
 !
-ip ssh server algorithm mac hmac-sha2-256-etm@openssh.com hmac-sha2-512-etm@openssh.com hmac-sha2-256 hmac-sha2-512
+ip ssh server algorithm mac hmac-sha2-256-etm@openssh.com hmac-sha2-512-etm@openssh.com hmac-sha2-256 hmac-sha2-512 hmac-sha1
 ip ssh server algorithm encryption aes128-gcm aes256-gcm aes128-ctr aes192-ctr aes256-ctr
 ip ssh server algorithm kex ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1
 ip ssh server algorithm hostkey x509v3-ssh-rsa rsa-sha2-512 rsa-sha2-256 ssh-rsa
 ip ssh server algorithm authentication publickey keyboard password
 ip ssh server algorithm publickey x509v3-ssh-rsa ssh-rsa ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521 x509v3-ecdsa-sha2-nistp256 x509v3-ecdsa-sha2-nistp384 x509v3-ecdsa-sha2-nistp521 rsa-sha2-256 rsa-sha2-512
-ip ssh client algorithm mac hmac-sha2-256-etm@openssh.com hmac-sha2-512-etm@openssh.com hmac-sha2-256 hmac-sha2-512
+ip ssh client algorithm mac hmac-sha2-256-etm@openssh.com hmac-sha2-512-etm@openssh.com hmac-sha2-256 hmac-sha2-512 hmac-sha1
 ip ssh client algorithm encryption aes128-gcm aes256-gcm aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm kex ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group14-sha1
-!
-!
-ip access-list standard SNMP
- 10 permit 10.128.158.23
- 20 permit 10.128.1.130
- 30 permit 10.128.150.16
- 40 permit 10.128.158.25
- 50 permit 10.128.158.26
- 60 permit 10.128.150.15
- 70 permit 10.128.158.24
- 80 permit 10.172.58.65
- 90 permit 10.172.58.67
- 100 permit 10.172.58.66
- 110 permit 10.172.58.68
- 120 permit 10.172.58.69
- 130 permit 10.172.58.70
- 140 permit 10.172.58.71
- 150 permit 10.172.58.72
- 160 permit 10.172.58.73
- 170 permit 172.19.72.129
- 180 permit 172.19.72.128
- 190 permit 172.19.72.127
- 200 permit 172.19.72.126
- 210 permit 172.19.72.125
- 220 permit 172.19.72.124
- 230 permit 172.19.72.123
- 240 permit 172.19.72.122
- 250 permit 172.19.72.121
- 260 permit 10.128.28.25
- 270 permit 10.1.171.151
- 280 permit 10.1.171.153
- 290 permit 10.1.171.152
- 300 permit 10.172.185.37
- 310 permit 10.128.158.110
- 320 permit 172.21.60.11
- 330 permit 172.21.60.12
- 340 permit 10.33.27.66
- 350 permit 192.168.148.161
-ip access-list standard SSH_Access
- 10 permit 10.128.158.22
- 20 permit 10.111.1.114
- 30 permit 10.169.192.83
- 40 permit 10.111.1.81
- 50 permit 10.111.1.88
- 60 permit 10.169.194.33
- 70 permit 10.111.10.44
- 80 permit 10.169.194.34
- 90 permit 10.169.194.39
- 100 permit 10.111.10.40
- 110 permit 10.169.194.41
- 120 permit 10.169.194.40
- 130 permit 10.111.10.37
- 140 permit 10.111.1.41
- 150 permit 10.111.10.59
- 160 permit 10.172.1.243
- 170 permit 10.111.131.135
- 180 permit 10.111.10.3
- 190 permit 10.111.13.5
- 200 permit 10.222.19.78
- 210 permit 10.128.10.31
- 220 permit 10.128.10.34
- 230 permit 10.128.10.43
- 240 permit 10.128.10.58
- 250 permit 10.111.131.93
- 260 permit 10.128.10.61
- 270 permit 10.222.19.23
- 280 permit 10.128.151.200
- 290 permit 10.222.19.18
- 300 permit 10.222.19.25
- 310 permit 10.111.131.24
- 320 permit 10.128.251.0 0.0.0.255
- 330 permit 10.111.150.0 0.0.1.255
- 340 permit 10.150.10.0 0.0.1.255
- 350 permit 10.150.12.0 0.0.3.255
- 360 permit 10.128.28.25
 !
 no ip access-list helper egress check
 !
@@ -1951,7 +2504,7 @@ ip sla 1
   request-data-size 28
   tos 0
   data-pattern ABCDABCD
-  vrf STC-CLOUD
+  vrf MOB-CLOUD
   threshold 1000
   timeout 5000
   frequency 10
@@ -1969,7 +2522,7 @@ ip sla 2
   request-data-size 28
   tos 0
   data-pattern ABCDABCD
-  vrf STC-CLOUD
+  vrf MOB-CLOUD
   threshold 1000
   timeout 5000
   frequency 10
@@ -1982,30 +2535,12 @@ ip sla 2
   history buckets-kept 15
   history filter none
 ip sla schedule 2 life forever start-time now ageout 0
-ip sla 3
- icmp-echo 169.254.253.3
-  request-data-size 28
-  tos 0
-  data-pattern ABCDABCD
-  vrf STC-CLOUD
-  threshold 1000
-  timeout 5000
-  frequency 10
-  secondary-frequency timeout 0
-  secondary-frequency connection-loss 0
-  history hours-of-statistics-kept 2
-  history distributions-of-statistics-kept 1
-  history statistics-distribution-interval 20
-  history lives-kept 0
-  history buckets-kept 15
-  history filter none
-ip sla schedule 3 life forever start-time now ageout 0
 ip sla 4
  icmp-echo 169.254.253.4
   request-data-size 28
   tos 0
   data-pattern ABCDABCD
-  vrf STC-CLOUD
+  vrf MOB-CLOUD
   threshold 1000
   timeout 5000
   frequency 10
@@ -2023,7 +2558,7 @@ ip sla 5
   request-data-size 28
   tos 0
   data-pattern ABCDABCD
-  vrf STC-CLOUD
+  vrf MOB-CLOUD
   threshold 1000
   timeout 5000
   frequency 10
@@ -2041,7 +2576,7 @@ ip sla 6
   request-data-size 28
   tos 0
   data-pattern ABCDABCD
-  vrf STC-CLOUD
+  vrf MOB-CLOUD
   threshold 1000
   timeout 5000
   frequency 10
@@ -2054,19 +2589,49 @@ ip sla 6
   history buckets-kept 15
   history filter none
 ip sla schedule 6 life forever start-time now ageout 0
-ip sla low-memory 904747903
+ip sla 7
+ icmp-echo 169.254.253.7
+  request-data-size 28
+  tos 0
+  data-pattern ABCDABCD
+  vrf MOB-CLOUD
+  threshold 1000
+  timeout 5000
+  frequency 10
+  secondary-frequency timeout 0
+  secondary-frequency connection-loss 0
+  history hours-of-statistics-kept 2
+  history distributions-of-statistics-kept 1
+  history statistics-distribution-interval 20
+  history lives-kept 0
+  history buckets-kept 15
+  history filter none
+ip sla schedule 7 life forever start-time now ageout 0
+ip sla 11
+ icmp-echo 169.254.252.1
+  request-data-size 28
+  tos 0
+  data-pattern ABCDABCD
+  vrf STC-CROSS-DC
+  threshold 1000
+  timeout 5000
+  frequency 10
+  secondary-frequency timeout 0
+  secondary-frequency connection-loss 0
+  history hours-of-statistics-kept 2
+  history distributions-of-statistics-kept 1
+  history statistics-distribution-interval 20
+  history lives-kept 0
+  history buckets-kept 15
+  history filter none
+ip sla schedule 11 life forever start-time now ageout 0
+ip sla low-memory 1677306835
 ip sla server twamp
  port 862
  timer inactivity 900
-ip mux cache 1000000
+ip rcmd domain-lookup
 no ip access-list persistent
 service-routing capabilities-manager
-kron occurrence BackupConfiguration at 6:00 Sat recurring
- policy-list BackupConfiguration
-!
-kron policy-list BackupConfiguration
- cli write memory
-!
 logging esm config
 logging history size 1
 logging history warnings
@@ -2075,21 +2640,24 @@ logging trap informational
 logging delimiter tcp
 no logging origin-id
 logging facility local7
-logging source-interface GigabitEthernet0/0/0 vrf MGMT-VRF
+no logging source-interface
 logging server-arp
+ip access-list extended 199
+ 10 permit ip any any log
 ethernet cfm mep crosscheck start-delay 30
 terminal-queue entry-retry-interval 60
 !
  ipv6 prefix-list sequence-number
-ipv6 mux cache 1000000
 route-map AS-PER-BACKUP-LINK permit 10 
  set as-path prepend 65100 65100
 !
 no route-tag notation dotted-decimal
-snmp-server engineID local 800000090300482E726BBDF0
-snmp-server group nac-group v3 auth match exact read nac-view access SNMP
-snmp-server group nac-group v3 priv match exact read nac-view access SNMP
-snmp-server group Infoblox-group v3 priv match exact read v1default access SNMP
+snmp-server engineID local 800000090300D477980C5E00
+snmp-server group nac-view v3 auth context vlan- match prefix read v1default 
+snmp-server group nac-view v3 priv context vlan- match prefix read v1default 
+snmp-server group nac-group v3 auth match exact read nac-view notify *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF0F 
+snmp-server group nac-group v3 priv match exact read nac-view notify *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF0F 
+snmp-server group SDWAN-GROUP v3 priv match exact read v1default 
 snmp-server view *ilmi system included
 snmp-server view *ilmi atmForumUni included
 snmp-server view nac-view iso included
@@ -2100,27 +2668,56 @@ snmp-server view v1default snmpVacmMIB excluded
 snmp-server view v1default snmpCommunityMIB excluded
 snmp-server view *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF0F iso included
 snmp-server view *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF0F iso.2.840.10036 included
-snmp-server community THK$$mn!trR2#222v1default RO SNMP
+snmp-server community T@H@K$$m@n!t@rR3#333v1default RO
 snmp-server priority normal
-no snmp-server trap link ietf
+snmp-server trap link ietf
 no snmp-server trap link switchover
 snmp-server trap authentication vrf
 snmp-server trap authentication acl-failure
 snmp-server trap authentication unknown-context
 snmp-server trap retry 3
 snmp-server trap timeout 30
-snmp-server trap-source GigabitEthernet0/0/0
-snmp-server source-interface informs GigabitEthernet0/0/0
 snmp-server packetsize 1500
 snmp-server queue-length 10
-snmp-server location Jeddah, Saudi Arabia
-snmp-server contact r2nt@tahakom.com
-snmp-server chassis-id FDO2618M30H
+snmp-server location Dammam, Saudi Arabia
+snmp-server contact mahussain@tahakom.com
+snmp-server chassis-id FLX2603083K
 snmp-server enable logging setop
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
 no snmp-server enable traps call-home
-no snmp-server enable traps syslog
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change if-state-change neighbor-state-change virtif-state-change virtneighbor-state-change
+snmp-server enable traps ospf errors authentication-failure bad-packet config-error virt-authentication-failure virt-bad-packet virt-config-error
+snmp-server enable traps ospf retransmit packets virt-packets
+snmp-server enable traps ospf lsa lsa-originate lsa-maxage
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface-old
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors config-error
+snmp-server enable traps ospf cisco-specific errors virt-config-error
+snmp-server enable traps ospf cisco-specific errors shamlink config authentication bad-packet
+snmp-server enable traps ospf cisco-specific retransmit packets virt-packets shamlink
+snmp-server enable traps ospf cisco-specific lsa lsa-originate lsa-maxage
+snmp-server enable traps ospf rate-limit 10 7
+snmp-server enable traps bgp
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps entity
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps msdp
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps cpu threshold
+snmp-server enable traps ipsla
+snmp-server enable traps syslog
 snmp-server enable traps l2tun session
 snmp-server enable traps l2tun pseudowire status
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps flash insertion
+snmp-server enable traps flash removal
 no snmp-server enable traps entity-diag
 no snmp-server enable traps nhrp nhs up
 no snmp-server enable traps nhrp nhs down
@@ -2129,15 +2726,28 @@ no snmp-server enable traps nhrp nhc down
 no snmp-server enable traps nhrp nhp up
 no snmp-server enable traps nhrp nhp down
 no snmp-server enable traps nhrp quota-exceeded
-no snmp-server enable traps stpx
-no snmp-server enable traps vtp
-no snmp-server enable traps vlancreate
-no snmp-server enable traps vlandelete
-no snmp-server enable traps bridge
-no snmp-server enable traps port-security
-snmp-server enable traps port-security trap-rate 0
-no snmp-server enable traps storm-control
-snmp-server host 10.128.1.130 traps version 2c THK$$mn!trR2#222 udp-port 162 
+snmp-server enable traps transceiver all
+snmp-server host 172.21.1.123 informs version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.124 informs version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.125 informs version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.126 informs version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.36 informs version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.8 informs version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.8 informs version 2c THK$$mn!trR3#333 udp-port 162 
+snmp-server host 172.21.1.123 traps version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.124 traps version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.125 traps version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.126 traps version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.36 traps version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.8 traps version 2c T@H@K$$m@n!t@rR3#333 udp-port 162 
+snmp-server host 172.21.1.8 traps version 2c THK$$mn!trR3#333 udp-port 162 
+snmp-server host 172.21.1.124 traps version 3 priv nac udp-port 162 
+snmp-server host 172.21.1.125 traps version 3 auth nac udp-port 162 
+snmp-server host 172.21.1.126 traps version 3 priv nac udp-port 162 
+snmp-server host 172.21.1.36 traps version 3 priv nac udp-port 162 
+snmp-server host 172.21.1.8 traps version 3 auth nac udp-port 162 
+snmp-server file-transfer access-group SNMP protocol tftp
+snmp-server manager session-timeout 600
 snmp-server inform retries 3 timeout 15 pending 25
 snmp-server subagent datastage timeout 5
 snmp-server subagent fetch count 50
@@ -2161,40 +2771,51 @@ no snmp mib nhrp
 snmp mib flowmon alarmhistorysize 500
 snmp mib notification-log globalsize 500
 snmp mib notification-log globalageout 15
-snmp mib community-map THK$$mn!trR2#222 engineid 800000090300482E726BBDF0
+snmp mib community-map T@H@K$$m@n!t@rR3#333 engineid 800000090300D477980C5E00
+snmp mib community-map THK$$mn!trR3#333 engineid 800000090300D477980C5E00
 !
 tacacs-server timeout 5
 tacacs-server cache expiry 24 enforce hours
-tacacs server R1_PSN01
- address ipv4 10.1.172.23
- key 7 023124615D421732611C0849
-tacacs server R1_PSN02
- address ipv4 10.1.172.24
- key 7 07380176184D01163A400A5C
-tacacs server R2_PSN01
- address ipv4 10.128.150.100
- key 7 08166C745F5D1D043F590D54
-tacacs server R2_PSN02
- address ipv4 10.128.150.101
- key 7 08166C745F5D1D043F590D54
 tacacs server R3_PSN01
  address ipv4 172.21.1.98
- key 7 1079292353530A1821562B7B
+ key 7 0033333C521F131522734D1E
+ port 49
 tacacs server R3_PSN02
  address ipv4 172.21.1.99
- key 7 07380176184D01163A400A5C
+ key 7 03337B31504B395F635B1855
+ port 49
+tacacs server R1_PSN01
+ address ipv4 10.1.172.23
+ key 7 03337B31504B395F635B1855
+ port 49
+tacacs server R1_PSN02
+ address ipv4 10.1.172.24
+ key 7 0124263E0D4F1E1C0C1E4F59
+ port 49
+tacacs server R2_PSN01
+ address ipv4 10.128.150.100
+ key 7 142032315A403238097A3265
+ port 49
+tacacs server R2_PSN02
+ address ipv4 10.128.150.101
+ key 7 0124263E0D4F1E1C0C1E4F59
+ port 49
 tacacs server MOB_PSN01
  address ipv4 10.172.1.107
- key 7 053C26357708561A34571642
+ key 7 0033333C521F131522734D1E
+ port 49
 tacacs server MOB_PSN02
  address ipv4 10.172.1.108
  key 7 113E393F4156131F29782A74
+ port 49
 tacacs server NIC_PSN01
  address ipv4 10.33.4.121
- key 7 07380176184D01163A400A5C
+ key 7 0124263E0D4F1E1C0C1E4F59
+ port 49
 tacacs server NIC_PSN02
  address ipv4 10.33.4.122
- key 7 0033333C521F131522734D1E
+ key 7 053C26357708561A34571642
+ port 49
 !
 radius-server attribute 77 include-in-acct-req
 radius-server attribute 77 include-in-access-req
@@ -2213,19 +2834,6 @@ ipv6 access-list log-update threshold 2147483647
 !
 control-plane
 !
-banner motd ^C
-
-
-***************************************************************************
-                      !!!!!!!!!WARNING!!!!!!!!!
-***************************************************************************
-THIS SYSTEM IS SOLELY FOR THE USE OF AUTHORISED USERS FOR OFFICIAL PURPOSES.
-UNAUTHORIZED ACCESS IS PROHIBITED.
-THE SYSTEM IS MONITORED.
-ANY ATTEMPT TO GAIN ACCESS WITHOUT PERMISSION WILL BE PROSECUTED.
-***************************************************************************
-
-^C
 alias exec h help
 alias exec lo logout
 alias exec p ping
@@ -2246,13 +2854,11 @@ default-value data-character-bits 8
 line auto-consolidation
 !
 line con 0
- session-timeout 15 
  motd-banner
  exec-banner
- exec-timeout 15 0
+ exec-timeout 10 0
  timeout login response 30
- privilege level 15
- password 7 0030120E24095B265D7006
+ privilege level 1
  flush-at-activation
  activation-character 13
  logout-warning 20
@@ -2277,13 +2883,11 @@ line con 0
  stop-character 19
  speed 9600
 line aux 0
- session-timeout 15 
  motd-banner
  exec-banner
- exec-timeout 15 0
+ exec-timeout 10 0
  timeout login response 30
- privilege level 15
- password 7 142313032C567A0B767979
+ privilege level 1
  flush-at-activation
  activation-character 13
  logout-warning 20
@@ -2312,10 +2916,9 @@ line aux 0
  stop-character 19
  speed 9600
 line vty 0 4
- session-timeout 15 
  motd-banner
  exec-banner
- exec-timeout 15 0
+ exec-timeout 10 0
  timeout login response 30
  privilege level 15
  flush-at-activation
@@ -2328,7 +2931,7 @@ line vty 0 4
  special-character-bits 7
  domain-lookup
  exec
- length 0
+ length 24
  width 80
  history size 10
  history
@@ -2341,10 +2944,9 @@ line vty 0 4
  start-character 17
  stop-character 19
 line vty 5 15
- session-timeout 15 
  motd-banner
  exec-banner
- exec-timeout 15 0
+ exec-timeout 10 0
  timeout login response 30
  privilege level 15
  flush-at-activation
@@ -2372,11 +2974,10 @@ line vty 5 15
 !
 exception data-corruption buffer truncate
 exception data-corruption buffer log
-exception crashinfo file bootflash:VPC2-RTR02_crashinfo_RP_00_00
+exception crashinfo file bootflash:R3-RTR02-WAN_crashinfo_RP_00_00
 exception crashinfo buffersize 32
 exception crashinfo maximum files 1
 no exception crashinfo dump garbage-detector
-no monitor pcm-tracer
 monitor event-trace stacktrace
 no monitor event-trace sequence-number
 monitor event-trace timestamps datetime msec
@@ -2396,6 +2997,7 @@ network-clock wait-to-restore 300 global
 call-home
  alert-group configuration
  alert-group crash
+ alert-group diagnostic
  alert-group environment
  alert-group inventory
  alert-group snapshot
@@ -2422,23 +3024,16 @@ call-home
   destination address email callhome@cisco.com 
   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService 
   subscribe-to-alert-group crash
+  subscribe-to-alert-group diagnostic severity minor 
   subscribe-to-alert-group environment severity minor 
   subscribe-to-alert-group inventory
   subscribe-to-alert-group syslog severity major pattern .*
-  subscribe-to-alert-group configuration periodic monthly 3 11:29
-  subscribe-to-alert-group inventory periodic monthly 3 11:14
- diagnostic-signature
-  active
-  profile "CiscoTAC-1"
+  subscribe-to-alert-group configuration periodic monthly 24 12:22
+  subscribe-to-alert-group inventory periodic monthly 24 12:07
 ntp allow mode control 3
 ntp leap-handle
 ntp mindistance 1
 ntp maxdistance 8
-ntp source GigabitEthernet0/0/0
-ntp server vrf MGMT-VRF 10.222.8.41 maxpoll 10 minpoll 6 version 4 burst iburst
-ntp server vrf MGMT-VRF 10.128.28.12 maxpoll 10 minpoll 6 version 4 burst iburst
-ntp server vrf MGMT-VRF 10.80.28.28 maxpoll 10 minpoll 6 version 4 burst iburst
-ntp server vrf MGMT-VRF 10.222.250.254 maxpoll 10 minpoll 6 version 4 burst iburst
 device-tracking binding reachable-lifetime 300 stale-lifetime 86400 down-lifetime 86400
 no device-tracking binding logging
 no device-tracking binding max-entries

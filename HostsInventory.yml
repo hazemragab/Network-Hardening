@@ -436,10 +436,66 @@ R2DC:
     #   password: Yarab@2026
     #   devicerole: CiscoRouter
     #   Region: R2
+    ##
+    #
+    #
+R3DC:
+    # F5-L2-SW:
+    #   device_type: cisco_xe
+    #   host: 10.250.30.150
+    #   username: T!ger0ne
+    #   password: QYz)xbJWV9#
+    #   devicerole: CiscoSwitch
+    #   Region: R3
     # #
-
-
-
+    # R3-RTR01-WAN:
+    #   device_type: cisco_xe
+    #   host: 10.250.30.80
+    #   username: haahmed.c
+    #   password: Yarab@2026
+    #   devicerole: CiscoRouter
+    #   Region: R3
+    # #
+    # R3-RTR02-WAN:
+    #   device_type: cisco_xe
+    #   host: 10.250.30.81
+    #   username: haahmed.c
+    #   password: Yarab@2026
+    #   devicerole: CiscoRouter
+    #   Region: R3
+    # #
+    # #
+    # R3-SDWAN-SW:
+    #   device_type: cisco_xe
+    #   host: 10.250.30.82
+    #   username: haahmed.c
+    #   password: Yarab@2026
+    #   devicerole: CiscoSwitch
+    #   Region: R3
+    #
+    
+    ##
+    # Subnet 172.19.0.100 Reachability for the gateway and allow the vm ip on the access listneed accesss from sw ################
+    ##
+    # R3-DIST-SW:
+    #   device_type: cisco_xe
+    #   host: 172.19.0.100
+    #   username: haahmed.c
+    #   password: Yarab@2026
+    #   devicerole: CiscoSwitch
+    #   Region: R3
+    # ##
+    # ##
+    # ##
+    # # R3-Internet-SW:
+    # #   device_type: cisco_xe
+    # #   host: 172.19.38.22
+    # #   username: haahmed.c
+    # #   password: Yarab@2026
+    # #   devicerole: CiscoSwitch
+    # #   Region: R3
+    # ##
+    # ##
 
 
 
