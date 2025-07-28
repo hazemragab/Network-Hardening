@@ -1155,7 +1155,7 @@ class NetworkAudit:
         ● [1]      
         ---
             show version | inc Cisco IOS XE Software, Version|uptime|Last
-            #THM-ACI-MOB-INT uptime is 1 week, 3 days, 19 hours, 30 minutes
+            #INT-RTR uptime is 1 week, 3 days, 19 hours, 30 minutes
             #Last reload reason: PowerOn
         """
         global Check28
@@ -1189,7 +1189,7 @@ class NetworkAudit:
         ● [1]      
         ---
             show version | inc Cisco IOS XE Software, Version|uptime|Last
-            #THM-ACI-MOB-INT uptime is 1 week, 3 days, 19 hours, 30 minutes
+            #INT-RTR uptime is 1 week, 3 days, 19 hours, 30 minutes
             #Last reload reason: PowerOn
         """
         global Check29

@@ -1,12 +1,9 @@
 #! /usr/bin/env python
 
 """
-usage : python THM-NetworkAuditV2.py --hosts_file HostsInventory.yml --group MLQDC
-usage : python NwSecHardenV1.py --hosts_file HostsInventory.yml --group MLQDC
+usage : python NwSecHardenV1.py --hosts_file HostsInventory.yml --group DC
 usage : netmiko-grep --list-devices
 #
-#debug ip ssh
-#debug aaa authentication
 #
 """
 

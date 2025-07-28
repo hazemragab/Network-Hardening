@@ -1,0 +1,69 @@
+Cisco IOS XE Software, Version 17.06.01a
+INT-RTR uptime is 7 weeks, 2 days, 22 hours, 39 minutes
+Last reload reason: PowerOnCodes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, m - OMP
+       n - NAT, Ni - NAT inside, No - NAT outside, Nd - NAT DIA
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       H - NHRP, G - NHRP registered, g - NHRP registration summary
+       o - ODR, P - periodic downloaded static route, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+       & - replicated local route overrides by connected
+
+Gateway of last resort is not set
+
+      7.0.0.0/32 is subnetted, 1 subnets
+C        7.7.7.7 is directly connected, Loopback7
+      10.0.0.0/8 is variably subnetted, 10 subnets, 2 masks
+C        10.250.52.32/29 is directly connected, Port-channel10.366
+L        10.250.52.35/32 is directly connected, Port-channel10.366
+C        10.250.53.32/29 is directly connected, Port-channel10.365
+L        10.250.53.35/32 is directly connected, Port-channel10.365
+C        10.250.54.32/29 is directly connected, Port-channel10.367
+L        10.250.54.35/32 is directly connected, Port-channel10.367
+C        10.250.55.32/29 is directly connected, Port-channel10.368
+L        10.250.55.35/32 is directly connected, Port-channel10.368
+C        10.250.56.32/29 is directly connected, Port-channel10.369
+L        10.250.56.35/32 is directly connected, Port-channel10.369
+      86.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C        86.51.10.172/31 is directly connected, TenGigabitEthernet0/0/5
+L        86.51.10.173/32 is directly connected, TenGigabitEthernet0/0/5Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0/2   10.250.50.201   YES NVRAM  up                    up      
+GigabitEthernet0/0/3   unassigned      YES NVRAM  up                    up      
+Te0/0/4                unassigned      YES NVRAM  down                  down    
+Te0/0/5                86.51.10.173    YES NVRAM  up                    up      
+Loopback7              7.7.7.7         YES NVRAM  up                    up      
+Port-channel10         unassigned      YES unset  up                    up      
+Port-channel10.365     10.250.53.35    YES NVRAM  up                    up      
+Port-channel10.366     10.250.52.35    YES NVRAM  up                    up      
+Port-channel10.367     10.250.54.35    YES NVRAM  up                    up      
+Port-channel10.368     10.250.55.35    YES NVRAM  up                    up      
+Port-channel10.369     10.250.56.35    YES NVRAM  up                    up      
+Port-channel10.470     unassigned      YES unset  administratively down down    Clock is synchronized, stratum 3, reference is 10.173.1.13    
+nominal freq is 250.0000 Hz, actual freq is 249.9817 Hz, precision is 2**10
+ntp uptime is 448793400 (1/100 of seconds), resolution is 4016
+reference time is EC025E76.FEB854A8 (13:50:30.995 GMT Sun Jun 22 2025)
+clock offset is -4.1904 msec, root delay is 32.34 msec
+root dispersion is 34.77 msec, peer dispersion is 1.12 msec
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000073048 s/s
+system poll interval is 1024, last update was 1607 sec ago.SSH Enabled - version 2.0
+Authentication methods:publickey,keyboard-interactive,password
+Authentication Publickey Algorithms:x509v3-ssh-rsa,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,x509v3-ecdsa-sha2-nistp256,x509v3-ecdsa-sha2-nistp384,x509v3-ecdsa-sha2-nistp521,rsa-sha2-256,rsa-sha2-512
+Hostkey Algorithms:x509v3-ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+Encryption Algorithms:aes128-gcm,aes256-gcm,aes128-ctr,aes192-ctr,aes256-ctr
+MAC Algorithms:hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512
+KEX Algorithms:ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 2048 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded): TP-self-signed-2379032192
+Modulus Size : 2048 bits
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCf/T/Cv0rqgiKFwIalWKVY/thmqeZ59lHCU7e/P/g4
+PuiackXfynG+wpDXW3ZZ32s4z2b3VudomvAfHxHHEmcBNUXX8Cr8X33lMslHLVbmd7DO2F4K+wCf0UBE
+yTIMEzzw7GjMXr2GBODCrwTpZkLxuaclCkKIInUhh9N1diWSbnpWn0g5UqxpiJQQpzDr1CbZzE4vcx13
+bPQZl/ZhHoKRCIxtBWQ8GCdstAlF8UfatbVqVlHYErTRCkfOvja9oSg1eWhEPpkCPF/5p2RLpLvI5Y70
+tjWU40qbRDEAOr50ZUZ8VbgzQdZT6CPhHr49sdoa39v8Vb56wgPF8w9Wqs8D                    
